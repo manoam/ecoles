@@ -1,0 +1,214 @@
+<?php
+
+define('FILE_PHOTO', 'photo');
+define('PUBLIC_FILE','sites/default/files');
+define('_PUBLIC','public://');
+
+/**
+ * hook_menu
+ */
+function entity_entity_menu() {
+    
+    $items['ecoles/eleve/create'] =array(
+        'page callback' => 'drupal_get_form',
+        'file' => 'includes/eleve/eleve.form.inc',
+        'file path' => drupal_get_path('module', 'entity_entity'),
+        'page arguments' => array('_ecoles_create_eleve_form'),
+        'access callback' => 'create_eleve_permission',
+    );
+    $items['ecoles/eleve/re-inscription'] =array(
+        'page callback' => 'drupal_get_form',
+        'file' => 'includes/eleve/eleve.form.inc',
+        'file path' => drupal_get_path('module', 'entity_entity'),
+        'page arguments' => array('_ecoles_reinscription_eleve_form'),
+        'access callback' => 'create_eleve_permission',
+    );
+    
+    $items['ecoles/eleve/list'] =array(
+        'page callback' => 'drupal_get_form',
+        'file' => 'includes/eleve/eleve.list.inc',
+        'file path' => drupal_get_path('module', 'entity_entity'),
+        'page arguments' => array('_eleve_list_list'),
+        'access callback' => 'list_eleve_permission',
+    );
+    
+    $items['ecoles/eleve-no-class/list'] =array(
+        'page callback' => 'drupal_get_form',
+        'file' => 'includes/eleve/eleve.list.inc',
+        'file path' => drupal_get_path('module', 'entity_entity'),
+        'page arguments' => array('_eleve_list_list_no_class'),
+        'access callback' => 'list_eleve_permission',
+    );
+    
+    $items['ecoles/autocomplete/eleve/by-num-mat'] =array(
+        'page callback' => 'eleve_autocomplete_by_num_mat',
+        'file' => 'includes/eleve/eleve.list.inc',
+        'file path' => drupal_get_path('module', 'entity_entity'),
+        'access callback' => TRUE,
+        'type' => MENU_CALLBACK,
+    );
+    
+    $items['ecoles/configuration'] = array(
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('configuration_form'),
+        'file' => 'tools/configuration.inc',
+        'file path' => drupal_get_path('module','entity_entity'),
+        'access callback' => 'edit_configuration_permission',
+    );
+    
+    $items['ecoles/taxonomy/%'] =array(
+        'page callback' => 'drupal_get_form',
+        'file' => 'includes/taxonomy/taxonomy_form.inc',
+        'file path' => drupal_get_path('module', 'entity_entity'),
+        'page arguments' => array('_taxonomy_load_form',2),
+        'access callback' => 'admin_taxonomy_acces',
+    );
+    return $items;
+}
+
+function admin_taxonomy_acces() {
+    return  TRUE;
+}
+
+/**
+ * hook_entity_view
+ * @param unknown $node
+ * @param unknown $view_mode
+ * @param unknown $langcode
+ */
+function entity_entity_entity_view($entity, $type, $view_mode, $langcode){
+
+    if($type != 'user'){
+        if( isset($entity->type) && $entity->type == 'eleve' ){
+            
+            foreach ($entity->content as $key => $element){
+                if ($key[0] == '#') continue;
+                $entity->content[$key]['#access'] = FALSE;
+            }
+            module_load_include('form.inc','entity_entity','includes/eleve/eleve');
+            $output = drupal_get_form('_ecoles_eleve_form',$entity->id);
+            $body = drupal_render($output);
+            $entity->content['created'] = array(
+                    '#prefix' => '<div>',
+                    '#suffix' => '</div>',
+                    '#markup' => $body,
+            );
+        }
+        if( isset($entity->type) && $entity->type == 'groupe' ){
+            
+            foreach ($entity->content as $key => $element){
+                if ($key[0] == '#') continue;
+                $entity->content[$key]['#access'] = FALSE;
+            }
+            module_load_include('form.inc','entity_entity','includes/groupe/groupe');
+            $output = drupal_get_form('_ecoles_group_form',$entity->id);
+            $body = drupal_render($output);
+            $entity->content['created'] = array(
+                    '#prefix' => '<div>',
+                    '#suffix' => '</div>',
+                    '#markup' => $body,
+            );
+        }
+    }
+}
+
+/**
+ *  hook_entity_edit
+ */
+function entity_entity_form_alter(&$form, &$form_state, $form_id){           
+    if($form_id == 'eck__entity__form_edit_eleve_eleve'){
+      
+        $form['title']['#access'] = FALSE;
+        $form['field_photo']['und']['#file_upload_description'] = '';
+        $form['field_photo']['und']['#title'] = t('Photo (4 x 4)');
+        $form['field_photo']['und']['#file_upload_title'] = t('Add a new photo (4 X 4)');
+    }
+}
+
+/**
+ * hook_entity_view-alter
+ * - Hide page title in this function
+ * @param unknown $build
+ * @param unknown $type
+ */
+function entity_entity_entity_view_alter(&$build, $type){
+    if($type == 'eleve'){
+        $entity = $build['#entity'];
+        if($entity->type == 'eleve'){
+            $entity->title ='';
+        }
+    }
+    if($type == 'groupe'){
+        $entity = $build['#entity'];
+        if($entity->type == 'groupe'){
+            $entity->title ='';
+        }
+    }
+
+}
+
+/**
+ * 
+ */
+function _get_taxonomy_term($vocabulary){
+    $terms = array();
+    if(trim($vocabulary) != NULL){
+        $vocabs = taxonomy_vocabulary_machine_name_load($vocabulary);
+        if (is_object($vocabs)){
+            $termsObject = taxonomy_get_tree($vocabs->vid);
+            if (!empty($termsObject)){
+                foreach ($termsObject as $tid => $term){
+                  $terms[$term->tid] = truncate_utf8($term->name, 55, TRUE, TRUE);
+                }
+              }
+          }
+    }
+
+    return $terms;
+}
+
+
+function _entity_entity_javascript_verification_float() {
+    return 'if(event.keyCode < 45 || event.keyCode > 57 || event.keyCode == 47) event.returnValue = false;
+                if(event.which < 45 || event.which > 57 || event.which == 47) return false;';
+}
+
+function _entity_entity_javascript_verification_int() {
+    return 'if(event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;
+                if(event.which < 48 || event.which > 57) return false;';
+}
+
+function create_eleve_permission() {
+    
+    global $user;
+    
+    foreach (variable_get('CREATE_ELEVE_PERMISSION') as $role => $value) {
+        if(user_has_role($role,$user)){
+            return TRUE;
+        }
+    }
+    return FALSE;
+}
+
+
+function list_eleve_permission() {
+    
+    global $user;
+    
+    foreach (variable_get('VOIR_LIST_ELEVE_PERMISSION') as $role => $value) {
+        if(user_has_role($role,$user)){
+            return TRUE;
+        }
+    }
+    return FALSE;
+}
+
+function edit_configuration_permission() {
+    
+    global $user;
+    
+    if(user_has_role(variable_get('CONFIGURATION'),$user) || user_has_role(2,$user)){
+        return TRUE;
+    }
+    return FALSE;
+}

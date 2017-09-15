@@ -1,0 +1,35 @@
+
+.select_multiple{
+    width: 97%;
+}
+.date_create {
+    width: 100% !important;
+    margin-left: -11px;
+}
+.form-item{
+    width: 100% !important;
+}
+.date-padding{
+    width: 100% !important;
+}
+.uper_title{
+    text-transform: uppercase;
+    font-size: 1.5em;
+    font-family: "Comic";
+}
+
+.message_inscrit_no{
+    color: #800;
+    font-size: 1.2em;
+    font-family: "Comic";
+}
+
+.message_inscrit_yes{
+    color: #008000;
+    font-size: 1.2em;
+    font-family: "Comic";
+}
+
+.sexe_select{
+    width: 95%;
+}

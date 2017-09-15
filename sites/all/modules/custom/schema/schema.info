@@ -1,0 +1,7 @@
+name = Schema
+description = Schema relation table
+package = ECOLES
+core = 7.x
+version = 7.x-1.1
+
+

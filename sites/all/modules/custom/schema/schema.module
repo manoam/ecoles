@@ -1,0 +1,50 @@
+<?php
+
+/*
+ * hook_schema relation eleve taompianarana niveau class 
+ */
+function schema_schema(){
+    
+    $schema['eleveTaompianarana'] = array(
+        
+        'description' => 'relation eleve taompianarana',
+        
+        'fields' => array(
+            
+            'id' => array(
+                'description' => 'Table id',
+                'type' => 'serial',
+                'not null' => TRUE,
+            ),
+            
+            'eleve_id' => array(
+                'description' => 'eleve_id',
+                'type' => 'int',
+                'not null' => TRUE,
+            ),
+            
+            'taompianarana_tid' => array(
+                'description' => 'taompianarana_tid',
+                'type' => 'int',
+                'not null' => TRUE,
+            ),
+            'niveau_tid' => array(
+                'description' => 'niveau_tid',
+                'type' => 'int',
+                'not null' => TRUE,
+            ),
+            
+            'class_tid' => array(
+                'description' => 'class_tid',
+                'type' => 'int',
+                'not null' => FALSE,
+            ),
+            
+        ),
+        
+        'primary key' => array('id'), 
+        
+    );
+    
+    return $schema;
+}

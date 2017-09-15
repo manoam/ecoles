@@ -1,0 +1,439 @@
+<?php
+
+define('DIR_EXCEL', 'excel');
+define('TEMPLET_EXCEL', 'template_excel.xlsx');
+
+module_load_include('list.inc', 'entity_entity', 'includes/eleve/eleve');
+module_load_include('php', 'wrappers_custom', 'includes/eleve/EleveEleveWrapper');
+module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/ClasseTaxonomyTermWrapper');
+module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/NiveauTaxonomyTermWrapper');
+module_load_include('inc', 'entity_entity', 'includes/relation/eleveTaompianarana');
+
+/**
+ * hook_menu
+ */
+function import_export_menu() {
+    
+    $items['ecoles/eleve/import-export'] =array(
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('import_export_form'),
+        'access callback' => 'import_export_access',
+    );
+    
+    $items['ecoles/eleve/import-csv'] =array(
+        'access callback' => 'import_export_access',
+        'page callback' => 'import_from_csv',
+        'type' => MENU_NORMAL_ITEM,
+    );
+    
+    $items['ecoles/eleve/export'] =array(
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('export_to_excel'),
+        'access callback' => 'import_export_access',
+    );
+    
+    return $items;
+}
+
+function import_export_access() {
+    
+    global $user;
+    
+    if(user_has_role(variable_get('IMPORT_EXPORT_ACCESS'),$user) || user_has_role(variable_get('ADMIN_UID',2),$user)){
+        return TRUE;
+    }
+    return FALSE;
+}
+
+
+function import_export_form($form, &$form_state) {
+    
+    
+    $markup = '<div class="message_inscrit_no">';
+    $markup .= t("<p>Cet élève n'est pas encore inscrit dans notre écoles pour cet année scolaire</p>");
+    $markup .= '</div>';
+
+    $form['import_export']['import'] = array(
+        '#type' => 'markup',
+        '#markup' => $markup,
+    );
+}
+
+
+function import_from_csv(){
+
+  $form = drupal_get_form('import_from_csv_form');
+
+  $output = drupal_render($form);
+
+  return $output;
+}
+
+/**
+ * The form
+ * @return multitype:string multitype:string  multitype:string NULL
+ */
+function import_from_csv_form() {
+    $form['#attributes'] = array(
+        'enctype' => 'multipart/form-data'
+    );
+
+    $form['import'] = array(
+        '#type' => 'fieldset',
+        '#title' => t('Import csv'),
+    );
+
+    $form['import']['csvfile'] = array(
+        '#title' => t('CSV File'),
+        '#type' => 'file',
+        '#description' => ($max_size = parse_size(ini_get('upload_max_filesize'))) ? t('Due to server restrictions, the <strong>maximum upload file size is !max_size</strong>. Files that exceed this size will be disregarded.', array('!max_size' => format_size($max_size))) : '',
+    );
+
+    $form['import']['submit'] = array(
+        '#type' => 'submit',
+        '#value' => t('Save'),
+    );
+
+    $form['#validate'] = array(
+        'import_from_csv_validate_fileupload',
+        'import_from_csv_form_validate',
+    );
+    return $form;
+}
+
+function import_from_csv_validate_fileupload($form, &$form_state) {
+
+    $validators = array(
+        'file_validate_extensions' => array('csv'),
+    );
+
+    if ($file = file_save_upload('csvfile', $validators, "public://", FILE_EXISTS_REPLACE)) {
+        $form_state['values']['csvfile'] = $file->destination;
+    } else {
+        form_set_error('csvImporter', t('Unable to copy upload file'));
+    }
+}
+
+function import_from_csv_form_validate(&$form, &$form_state) {
+
+    if (isset($form_state['values']['csvfile']) && $form_state['values']['csvfile'] != NULL) {
+
+        if ($handle = fopen($form_state['values']['csvfile'], 'r')) {
+
+            if ($line = fgetcsv($handle, 4096, variable_get('CSV_SEPARATOR', ','))) {
+
+                if (count($line) != 13) {
+                    form_set_error('csvfile', t('This file has the incorrect number of columns. Expecting 13'));
+                }
+            }
+            fclose($handle);
+        } else {
+            form_set_error('csvfile', t('Unable to read uploaded file !'));
+        }
+    }
+}
+
+function import_from_csv_form_submit($form, &$form_state) {
+
+    $batch = array(
+        'title' => t('Importing CSV ...'),
+        'operations' => array(),
+        'init_message' => t('Commencing'),
+        'progress_message' => t('Processed @current out of @total.'),
+        'error_message' => t('An error occurred during processing'),
+        'finished' => 'import_from_csv_import_finished',
+    );
+
+    if (isset($form_state['values']['csvfile']) && $form_state['values']['csvfile'] != NULL) {
+
+        $filename = $form_state['values']['csvfile'];
+
+        if ($handle = fopen($filename, 'r')) {
+
+            while ($line = fgetcsv($handle, 4096, variable_get('CSV_SEPARATOR', ','))) {
+
+                $batch['operations'][] = array('import_from_csv_import_line', array($line));
+            }
+            fclose($handle);
+        }
+    }
+
+    batch_set($batch);
+}
+
+function import_from_csv_import_line($line, &$context) {
+
+    $num_mat    = trim($line[0]);
+    $nom        = trim($line[1]);
+    $prenom     = trim($line[2]);
+    $sex        = trim($line[3]);
+    $date_naiss = strtoupper(trim($line[4]));
+    $lieu       = strtoupper(trim($line[5]));
+    $adress     = strtoupper(trim($line[6]));
+    $num_tel    = trim($line[7]);
+    $nom_pere   = trim($line[8]);
+    $func_pere  = trim($line[9]);
+    $nom_mere   = trim($line[10]);
+    $funct_mere = trim($line[11]);
+    $niveau     = trim($line[12]);
+
+    if (is_numeric($num_mat) && strtotime($date_naiss) > 0 && in_array($sex, array(1, 2)) && in_array($niveau, array('1', '2', 'T', '1e', '1er', '2nd', 'TA', 'TD', 'TC'))) {
+
+        $sex = $sex == 1 ? 8 : 9;
+
+        $niveau_tid = NULL;
+        
+        if (in_array($niveau, array('2', '2nd'))) {
+            $niveau_tid = 5;
+        }
+        if (in_array($niveau, array('1', '1e', '1er'))) {
+            $niveau_tid = 4;
+        }
+        if (in_array($niveau, array('T', 'TA', 'TD', 'TC'))) {
+            $niveau_tid = 6;
+        }
+
+        try{
+            $error_message = array();
+
+            $eleve_id = EleveEleveWrapper::addEleve($num_mat, $nom, $prenom, $sex, $date_naiss, $lieu, $adress, $num_tel, $nom_pere, $func_pere, $nom_mere, $funct_mere, $error_message);
+
+            if ($eleve_id != NULL && $niveau_tid != NULL) {
+
+                $taompianarana_tid = variable_get('TAOMPIANARANA');
+
+                $saved = _insertIntoEleveTaompianarana($eleve_id, $taompianarana_tid, $niveau_tid);
+
+                if ($saved != NULL) {
+                    drupal_set_message(t('Enregistrement reussi'));
+                } else {
+                    $db_transaction->rollback();
+                    drupal_set_message(t('Enregistrement echoé. Num mat : '.$num_mat), 'error');
+                }
+            }elseif($niveau_tid == NULL) {
+                drupal_set_message(t('Enregistrement reussi mais no classée. Num mat : '.$num_mat), 'error');
+            }
+
+            foreach ($error_message as $value) {
+                drupal_set_message($value, 'error');
+            }
+            
+        }catch (Exception $e){
+            $db_transaction->rollback();
+            drupal_set_message(t('Enregistrement echoé. Num mat : '.$num_mat), 'error');
+        }
+    } else {
+        drupal_set_message(t('Ligne erroné.Num Mat : '.$num_mat), 'error');
+    }
+}
+
+function import_from_csv_import_finished() {
+    drupal_set_message('Finish');
+}
+
+
+function export_to_excel($form, &$form_state) {
+    
+    $form['export'] = array(
+        '#type' => 'fieldset',
+        '#title'=> t('Export vers un fichier excel'),
+    );
+    
+    
+    $options_niveau = _get_taxonomy_term('niveau');
+    
+    $options_niveau[NULL] = t('--- none ---');
+    
+    $form['export']['eleve_niveau'] = array(
+        '#type' => 'select',
+        '#title' => t('Niveau'),
+        '#options' => $options_niveau,
+        '#prefix'   =>'<div class = "copyright">',
+        '#suffix'   => '</div>',
+        '#attributes' => array('class' => array('sexe_select')),
+    );
+    
+    $options_class = _get_taxonomy_term('classe');
+    
+    $options_class[NULL] = t('--- none ---');
+    
+    $form['export']['eleve_class'] = array(
+        '#type' => 'select',
+        '#title' => t('Classe'),
+        '#options' => $options_class,
+        '#prefix'   =>'<div class = "copyright">',
+        '#suffix'   => '</div>',
+        '#attributes' => array('class' => array('sexe_select')),
+    );
+    
+    $form['export']['submit'] = array(
+        '#type'     => 'submit',
+        '#value'    => t('Exporter vers un fichier excel'),
+        '#prefix'   =>'<div class = "submit-filter">',
+        '#suffix'   => '</div>',
+    );
+    
+    if(isset($form_state['excel']) && $form_state['excel'] != NULL){
+        
+        $link = l(t('Telecharger ici votre excel') , $form_state['excel']);
+        
+        $form['export']['link'] = array(
+            '#type'     => 'markup',
+            '#markup'   => $link,
+            '#prefix'   =>'<div class = "submit-filter">',
+            '#suffix'   => '</div>',
+        );
+    }
+    
+    return $form;
+}
+
+function export_to_excel_submit($form, &$form_state) {
+    
+    $eleve_niveau   = $form_state['values']['eleve_niveau'];
+    $eleve_class    = $form_state['values']['eleve_class'];
+    
+    if($eleve_niveau != NULL && $eleve_class != NULL){
+        drupal_set_message(t('Veullier choisisser un seulement entre niveau et classe'), 'error');
+        return ;
+    }
+    
+    if($eleve_niveau == NULL && $eleve_class == NULL){
+        drupal_set_message(t('Veullier choisisser un seulement entre niveau et classe'), 'error');
+        return ;
+    }
+    
+    if($eleve_niveau != NULL){
+        
+        $header             = array(t('NUM_MAT') ,t('NOM') ,t('PRENOM') ,t('SEXE') ,t('DATE DE NAISSANCE') ,t('NIVEAU'));
+        $niveau             = new NiveauTaxonomyTermWrapper($eleve_niveau);
+        $excel_name         = t('Liste_eleves_'.$niveau->getName().'_'.date('d_M_Y'));
+        $key_not_to_excel   = array('ID','TAOMPIANARANA_TID','SEXE_TID','NIVEAU_TID','TAOMPIANARANA_NAME');
+        $rows               = _eleve_list_get_eleve_no_class($eleve_niveau);
+        
+        $form_state['excel']= _export_list_eleve_to_excel_rows($excel_name ,$header ,$rows,$key_not_to_excel);
+    }
+    if($eleve_class != NULL){
+        
+        $header             = array(t('NUM_MAT') ,t('NOM') ,t('PRENOM') ,t('SEXE') ,t('DATE DE NAISSANCE') ,t('NIVEAU'),t('CLASSE'));
+        $classe             = new ClasseTaxonomyTermWrapper($eleve_class);
+        $excel_name         = t('Liste_eleves_'.$classe->getName().'_'.date('d_M_Y'));
+        $key_not_to_excel   = array('ID','TAOMPIANARANA_TID','SEXE_TID','NIVEAU_TID','TAOMPIANARANA_NAME','CLASS_TID');
+        $rows               = _eleve_list_get_list($niveau_tid = NULL, $eleve_class);
+        
+        $form_state['excel']= _export_list_eleve_to_excel_rows($excel_name ,$header ,$rows,$key_not_to_excel);
+        
+    }
+    
+    $form_state['rebuild'] = 1;
+}
+
+
+
+function _export_list_eleve_to_excel_rows($excel_name, $header, $rows,$key_not_to_excel = array()) {
+    
+    if ($excel_name != NULL && !empty($header) && !empty($rows)) {
+
+        require_once 'sites/all/libraries/PHPExcel/Classes/PHPExcel.php';
+        require_once 'sites/all/libraries/PHPExcel/Classes/PHPExcel/IOFactory.php';
+
+        try {
+            
+            module_load_include('inc', 'phpexcel');
+
+            $dir        = file_stream_wrapper_get_instance_by_uri(_PUBLIC.DIR_EXCEL)->realpath();
+            $path       = $dir . '/' . $excel_name . '.xlsx';
+            $fileURI    = PUBLIC_FILE .'/'. DIR_EXCEL . '/' . $excel_name . '.xlsx';
+            $template   = _PUBLIC . DIR_EXCEL . '/' .TEMPLET_EXCEL;
+            
+            $template_real_path = file_stream_wrapper_get_instance_by_uri($template)->realpath();
+
+            $objPHPExcel = PHPExcel_IOFactory::load($template_real_path);
+
+            $objPHPExcel->getProperties()->setCreator("Ecoles")
+                    ->setLastModifiedBy("Ecoles")
+                    ->setTitle($excel_name)
+                    ->setSubject($excel_name)
+                    ->setDescription("")
+                    ->setKeywords($excel_name)
+                    ->setCategory("");
+            
+            $activeSheetIndex = 0;
+
+            $objPHPExcel->createSheet($activeSheetIndex);
+            $objPHPExcel->setActiveSheetIndex($activeSheetIndex);
+            $objPHPExcel->getActiveSheet()->setTitle('Liste des élèves');
+
+            $cellStyle = array(
+                'borders' => array(
+                    'allborders' => array(
+                        'style' => PHPExcel_Style_Border::BORDER_THIN,
+                        'color' => array('rgb' => '000000'),
+                    ),
+                ),
+                'alignment' => array(
+                    'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+                    'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER,
+                ),
+            );
+
+            $noBorderStyle = array(
+                'borders' => array(
+                    'allborders' => array(
+                        'style' => PHPExcel_Style_Border::BORDER_NONE,
+                    ),
+                ),
+                'alignment' => array(
+                    'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
+                    'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER,
+                ),
+                'font' => array(
+                    'bold' => TRUE,
+                    'size' => 18,
+                ),
+            );
+
+            //***** Mametraka ny Header ***//
+            $colIndex = 0;
+            $rowIndex = 1;
+            foreach ($header as $colValue) {
+                
+                $objPHPExcel->setActiveSheetIndex($activeSheetIndex)->setCellValueByColumnAndRow($colIndex, $rowIndex, $colValue);
+                //--Manova ny border sy border color --//
+                $objPHPExcel->getActiveSheet()->getStyleByColumnAndRow($colIndex, $rowIndex)->applyFromArray($cellStyle);
+                $colIndex++;
+            }
+
+            ++$rowIndex;
+
+            foreach ($rows as $row) {
+                
+                $colIndex = 0;
+                
+                // aty vo sivanina ilay row
+                foreach ($row as $key => $value) {
+                    
+                    if(count($key_not_to_excel) > 0 && in_array($key, $key_not_to_excel)){
+                        continue;
+                    }
+                    
+                    //--Manova ny border sy border color --//
+                    $objPHPExcel->getActiveSheet()->getStyleByColumnAndRow($colIndex, $rowIndex)->applyFromArray($cellStyle);
+                    $objPHPExcel->setActiveSheetIndex($activeSheetIndex)->setCellValueByColumnAndRow($colIndex, $rowIndex, $value);
+                    $colIndex++;
+                }
+
+                $rowIndex++;
+            }
+             
+            $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+            $objWriter->save($path);
+
+            return $fileURI;
+            
+        } catch (Exception $e) {
+            drupal_set_message(t('Erreur de creation excel :@error', array('@error' => $e->getMessage())), 'error');
+        }
+    }
+    return NULL;
+}

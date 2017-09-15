@@ -1,0 +1,435 @@
+ Package           Name                                                         Type    Status         Version     
+ Administration    Actions permissions (VBO) (actions_permissions)              Module  Enabled        7.x-3.3     
+ Administration    Module filter (module_filter)                                Module  Enabled        7.x-2.0     
+ ASOTRY            ASOTRY asotry_hotfix_h1 (asotry_hotfix_h1)                   Module  Not installed              
+ ASOTRY            ASOTRY Backup and Migrate (asotry_backup_migrate)            Module  Disabled       7.x-3.1     
+ ASOTRY            ASOTRY Community Group Entity (asotry_communitygroup)        Module  Enabled                    
+ ASOTRY            ASOTRY Data (asotry_data)                                    Module  Disabled                   
+ ASOTRY            ASOTRY Date Util (asotry_date_util)                          Module  Enabled                    
+ ASOTRY            ASOTRY Deploy (asotry_deploy)                                Module  Enabled                    
+ ASOTRY            ASOTRY Error Manager (asotry_error_manager)                  Module  Enabled                    
+ ASOTRY            ASOTRY Export Commune People and Household                   Module  Not installed              
+                   (asotry_export_communespeoplehousehold)                                                         
+ ASOTRY            ASOTRY Export Entities (asotry_export_services)              Module  Enabled                    
+ ASOTRY            ASOTRY Export Roles and Permissions                          Module  Not installed              
+                   (asotry_export_roles_permissions)                                                               
+ ASOTRY            ASOTRY Export Tags to JSON File (asotry_export_tags)         Module  Enabled                    
+ ASOTRY            ASOTRY FD08 (asotry_fd08)                                    Module  Enabled        7.1         
+ ASOTRY            ASOTRY FD10 (asotry_fd10)                                    Module  Enabled        7.1         
+ ASOTRY            ASOTRY FD11 Form Entity (asotry_fd11)                        Module  Enabled                    
+ ASOTRY            ASOTRY FD12 (asotry_fd12)                                    Module  Not installed  7.1         
+ ASOTRY            ASOTRY FD13 (asotry_fd13)                                    Module  Enabled        7.1         
+ ASOTRY            ASOTRY FD14 (asotry_fd14)                                    Module  Not installed  7.1         
+ ASOTRY            ASOTRY FD15 Form Entity (asotry_fd15)                        Module  Enabled        7.1         
+ ASOTRY            ASOTRY FD16 Form Entity (asotry_fd16)                        Module  Enabled                    
+ ASOTRY            ASOTRY FD17a (asotry_fd17a)                                  Module  Enabled        7.1         
+ ASOTRY            ASOTRY FD17b (asotry_fd17b)                                  Module  Enabled        7.1         
+ ASOTRY            ASOTRY FD18 (asotry_fd18)                                    Module  Enabled        7.1         
+ ASOTRY            ASOTRY FD19agmagri (asotry_fd19agmagri)                      Module  Not installed  7.1         
+ ASOTRY            ASOTRY FD19asaleagri (asotry_fd19asaleagri)                  Module  Not installed  7.1         
+ ASOTRY            ASOTRY FD19bgmapi (asotry_fd19bgmapi)                        Module  Not installed  7.1         
+ ASOTRY            ASOTRY FD19bgmelev (asotry_fd19bgmelev)                      Module  Not installed  7.1         
+ ASOTRY            ASOTRY FD19bgmpisci (asotry_fd19bgmpisci)                    Module  Not installed  7.1         
+ ASOTRY            ASOTRY FD20a (asotry_fd20a)                                  Module  Not installed  7.1         
+ ASOTRY            ASOTRY FD20b (asotry_fd20b)                                  Module  Enabled        7.1         
+ ASOTRY            ASOTRY FD21 (asotry_fd21)                                    Module  Enabled        7.1         
+ ASOTRY            ASOTRY FD25 (asotry_fd25)                                    Module  Enabled        7.1         
+ ASOTRY            ASOTRY FD28 (asotry_fd28)                                    Module  Not installed  7.1         
+ ASOTRY            ASOTRY FD29 (asotry_fd29)                                    Module  Enabled        7.1         
+ ASOTRY            ASOTRY FD31 (asotry_fd31)                                    Module  Enabled        7.1         
+ ASOTRY            ASOTRY FD32a (asotry_fd32a)                                  Module  Enabled        7.1         
+ ASOTRY            ASOTRY FD32b (asotry_fd32b)                                  Module  Enabled        7.1         
+ ASOTRY            ASOTRY FD32c (asotry_fd32c)                                  Module  Enabled        7.1         
+ ASOTRY            ASOTRY FD33a (asotry_fd33a)                                  Module  Not installed  7.1         
+ ASOTRY            ASOTRY FD34a (asotry_fd34a)                                  Module  Enabled        7.1         
+ ASOTRY            ASOTRY FD35 (asotry_fd35)                                    Module  Enabled        7.1         
+ ASOTRY            ASOTRY Form Entity (asotry_form)                             Module  Enabled                    
+ ASOTRY            ASOTRY Formula Ration Type Vivres                            Module  Enabled                    
+                   (asotry_formulerationtypevivre)                                                                 
+ ASOTRY            ASOTRY HoH Photo (asotry_hohphoto)                           Module  Enabled                    
+ ASOTRY            ASOTRY Household Entity (asotry_household_entity)            Module  Enabled                    
+ ASOTRY            ASOTRY Household Entity Importer                             Module  Enabled                    
+                   (asotry_household_entity_import)                                                                
+ ASOTRY            ASOTRY Import PLW update (asotry_import_plw_update)          Module  Enabled                    
+ ASOTRY            ASOTRY Import WebService (asotry_import_service)             Module  Enabled                    
+ ASOTRY            ASOTRY Include files (asotry_includes)                       Module  Enabled                    
+ ASOTRY            ASOTRY JSON import Entities (asotry_json_import_entities)    Module  Enabled                    
+ ASOTRY            ASOTRY Location Entity Importer                              Module  Enabled                    
+                   (asotry_location_entity_import)                                                                 
+ ASOTRY            ASOTRY Main menu (asotry_main_menu)                          Module  Not installed  7.x-1.0     
+ ASOTRY            ASOTRY Master List Form 2 (asotry_ml2_form)                  Module  Enabled                    
+ ASOTRY            ASOTRY ML1 Form Entity (asotry_ml1_form)                     Module  Enabled                    
+ ASOTRY            ASOTRY Person Entity (asotry_person_entity)                  Module  Enabled                    
+ ASOTRY            ASOTRY Person Entity Importer (asotry_person_entity_import)  Module  Enabled                    
+ ASOTRY            ASOTRY Person's Information Displayer                        Module  Enabled                    
+                   (asotry_personinfo_displayer)                                                                   
+ ASOTRY            ASOTRY Print entity (asotry_print)                           Module  Enabled                    
+ ASOTRY            ASOTRY Relation Util (asotry_relation_util)                  Module  Enabled                    
+ ASOTRY            ASOTRY Remove Main Menu (asotry_remove_main_menu)            Module  Not installed              
+ ASOTRY            ASOTRY Report Period Service (asotry_reportperiod_service)   Module  Enabled                    
+ ASOTRY            ASOTRY Server ID Card Printing                               Module  Enabled                    
+                   (asotry_server_idcard_printing)                                                                 
+ ASOTRY            ASOTRY Tablet Import (asotry_tablet_import)                  Module  Enabled                    
+ ASOTRY            ASOTRY Tablet JSON File Importer (asotry_import_json)        Module  Enabled                    
+ ASOTRY            ASOTRY Tools (asotry_tools)                                  Module  Enabled        7.1         
+ ASOTRY            ASOTRY User Entity (asotry_user)                             Module  Enabled                    
+ ASOTRY            ASOTRY Utils Tag Export (asotry_utils_tag_export_json)       Module  Enabled                    
+ ASOTRY            ASOTRY Views Util (asotry_views_util)                        Module  Enabled                    
+ ASOTRY            ASOTRY_data_model_Asotry_Form_Entity_Type                    Module  Enabled        7.x-1.0     
+                   (asotry_data_model_asotry_form_entity_type)                                                     
+ ASOTRY            ASOTRY_data_model_Community_Group                            Module  Enabled        7.x-1.0     
+                   (asotry_data_model_community_group)                                                             
+ ASOTRY            ASOTRY_data_model_FD08 (asotry_data_model_fd08)              Module  Enabled        7.x-1.0     
+ ASOTRY            ASOTRY_data_model_FD10 (asotry_data_model_fd10)              Module  Enabled        7.x-1.0     
+ ASOTRY            ASOTRY_data_model_FD11 (asotry_data_model_fd11)              Module  Enabled        7.x-1.0     
+ ASOTRY            ASOTRY_data_model_fd12 (asotry_data_model_fd12)              Module  Enabled        7.x-1.0     
+ ASOTRY            ASOTRY_data_model_FD13 (asotry_data_model_fd13)              Module  Enabled        7.x-1.0     
+ ASOTRY            ASOTRY_data_model_FD14 (asotry_data_model_fd14)              Module  Enabled        7.x-1.0     
+ ASOTRY            ASOTRY_data_model_FD15 (asotry_data_model_fd15)              Module  Enabled        7.x-1.0     
+ ASOTRY            ASOTRY_data_model_FD16 (asotry_data_model_fd16)              Module  Enabled        7.x-1.0     
+ ASOTRY            ASOTRY_data_model_FD17a (asotry_data_model_fd17a)            Module  Enabled        7.x-1.0     
+ ASOTRY            ASOTRY_data_model_FD17b (asotry_data_model_fd17b)            Module  Enabled        7.x-1.0     
+ ASOTRY            ASOTRY_data_model_FD18 (asotry_data_model_fd18)              Module  Enabled        7.x-1.0     
+ ASOTRY            ASOTRY_data_model_fd19aGMAgri                                Module  Enabled        7.x-1.0     
+                   (asotry_data_model_fd19agmagri)                                                                 
+ ASOTRY            ASOTRY_data_model_fd19aSaleAgri                              Module  Enabled        7.x-1.0     
+                   (asotry_data_model_fd19asaleagri)                                                               
+ ASOTRY            ASOTRY_data_model_fd19bGMApi (asotry_data_model_fd19bgmapi)  Module  Enabled        7.x-1.0     
+ ASOTRY            ASOTRY_data_model_fd19bGMElev                                Module  Enabled        7.x-1.0     
+                   (asotry_data_model_fd19bgmelev)                                                                 
+ ASOTRY            ASOTRY_data_model_fd19bGMPisci                               Module  Enabled        7.x-1.0     
+                   (asotry_data_model_fd19bgmpisci)                                                                
+ ASOTRY            ASOTRY_data_model_FD20a (asotry_data_model_fd20a)            Module  Enabled        7.x-1.0     
+ ASOTRY            ASOTRY_data_model_FD20b (asotry_data_model_fd20b)            Module  Enabled        7.x-1.0     
+ ASOTRY            ASOTRY_data_model_FD21 (asotry_data_model_fd21)              Module  Enabled        7.x-1.0     
+ ASOTRY            ASOTRY_data_model_FD25 (asotry_data_model_fd25)              Module  Enabled        7.x-1.0     
+ ASOTRY            ASOTRY_data_model_fd28 (asotry_data_model_fd28)              Module  Enabled        7.x-1.0     
+ ASOTRY            ASOTRY_data_model_FD29 (asotry_data_model_fd29)              Module  Enabled        7.x-1.0     
+ ASOTRY            ASOTRY_data_model_FD31 (asotry_data_model_fd31)              Module  Enabled        7.x-1.0     
+ ASOTRY            ASOTRY_data_model_FD32a (asotry_data_model_fd32a)            Module  Enabled        7.x-1.0     
+ ASOTRY            ASOTRY_data_model_FD32c (asotry_data_model_fd32c)            Module  Enabled        7.x-1.0     
+ ASOTRY            ASOTRY_data_model_FD33a (asotry_data_model_fd33a)            Module  Enabled        7.x-1.0     
+ ASOTRY            ASOTRY_data_model_FD34a (asotry_data_model_fd34a)            Module  Enabled        7.x-1.0     
+ ASOTRY            ASOTRY_data_model_FD35 (asotry_data_model_fd35)              Module  Enabled        7.x-1.0     
+ ASOTRY            ASOTRY_data_model_Field_Bases                                Module  Enabled        7.x-1.3     
+                   (asotry_data_model_field_bases)                                                                 
+ ASOTRY            ASOTRY_data_model_Group_Leader                               Module  Enabled        7.x-1.0     
+                   (asotry_data_model_group_leader)                                                                
+ ASOTRY            ASOTRY_data_model_household_entity                           Module  Enabled        7.x-1.0     
+                   (asotry_data_model_household_entity)                                                            
+ ASOTRY            ASOTRY_data_model_household_move                             Module  Enabled        7.x-1.0     
+                   (asotry_data_model_household_move)                                                              
+ ASOTRY            ASOTRY_data_model_ML1 (asotry_data_model_ml1)                Module  Enabled        7.x-1.0     
+ ASOTRY            ASOTRY_data_model_ML2 (asotry_data_model_ml2)                Module  Enabled        7.x-1.0     
+ ASOTRY            ASOTRY_data_model_person_entity                              Module  Enabled        7.x-1.0     
+                   (asotry_data_model_person_entity)                                                               
+ ASOTRY            ASOTRY_data_model_person_move                                Module  Enabled        7.x-1.0     
+                   (asotry_data_model_person_move)                                                                 
+ ASOTRY            ASOTRY_data_model_Tablet_Import_Entity                       Module  Enabled        7.x-1.0     
+                   (asotry_tablet_import_entity)                                                                   
+ ASOTRY            ASOTRY_data_model_temporary_household                        Module  Enabled        7.x-1.0     
+                   (asotry_data_model_temporary_household)                                                         
+ ASOTRY            ASOTRY_data_model_temporary_person                           Module  Enabled        7.x-1.0     
+                   (asotry_data_model_temporary_person)                                                            
+ ASOTRY            ASOTRY_roles_permissions (asotry_roles_permissions)          Module  Not installed  7.x-1.0     
+ ASOTRY            ASOTRY_views_asotry_form (asotry_views_asotry_form)          Module  Not installed  7.x-1.0     
+ ASOTRY            ASOTRY_views_Audits_Manuels (asotry_views_audits_manuels)    Module  Not installed  7.x-1.0     
+ ASOTRY            ASOTRY_views_Audits_Manuels_Menages                          Module  Not installed  7.x-1.0     
+                   (asotry_views_audits_manuels_menages)                                                           
+ ASOTRY            ASOTRY_views_group_leader (asotry_views_group_leader)        Module  Not installed  7.x-1.0     
+ ASOTRY            ASOTRY_views_groups (asotry_views_groups)                    Module  Not installed  7.x-1.0     
+ ASOTRY            ASOTRY_views_household_move (asotry_views_household_move)    Module  Not installed  7.x-1.0     
+ ASOTRY            ASOTRY_views_households (asotry_views_households)            Module  Not installed              
+ ASOTRY            ASOTRY_views_location (asotry_views_location)                Module  Not installed  7.x-1.0     
+ ASOTRY            ASOTRY_views_Master_list (asotry_views_master_list)          Module  Not installed  7.x-1.0     
+ ASOTRY            ASOTRY_views_person_move (asotry_views_person_move)          Module  Not installed  7.x-1.0     
+ ASOTRY            ASOTRY_views_Ranto_Forms (asotry_views_ranto_forms)          Module  Not installed              
+ ASOTRY            ASOTRY_views_table_exportJson                                Module  Enabled        7.x-1.0     
+                   (asotry_views_table_exportjson)                                                                 
+ ASOTRY            ASOTRY_views_tablet_import (asotry_views_tablet_import)      Module  Not installed  7.x-1.0     
+ ASOTRY            ASOTRY_views_Temporary_People                                Module  Not installed  7.x-1.0     
+                   (asotry_views_temporary_people)                                                                 
+ ASOTRY            ASOTRY_views_users (asotry_views_users)                      Module  Not installed  7.x-1.0     
+ Chaos tool suite  Bulk Export (bulk_export)                                    Module  Not installed  7.x-1.7     
+ Chaos tool suite  Chaos tools (ctools)                                         Module  Enabled        7.x-1.7     
+ Chaos tool suite  Chaos Tools (CTools) AJAX Example (ctools_ajax_sample)       Module  Not installed  7.x-1.7     
+ Chaos tool suite  Chaos Tools (CTools) Plugin Example (ctools_plugin_example)  Module  Not installed  7.x-1.7     
+ Chaos tool suite  Custom content panes (ctools_custom_content)                 Module  Not installed  7.x-1.7     
+ Chaos tool suite  Custom rulesets (ctools_access_ruleset)                      Module  Not installed  7.x-1.7     
+ Chaos tool suite  Page manager (page_manager)                                  Module  Enabled        7.x-1.7     
+ Chaos tool suite  Stylizer (stylizer)                                          Module  Not installed  7.x-1.7     
+ Chaos tool suite  Term Depth access (term_depth)                               Module  Not installed  7.x-1.7     
+ Chaos tool suite  Views content panes (views_content)                          Module  Enabled        7.x-1.7     
+ Core              Aggregator (aggregator)                                      Module  Not installed  7.37        
+ Core              Block (block)                                                Module  Enabled        7.37        
+ Core              Blog (blog)                                                  Module  Not installed  7.37        
+ Core              Book (book)                                                  Module  Not installed  7.37        
+ Core              Color (color)                                                Module  Enabled        7.37        
+ Core              Comment (comment)                                            Module  Enabled        7.37        
+ Core              Contact (contact)                                            Module  Not installed  7.37        
+ Core              Content translation (translation)                            Module  Not installed  7.37        
+ Core              Contextual links (contextual)                                Module  Enabled        7.37        
+ Core              Dashboard (dashboard)                                        Module  Enabled        7.37        
+ Core              Database logging (dblog)                                     Module  Enabled        7.37        
+ Core              Field (field)                                                Module  Enabled        7.37        
+ Core              Field SQL storage (field_sql_storage)                        Module  Enabled        7.37        
+ Core              Field UI (field_ui)                                          Module  Enabled        7.37        
+ Core              File (file)                                                  Module  Enabled        7.37        
+ Core              Filter (filter)                                              Module  Enabled        7.37        
+ Core              Forum (forum)                                                Module  Not installed  7.37        
+ Core              Help (help)                                                  Module  Enabled        7.37        
+ Core              Image (image)                                                Module  Enabled        7.37        
+ Core              List (list)                                                  Module  Enabled        7.37        
+ Core              Locale (locale)                                              Module  Not installed  7.37        
+ Core              Menu (menu)                                                  Module  Enabled        7.37        
+ Core              Node (node)                                                  Module  Enabled        7.37        
+ Core              Number (number)                                              Module  Enabled        7.37        
+ Core              OpenID (openid)                                              Module  Not installed  7.37        
+ Core              Options (options)                                            Module  Enabled        7.37        
+ Core              Overlay (overlay)                                            Module  Enabled        7.37        
+ Core              Path (path)                                                  Module  Enabled        7.37        
+ Core              PHP filter (php)                                             Module  Enabled        7.37        
+ Core              Poll (poll)                                                  Module  Not installed  7.37        
+ Core              RDF (rdf)                                                    Module  Enabled        7.37        
+ Core              Search (search)                                              Module  Enabled        7.37        
+ Core              Shortcut (shortcut)                                          Module  Enabled        7.37        
+ Core              Statistics (statistics)                                      Module  Not installed  7.37        
+ Core              Syslog (syslog)                                              Module  Not installed  7.37        
+ Core              System (system)                                              Module  Enabled        7.37        
+ Core              Taxonomy (taxonomy)                                          Module  Enabled        7.37        
+ Core              Testing (simpletest)                                         Module  Not installed  7.37        
+ Core              Text (text)                                                  Module  Enabled        7.37        
+ Core              Toolbar (toolbar)                                            Module  Enabled        7.37        
+ Core              Tracker (tracker)                                            Module  Not installed  7.37        
+ Core              Trigger (trigger)                                            Module  Not installed  7.37        
+ Core              Update manager (update)                                      Module  Disabled       7.37        
+ Core              User (user)                                                  Module  Enabled        7.37        
+ Date/Time         Date (date)                                                  Module  Enabled        7.x-2.8     
+ Date/Time         Date All Day (date_all_day)                                  Module  Not installed  7.x-2.8     
+ Date/Time         Date API (date_api)                                          Module  Enabled        7.x-2.8     
+ Date/Time         Date Context (date_context)                                  Module  Not installed  7.x-2.8     
+ Date/Time         Date Popup (date_popup)                                      Module  Enabled        7.x-2.8     
+ Date/Time         Date Repeat API (date_repeat)                                Module  Not installed  7.x-2.8     
+ Date/Time         Date Repeat Field (date_repeat_field)                        Module  Not installed  7.x-2.8     
+ Date/Time         Date Tools (date_tools)                                      Module  Not installed  7.x-2.8     
+ Date/Time         Date Views (date_views)                                      Module  Enabled        7.x-2.8     
+ Development       Delete content and users (delete_all)                        Module  Enabled        7.x-1.1     
+ Development       Devel (devel)                                                Module  Enabled        7.x-1.5     
+ Development       Devel generate (devel_generate)                              Module  Not installed  7.x-1.5     
+ Development       Devel node access (devel_node_access)                        Module  Not installed  7.x-1.5     
+ Development       Menu import (menu_import)                                    Module  Enabled        7.x-1.7     
+ Display Suite     Display Suite (ds)                                           Module  Enabled        7.x-2.10    
+ Display Suite     Display Suite Devel (ds_devel)                               Module  Not installed  7.x-2.10    
+ Display Suite     Display Suite Extras (ds_extras)                             Module  Not installed  7.x-2.10    
+ Display Suite     Display Suite Format (ds_format)                             Module  Not installed  7.x-2.10    
+ Display Suite     Display Suite Forms (ds_forms)                               Module  Not installed  7.x-2.10    
+ Display Suite     Display Suite Search (ds_search)                             Module  Not installed  7.x-2.10    
+ Display Suite     Display Suite UI (ds_ui)                                     Module  Not installed  7.x-2.10    
+ ECK               ECK Example (eck_example)                                    Module  Not installed  7.x-2.0-rc7 
+ ECK               ECK Services (eck_services)                                  Module  Not installed  7.x-2.0-rc7 
+ ECK               Entity Construction Kit (eck)                                Module  Enabled        7.x-2.0-rc7 
+ Example modules   Action example (action_example)                              Module  Not installed  7.x-1.x-dev 
+ Example modules   AJAX Example (ajax_example)                                  Module  Enabled        7.x-1.x-dev 
+ Example modules   Batch example (batch_example)                                Module  Not installed  7.x-1.x-dev 
+ Example modules   Block Example (block_example)                                Module  Not installed  7.x-1.x-dev 
+ Example modules   Cache Example (cache_example)                                Module  Not installed  7.x-1.x-dev 
+ Example modules   Checklist API example (checklistapi_example)                 Module  Not installed  7.x-1.2     
+ Example modules   Contextual links example (contextual_links_example)          Module  Not installed  7.x-1.x-dev 
+ Example modules   Cron example (cron_example)                                  Module  Not installed  7.x-1.x-dev 
+ Example modules   DBTNG example (dbtng_example)                                Module  Not installed  7.x-1.x-dev 
+ Example modules   E-mail Example (email_example)                               Module  Not installed  7.x-1.x-dev 
+ Example modules   Entity Example (entity_example)                              Module  Not installed  7.x-1.x-dev 
+ Example modules   Examples For Developers (examples)                           Module  Enabled        7.x-1.x-dev 
+ Example modules   Field Example (field_example)                                Module  Not installed  7.x-1.x-dev 
+ Example modules   Field Permission Example (field_permission_example)          Module  Not installed  7.x-1.x-dev 
+ Example modules   File example (file_example)                                  Module  Not installed  7.x-1.x-dev 
+ Example modules   Filter example (filter_example)                              Module  Not installed  7.x-1.x-dev 
+ Example modules   Form example (form_example)                                  Module  Enabled        7.x-1.x-dev 
+ Example modules   Image Example (image_example)                                Module  Not installed  7.x-1.x-dev 
+ Example modules   JS Example (js_example)                                      Module  Not installed  7.x-1.x-dev 
+ Example modules   Menu example (menu_example)                                  Module  Enabled        7.x-1.x-dev 
+ Example modules   Node access example (node_access_example)                    Module  Not installed  7.x-1.x-dev 
+ Example modules   Node example (node_example)                                  Module  Not installed  7.x-1.x-dev 
+ Example modules   NodeAPI example (nodeapi_example)                            Module  Not installed  7.x-1.x-dev 
+ Example modules   Page example (page_example)                                  Module  Not installed  7.x-1.x-dev 
+ Example modules   Pager example (pager_example)                                Module  Not installed  7.x-1.x-dev 
+ Example modules   Queue example (queue_example)                                Module  Not installed  7.x-1.x-dev 
+ Example modules   RDF Example (rdf_example)                                    Module  Not installed  7.x-1.x-dev 
+ Example modules   Render example (render_example)                              Module  Not installed  7.x-1.x-dev 
+ Example modules   SimpleTest Example (simpletest_example)                      Module  Not installed  7.x-1.x-dev 
+ Example modules   Table Sort example (tablesort_example)                       Module  Not installed  7.x-1.x-dev 
+ Example modules   Tabledrag Example (tabledrag_example)                        Module  Not installed  7.x-1.x-dev 
+ Example modules   Theming example (theming_example)                            Module  Not installed  7.x-1.x-dev 
+ Example modules   Token example (token_example)                                Module  Not installed  7.x-1.x-dev 
+ Example modules   Trigger example (trigger_example)                            Module  Not installed  7.x-1.x-dev 
+ Example modules   Vertical tabs example (vertical_tabs_example)                Module  Not installed  7.x-1.x-dev 
+ Example modules   XMLRPC example (xmlrpc_example)                              Module  Not installed  7.x-1.x-dev 
+ Features          Date Migration Example (date_migrate_example)                Module  Not installed  7.x-2.8     
+ Features          Features (features)                                          Module  Enabled        7.x-2.7     
+ Features          Features Roles Permissions (features_roles_permissions)      Module  Enabled        7.x-1.2     
+ Features          UUID Services Example (uuid_services_example)                Module  Not installed  7.x-1.0-alp 
+                                                                                                       ha6         
+ Feeds             Feeds (feeds)                                                Module  Enabled        7.x-2.0-alp 
+                                                                                                       ha8         
+ Feeds             Feeds Admin UI (feeds_ui)                                    Module  Enabled        7.x-2.0-alp 
+                                                                                                       ha8         
+ Feeds             Feeds entity processor (feeds_entity_processor)              Module  Not installed  7.x-1.x-dev 
+ Feeds             Feeds Import (feeds_import)                                  Module  Disabled       7.x-2.0-alp 
+                                                                                                       ha8         
+ Feeds             Feeds News (feeds_news)                                      Module  Not installed  7.x-2.0-alp 
+                                                                                                       ha8         
+ Feeds             Feeds Tamper (feeds_tamper)                                  Module  Enabled        7.x-1.1     
+ Feeds             Feeds Tamper Admin UI (feeds_tamper_ui)                      Module  Enabled        7.x-1.1     
+ Feeds             Feeds Tamper PHP plugin (feeds_tamper_php)                   Module  Enabled        7.x-1.1     
+ Feeds             Feeds Tamper: Search term by field (feeds_tamper_stbf)       Module  Enabled        7.x-1.0-alp 
+                                                                                                       ha1         
+ Feeds             JSONPath Parser (feeds_jsonpath_parser)                      Module  Enabled        7.x-1.0     
+ Fields            Bundle copy (bundle_copy)                                    Module  Not installed  7.x-1.1     
+ Fields            Entity Reference (entityreference)                           Module  Enabled        7.x-1.1     
+ Fields            Entity Reference Behavior Example                            Module  Not installed  7.x-1.1     
+                   (entityreference_behavior_example)                                                              
+ Fields            Maxlength (maxlength)                                        Module  Enabled        7.x-3.2     
+ Fields            Serial (serial)                                              Module  Enabled        7.x-1.4     
+ Fields            Term Reference Tree (term_reference_tree)                    Module  Enabled        7.x-1.10    
+ Mail              Mail System (mailsystem_1)                                   Module  Not installed  7.x-2.34    
+ Mail              Mail System (mailsystem)                                     Module  Enabled        7.x-2.34    
+ Mail              Mime Mail (mimemail)                                         Module  Enabled        7.x-1.0-bet 
+                                                                                                       a4          
+ Mail              Mime Mail Action (mimemail_action)                           Module  Not installed  7.x-1.0-bet 
+                                                                                                       a4          
+ Mail              Mime Mail CSS Compressor (mimemail_compress)                 Module  Not installed  7.x-1.0-bet 
+                                                                                                       a4          
+ Mail              SMTP Authentication Support (smtp)                           Module  Enabled        7.x-1.3     
+ Mail              Swift Mailer (swiftmailer)                                   Module  Disabled       7.x-1.6     
+ Multilingual -    Panels translation (i18n_panels)                             Module  Not installed  7.x-3.5     
+ Internationaliza                                                                                                  
+ tion                                                                                                              
+ Multilingual -    Rules translation (rules_i18n)                               Module  Not installed  7.x-2.9     
+ Internationaliza                                                                                                  
+ tion                                                                                                              
+ Node export       Node export (node_export)                                    Module  Enabled        7.x-3.0     
+ Node export       Node export dependency (experimental)                        Module  Not installed  7.x-3.0     
+                   (node_export_dependency)                                                                        
+ Node export       Node export features (node_export_features)                  Module  Not installed  7.x-3.0     
+ Node export       Node export feeds (node_export_feeds)                        Module  Not installed  7.x-3.0     
+ Node export       Node export relation (deprecated) (node_export_relation)     Module  Not installed  7.x-3.0     
+ Other             Back To Top (back_to_top)                                    Module  Enabled        7.x-1.4     
+ Other             Backup and Migrate (backup_migrate)                          Module  Disabled       7.x-3.1     
+ Other             Checklist API (checklistapi)                                 Module  Enabled        7.x-1.2     
+ Other             Diff (diff)                                                  Module  Enabled        7.x-3.2     
+ Other             Entity API (entity)                                          Module  Enabled        7.x-1.6     
+ Other             Entity Bulk Delete (entity_bulk_delete)                      Module  Enabled        7.x-1.1     
+ Other             Entity tokens (entity_token)                                 Module  Enabled        7.x-1.6     
+ Other             Export Roles & Permissions (export_roles_permissions)        Module  Enabled        7.x-1.0     
+ Other             Job Scheduler (job_scheduler)                                Module  Enabled        7.x-2.0-alp 
+                                                                                                       ha3         
+ Other             Job Scheduler Trigger (job_scheduler_trigger)                Module  Not installed  7.x-2.0-alp 
+                                                                                                       ha3         
+ Other             Libraries (libraries)                                        Module  Enabled        7.x-2.2     
+ Other             Nice Menus (nice_menus)                                      Module  Not installed  7.x-2.5     
+ Other             Pathauto (pathauto)                                          Module  Enabled        7.x-1.2     
+ Other             Redirect 403 to User Login (r4032login)                      Module  Enabled        7.x-1.8     
+ Other             Token (token)                                                Module  Enabled        7.x-1.5     
+ Panels            Mini panels (panels_mini)                                    Module  Not installed  7.x-3.5     
+ Panels            Panel nodes (panels_node)                                    Module  Not installed  7.x-3.5     
+ Panels            Panels (panels)                                              Module  Enabled        7.x-3.5     
+ Panels            Panels In-Place Editor (panels_ipe)                          Module  Not installed  7.x-3.5     
+ Pdf               TCPDF (tcpdf)                                                Module  Disabled       7.x-1.0-bet 
+                                                                                                       a1          
+ Pdf               TCPDF Example (tcpdf_example)                                Module  Disabled       7.x-1.0-bet 
+                                                                                                       a1          
+ People            No Request New Pass (noreqnewpass)                           Module  Enabled        7.x-1.2     
+ Performance       Missing Module (missing_module)                              Module  Enabled        7.x-1.0     
+ Performance and   ECK - Entitycache (eck_entitycache)                          Module  Not installed  7.x-2.0-rc7 
+ scalability                                                                                                       
+ Performance and   Performance and Scalability Checklist (pasc)                 Module  Enabled        7.x-1.0-bet 
+ scalability                                                                                           a1          
+ Printer, email    dompdf library handler (print_pdf_dompdf)                    Module  Not installed  7.x-2.0     
+ and PDF versions                                                                                                  
+ Printer, email    EPUB version (print_epub)                                    Module  Not installed  7.x-2.0     
+ and PDF versions                                                                                                  
+ Printer, email    mPDF library handler (print_pdf_mpdf)                        Module  Not installed  7.x-2.0     
+ and PDF versions                                                                                                  
+ Printer, email    PDF version (print_pdf)                                      Module  Not installed  7.x-2.0     
+ and PDF versions                                                                                                  
+ Printer, email    PHPePub library handler (print_epub_phpepub)                 Module  Not installed  7.x-2.0     
+ and PDF versions                                                                                                  
+ Printer, email    Printer-friendly pages (print)                               Module  Disabled       7.x-2.0     
+ and PDF versions                                                                                                  
+ Printer, email    Printer-friendly pages UI (print_ui)                         Module  Not installed  7.x-2.0     
+ and PDF versions                                                                                                  
+ Printer, email    Send by email (print_mail)                                   Module  Not installed  7.x-2.0     
+ and PDF versions                                                                                                  
+ Printer, email    TCPDF library handler (print_pdf_tcpdf)                      Module  Not installed  7.x-2.0     
+ and PDF versions                                                                                                  
+ Printer, email    wkhtmltopdf library handler (print_pdf_wkhtmltopdf)          Module  Not installed  7.x-2.0     
+ and PDF versions                                                                                                  
+ Relation          Relation (relation)                                          Module  Enabled        7.x-1.0-rc7 
+ Relation          Relation Add (relation_add)                                  Module  Enabled        7.x-1.5     
+ Relation          Relation Add Block (relation_add_block)                      Module  Enabled        7.x-1.5     
+ Relation          Relation Dummy Field (relation_dummy_field)                  Module  Not installed  7.x-1.0-rc7 
+ Relation          Relation Endpoints Field (relation_endpoint)                 Module  Enabled        7.x-1.0-rc7 
+ Relation          Relation Entity Collector block (relation_entity_collector)  Module  Disabled       7.x-1.0-rc7 
+ Relation          Relation feeds (relation_feeds)                              Module  Not installed  7.x-1.0-rc7 
+ Relation          Relation migrate (relation_migrate)                          Module  Not installed  7.x-1.0-rc7 
+ Relation          Relation UI (relation_ui)                                    Module  Enabled        7.x-1.0-rc7 
+ Rules             Rules (rules)                                                Module  Enabled        7.x-2.9     
+ Rules             Rules Scheduler (rules_scheduler)                            Module  Not installed  7.x-2.9     
+ Rules             Rules UI (rules_admin)                                       Module  Enabled        7.x-2.9     
+ Services          Services (services)                                          Module  Enabled        7.x-3.12    
+ Services -        OAuth Authentication (services_oauth)                        Module  Not installed  7.x-3.12    
+ authentication                                                                                                    
+ Services -        UUID Services (uuid_services)                                Module  Not installed  7.x-1.0-alp 
+ resources                                                                                             ha6         
+ Services -        REST Server (rest_server)                                    Module  Enabled        7.x-3.12    
+ servers                                                                                                           
+ Services -        XMLRPC Server (xmlrpc_server)                                Module  Not installed  7.x-3.12    
+ servers                                                                                                           
+ Taxonomy          Taxonomy CSV import/export (taxonomy_csv)                    Module  Disabled       7.x-5.10    
+ User interface    jQuery Easing (jqeasing)                                     Module  Disabled       7.x-1.0     
+ User interface    jQuery Update (jquery_update)                                Module  Enabled        7.x-3.0-alp 
+                                                                                                       ha2         
+ User interface    Popup (popup)                                                Module  Enabled        7.x-1.4     
+ User interface    Popup block (popup_block)                                    Module  Enabled        7.x-1.4     
+ User interface    Popup descriptions (popup_descriptions)                      Module  Not installed  7.x-1.4     
+ User interface    Popup Filter (popup_filter)                                  Module  Not installed  7.x-1.4     
+ User interface    Popup menu (popup_menu)                                      Module  Not installed  7.x-1.4     
+ User interface    Popup Nodereference (popup_nodereference)                    Module  Not installed  7.x-1.4     
+ User interface    Popup test (popup_test)                                      Module  Not installed  7.x-1.4     
+ User interface    Popup UI (popup_ui)                                          Module  Enabled        7.x-1.4     
+ User interface    Superfish (superfish)                                        Module  Enabled        7.x-1.9     
+ UUID              Universally Unique ID (uuid)                                 Module  Enabled        7.x-1.0-alp 
+                                                                                                       ha6         
+ UUID              UUID Path (uuid_path)                                        Module  Not installed  7.x-1.0-alp 
+                                                                                                       ha6         
+ Views             Views (views)                                                Module  Enabled        7.x-3.11    
+ Views             Views Bulk Operations (views_bulk_operations)                Module  Enabled        7.x-3.3     
+ Views             Views Content Cache (views_content_cache)                    Module  Enabled        7.x-3.0-alp 
+                                                                                                       ha3         
+ Views             Views Data Export (views_data_export)                        Module  Not installed  7.x-3.0-bet 
+                                                                                                       a9          
+ Views             Views JSON (views_json)                                      Module  Enabled        7.x-1.0-alp 
+                                                                                                       ha2         
+ Views             Views PHP (views_php)                                        Module  Enabled        7.x-1.0-alp 
+                                                                                                       ha1         
+ Views             Views RDF (views_rdf)                                        Module  Not installed  7.x-1.0-alp 
+                                                                                                       ha2         
+ Views             Views Tree (views_tree)                                      Module  Enabled        7.x-2.0     
+ Views             Views UI (views_ui)                                          Module  Enabled        7.x-3.11    
+ Views             Views XHTML (views_xhtml)                                    Module  Not installed  7.x-1.0-alp 
+                                                                                                       ha2         
+ Views             Views XML (views_xml)                                        Module  Not installed  7.x-1.0-alp 
+                                                                                                       ha2         
+ Wrappers Delight  Custom Wrappers (wrappers_custom)                            Module  Not installed  7.x-1.221   
+ Wrappers Delight  Wrappers Delight (wrappers_delight)                          Module  Enabled        7.x-1.2     
+ Wrappers Delight  Wrappers Delight Commerce (wrappers_delight_commerce)        Module  Not installed  7.x-1.2     
+ Wrappers Delight  Wrappers Delight Entityqueue (wrappers_delight_entityqueue)  Module  Not installed  7.x-1.2     
+ Wrappers Delight  Wrappers Delight Message (wrappers_delight_message)          Module  Not installed  7.x-1.2     
+ Wrappers Delight  Wrappers Delight OG (wrappers_delight_og)                    Module  Not installed  7.x-1.2     
+ Wrappers Delight  Wrappers Delight Query (wrappers_delight_query)              Module  Enabled        7.x-1.2     
+ Core              Bartik (bartik)                                              Theme   Enabled        7.37        
+ Core              Garland (garland)                                            Theme   Disabled       7.37        
+ Core              Seven (seven)                                                Theme   Enabled        7.37        
+ Core              Stark (stark)                                                Theme   Disabled       7.37        
+ Other             ASOTRY Bartik (asotry_bartik)                                Theme   Enabled                    
+
