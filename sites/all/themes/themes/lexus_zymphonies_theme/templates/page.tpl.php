@@ -91,11 +91,9 @@
       <nav id="main-menu"  role="navigation">
         <a class="nav-toggle" href="#">Navigation</a>
         <div class="menu-navigation-container">
-          
             <?php if ($page['menu-modif']): ?>
-              <aside id="menu-modif" role="complementary"><?php print render($page['menu-modif']); ?></aside>
+                <?php print render($page['menu-modif']); ?>
             <?php endif; ?>
-
         </div>
         <div class="clear"></div>
       </nav>
@@ -180,7 +178,7 @@
         <?php if ($page['sidebar_first']): ?>
           <aside id="sidebar-first" role="complementary"><?php print render($page['sidebar_first']); ?></aside>
         <?php endif; ?>
-          
+      
         </div>
 
         <?php if ($page['sidebar_second']): ?>

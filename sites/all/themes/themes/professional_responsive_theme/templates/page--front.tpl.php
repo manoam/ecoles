@@ -150,8 +150,6 @@
       </aside>  <!-- /#sidebar-first -->
     <?php endif; 
     
-            $form = drupal_get_form('pourlesnuls_event_inscription_form');
-            print drupal_render($form);
     ?>
   
 </div>

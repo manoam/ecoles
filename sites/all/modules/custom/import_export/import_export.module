@@ -39,8 +39,11 @@ function import_export_access() {
     
     global $user;
     
-    if(user_has_role(variable_get('IMPORT_EXPORT_ACCESS'),$user) || user_has_role(variable_get('ADMIN_UID',2),$user)){
-        return TRUE;
+    foreach (variable_get('IMPORT_EXPORT_ACCESS') as $key => $value) {
+
+        if(user_has_role($key,$user) || user_has_role(variable_get('ADMIN_UID',2),$user)){
+            return TRUE;
+        }
     }
     return FALSE;
 }
