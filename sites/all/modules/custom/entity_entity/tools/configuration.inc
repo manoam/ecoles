@@ -18,7 +18,7 @@ function configuration_form($form,&$form_state){
     );
     
     $form['config']['CONFIGURATION'] = array(
-        '#title'        => t('Accée a la configuration '),
+        '#title'        => t('Accée à la configuration '),
         '#type'         => 'select',
         '#options'      => $roles_options,
         '#default_value'=> variable_get('CONFIGURATION'),

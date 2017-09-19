@@ -180,21 +180,16 @@ function import_from_csv_import_line($line, &$context) {
     $funct_mere = trim($line[11]);
     $niveau     = trim($line[12]);
 
+    
+    $niveau_tid = NULL;
+
+    if (in_array($niveau, array('2', '2nd'))) {
+        $niveau_tid = 5;
+    }
+    
     if (is_numeric($num_mat) && strtotime($date_naiss) > 0 && in_array($sex, array(1, 2)) && in_array($niveau, array('1', '2', 'T', '1e', '1er', '2nd', 'TA', 'TD', 'TC'))) {
 
         $sex = $sex == 1 ? 8 : 9;
-
-        $niveau_tid = NULL;
-        
-        if (in_array($niveau, array('2', '2nd'))) {
-            $niveau_tid = 5;
-        }
-        if (in_array($niveau, array('1', '1e', '1er'))) {
-            $niveau_tid = 4;
-        }
-        if (in_array($niveau, array('T', 'TA', 'TD', 'TC'))) {
-            $niveau_tid = 6;
-        }
 
         try{
             $error_message = array();

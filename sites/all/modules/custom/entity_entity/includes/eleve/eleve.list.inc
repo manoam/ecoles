@@ -263,12 +263,17 @@ function _eleve_list_list_no_class($form, &$form_state) {
     
     $niveau_tid = isset($form_state['niveau_tid'])? $form_state['niveau_tid'] : NULL;
     
-    $list = _eleve_list_get_eleve_no_class($niveau_tid);
-    
-    $i    = count($list);
     $rows = array();
     
-    foreach ($list as $eleve) {
+    // ity no maka ny list ny eleve
+    $sql = _eleve_sql_list_eleve_no_class($niveau_tid);
+    
+    $result = db_query($sql);
+    
+    $i    = $result->rowCount();
+    
+    while ($eleve  = $result->fetchAssoc()) {
+        
         $row = array();
         $row[] = $i--;
         $row[] = $eleve['NUM_MAT'];

@@ -22,4 +22,25 @@ class NiveauTaxonomyTermWrapper extends WdTaxonomyTermWrapper {
     return new NiveauTaxonomyTermWrapper($entity_wrapper->value());
   }
 
+  /**
+   * Sets field_code
+   *
+   * @param $value
+   *
+   * @return $this
+   */
+  public function setCode($value, $format = NULL) {
+    $this->setText('field_code', $value, $format);
+    return $this;
+  }
+
+  /**
+   * Retrieves field_code
+   *
+   * @return mixed
+   */
+  public function getCode($format = WdEntityWrapper::FORMAT_DEFAULT, $markup_format = NULL) {
+    return $this->getText('field_code', $format, $markup_format);
+  }
+
 }
