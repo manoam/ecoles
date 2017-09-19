@@ -181,17 +181,14 @@ function import_from_csv_import_line($line, &$context) {
     $niveau     = trim($line[12]);
 
     
-    $niveau_tid = NULL;
-
-    if (in_array($niveau, array('2', '2nd'))) {
-        $niveau_tid = 5;
-    }
+    $niveau_tid = NiveauTaxonomyTermWrapper::getNiveauByCode($niveau);
     
-    if (is_numeric($num_mat) && strtotime($date_naiss) > 0 && in_array($sex, array(1, 2)) && in_array($niveau, array('1', '2', 'T', '1e', '1er', '2nd', 'TA', 'TD', 'TC'))) {
+    if (is_numeric($num_mat) && strtotime($date_naiss) > 0 && in_array($sex, array(1, 2)) ) {
 
         $sex = $sex == 1 ? 8 : 9;
 
         try{
+            
             $error_message = array();
 
             $eleve_id = EleveEleveWrapper::addEleve($num_mat, $nom, $prenom, $sex, $date_naiss, $lieu, $adress, $num_tel, $nom_pere, $func_pere, $nom_mere, $funct_mere, $error_message);
@@ -209,7 +206,7 @@ function import_from_csv_import_line($line, &$context) {
                     drupal_set_message(t('Enregistrement echoé. Num mat : '.$num_mat), 'error');
                 }
             }elseif($niveau_tid == NULL) {
-                drupal_set_message(t('Enregistrement reussi mais no classée. Num mat : '.$num_mat), 'error');
+                drupal_set_message(t('Enregistrement reussi mais pas de niveau. Num mat : '.$num_mat), 'error');
             }
 
             foreach ($error_message as $value) {

@@ -1,0 +1,2598 @@
+<?php
+
+/*
+     module_enable(array('asotry_data_model_fd18','asotry_fd18'));
+//    _asotry_deploy_deleteFile('sites/all/modules/custom/wrappers_custom/includes/asotry_form/WdAsotryFormWrapper.php');
+    drush_invoke('wrap',array('asotry_form'));
+}
+
+/*
+ * Manoa - mi-activer fd20b features sy module
+ */
+
+function asotry_deploy_update_7004(){
+    cache_clear_all();
+     module_load_include('inc','asotry_deploy','asotry_deploy.util');
+     module_enable(array('asotry_data_model_fd20b','asotry_fd20b'));
+//    _asotry_deploy_deleteFile('sites/all/modules/custom/wrappers_custom/includes/asotry_form/WdAsotryFormWrapper.php');
+    drush_invoke('wrap',array('asotry_form'));
+}
+
+/*
+ * Manoa - mi-activer fd21 features sy module
+ */
+
+function asotry_deploy_update_7005(){
+    cache_clear_all();
+     module_load_include('inc','asotry_deploy','asotry_deploy.util');
+     module_enable(array('asotry_data_model_fd21','asotry_fd21'));
+//    _asotry_deploy_deleteFile('sites/all/modules/custom/wrappers_custom/includes/asotry_form/WdAsotryFormWrapper.php');
+    drush_invoke('wrap',array('asotry_form'));
+}
+
+/*
+ * Manoa - mi-activer fd25 features sy module
+ */
+
+function asotry_deploy_update_7006(){
+    cache_clear_all();
+     module_load_include('inc','asotry_deploy','asotry_deploy.util');
+     module_enable(array('asotry_data_model_fd25','asotry_fd25'));
+//    _asotry_deploy_deleteFile('sites/all/modules/custom/wrappers_custom/includes/asotry_form/WdAsotryFormWrapper.php');
+    drush_invoke('wrap',array('asotry_form'));
+}
+
+/*
+ * Manoa - mi-activer fd29 features sy module
+ */
+
+function asotry_deploy_update_7007(){
+    cache_clear_all();
+     module_load_include('inc','asotry_deploy','asotry_deploy.util');
+     module_enable(array('asotry_data_model_fd29','asotry_fd29'));
+//    _asotry_deploy_deleteFile('sites/all/modules/custom/wrappers_custom/includes/asotry_form/WdAsotryFormWrapper.php');
+    drush_invoke('wrap',array('asotry_form'));
+}
+
+/*
+ * Manoa - mi-activer fd31 features sy module
+ */
+
+function asotry_deploy_update_7008(){
+    cache_clear_all();
+     module_load_include('inc','asotry_deploy','asotry_deploy.util');
+     module_enable(array('asotry_data_model_fd31','asotry_fd31'));
+//    _asotry_deploy_deleteFile('sites/all/modules/custom/wrappers_custom/includes/asotry_form/WdAsotryFormWrapper.php');
+    drush_invoke('wrap',array('asotry_form'));
+}
+
+/*
+ * Manoa - mi-activer fd31 features sy module
+ */
+
+function asotry_deploy_update_7009(){
+    cache_clear_all();
+     module_load_include('inc','asotry_deploy','asotry_deploy.util');
+     module_enable(array('asotry_data_model_fd32c','asotry_fd32c'));
+//    _asotry_deploy_deleteFile('sites/all/modules/custom/wrappers_custom/includes/asotry_form/WdAsotryFormWrapper.php');
+    drush_invoke('wrap',array('asotry_form'));
+}
+
+/*
+ * Manoa - mi-activer fd34a features sy module
+ */
+
+function asotry_deploy_update_7010(){
+    cache_clear_all();
+     module_load_include('inc','asotry_deploy','asotry_deploy.util');
+     module_enable(array('asotry_data_model_fd34a','asotry_fd34a'));
+//    _asotry_deploy_deleteFile('sites/all/modules/custom/wrappers_custom/includes/asotry_form/WdAsotryFormWrapper.php');
+    drush_invoke('wrap',array('asotry_form'));
+}
+
+/*
+ * Manoa - mi-activer fd34a features sy module
+ */
+
+function asotry_deploy_update_7011(){
+    cache_clear_all();
+     module_load_include('inc','asotry_deploy','asotry_deploy.util');
+     module_enable(array('asotry_data_model_fd35','asotry_fd35'));
+//    _asotry_deploy_deleteFile('sites/all/modules/custom/wrappers_custom/includes/asotry_form/WdAsotryFormWrapper.php');
+    drush_invoke('wrap',array('asotry_form'));
+}
+
+/*
+ * Manoa - mi-activer fd14 sy fd20a features sy module
+ */
+
+function asotry_deploy_update_7012(){
+    cache_clear_all();
+     module_load_include('inc','asotry_deploy','asotry_deploy.util');
+     module_enable(array('asotry_data_model_fd14','asotry_fd14','asotry_data_model_fd20a','asotry_fd20a'));
+//    _asotry_deploy_deleteFile('sites/all/modules/custom/wrappers_custom/includes/asotry_form/WdAsotryFormWrapper.php');
+    drush_invoke('wrap',array('asotry_form'));
+}
+
+/*
+ * Manoa - mi-activer fd32a features sy module
+ */
+
+function asotry_deploy_update_7013(){
+    cache_clear_all();
+     module_load_include('inc','asotry_deploy','asotry_deploy.util');
+     module_enable(array('asotry_data_model_fd32a','asotry_fd32a'));
+    _asotry_deploy_deleteFile('sites/all/modules/custom/wrappers_custom/includes/asotry_form/WdAsotryFormWrapper.php');
+    drush_invoke('wrap',array('asotry_form'));
+}
+
+/*
+ * Manoa - mi-activer fd32a fd10 fd08 features sy module
+ */
+
+function asotry_deploy_update_7014(){
+    cache_clear_all();
+     module_load_include('inc','asotry_deploy','asotry_deploy.util');
+     module_enable(array('asotry_data_model_fd32a','asotry_fd32a','asotry_data_model_fd10','asotry_fd10','asotry_data_model_fd08','asotry_fd08'));
+    _asotry_deploy_deleteFile('sites/all/modules/custom/wrappers_custom/includes/asotry_form/WdAsotryFormWrapper.php');
+    drush_invoke('wrap',array('asotry_form'));
+}
+
+/*
+ * Manoa - 
+ */
+
+function asotry_deploy_update_7015(){
+    cache_clear_all();
+    if (field_info_instance('user', 'field_asotry_froms', 'user') == NULL) {
+        // Raha tsy mbola manana ilay field_asotry_froms instance ilay user dia apina 
+
+          $instance = array(
+              'field_name' => 'field_asotry_froms',
+              'entity_type' => 'user',
+              'bundle' => 'user',
+              'label' => 'Fiche à envoyer par E-mail',
+      //        'widget' => array(
+      //          'type' => 'options_select', // or whatever widget type you want
+      //        ),
+            );
+          field_create_instance($instance);
+    }
+}
+
+/*
+ * Update - Roles and permissions
+ */
+function asotry_deploy_update_7016(){
+    /*cache_clear_all();
+    module_disable(array('asotry_export_roles_permissions'));
+    drupal_uninstall_modules(array('asotry_export_roles_permissions'));
+    module_enable(array('asotry_export_roles_permissions'));
+     * 
+     */
+}
+
+/*
+ * Update - Roles and permissions
+ */
+function asotry_deploy_update_7017(){
+    /*cache_clear_all();
+    module_disable(array('asotry_export_roles_permissions'));
+    drupal_uninstall_modules(array('asotry_export_roles_permissions'));
+    module_enable(array('asotry_export_roles_permissions'));*/
+}
+
+/*
+ * Update - Activate permissions_export module
+ * Ito no module apesaina hanaovana export/import ny roles sy permissions rehetra
+ */
+function asotry_deploy_update_7018(){
+    cache_clear_all();
+    module_enable(array('permissions_export'));
+}
+
+/**
+ * Activate asotry_FD14 module
+ */
+function asotry_deploy_update_7019(){
+    module_enable(array('asotry_fd14'));
+    cache_clear_all();
+}
+/**
+ * Activate asotry_FD20a module
+ */
+function asotry_deploy_update_7020(){
+    module_enable(array('asotry_fd20a'));
+    cache_clear_all();
+}
+
+
+/**
+ * Update ny field_ngo ho an'ny group ef misy ao anaty base ho Tag_NGO=ADRA 1799
+ */
+function asotry_deploy_update_7021(){
+     module_load_include('php', 'wrappers_custom','includes/communitygroup/CommunitygroupCommunitygroupWrapper');
+       $query = new EntityFieldQuery();
+    $query = new EntityFieldQuery();
+    $query->entityCondition('entity_type', 'communitygroup')
+      ->entityCondition('bundle', 'communitygroup');
+    $results = $query->execute();
+    if (isset($results['communitygroup'])) {
+        $ids = array_keys($results['communitygroup']);
+        foreach($ids as $id){
+            $group = new CommunitygroupCommunitygroupWrapper($id);
+            $array = array(1799);// ADRA= 1799
+            $group->setNgo($array);
+            $group->save();
+        }
+    }
+}
+
+/**
+ * Manoa - Activate asotry_fd26 asotry_fd32b asotry_fd30 asotry_fd33a asotry_fd36 module
+ */
+function asotry_deploy_update_7022(){
+    module_load_include('inc','asotry_deploy','asotry_deploy.util');
+    module_enable(array('asotry_fd26','asotry_fd32b','asotry_fd30','asotry_fd33a','asotry_fd36'));
+    _asotry_deploy_deleteFile('sites/all/modules/custom/wrappers_custom/includes/asotry_form/WdAsotryFormWrapper.php');
+    drush_invoke('wrap',array('asotry_form'));
+    cache_clear_all();
+}
+
+
+/**
+ * Manoa - Activate features_fd26 features_fd32b features_fd30 features_fd33a features_fd36 module
+ */
+function asotry_deploy_update_7023(){
+    module_load_include('inc','asotry_deploy','asotry_deploy.util');
+    module_enable(array('asotry_data_model_fd26','asotry_data_model_fd32b','asotry_data_model_fd30','asotry_data_model_fd33a','asotry_data_model_fd36'));
+    _asotry_deploy_deleteFile('sites/all/modules/custom/wrappers_custom/includes/asotry_form/WdAsotryFormWrapper.php');
+    drush_invoke('wrap',array('asotry_form'));
+    cache_clear_all();
+}
+
+/**
+ * Update ny field_ngo ho an'ny  asotry_tablet_import_entity rehetra
+ */
+function asotry_deploy_update_7024(){
+    module_load_include('php', 'wrappers_custom','includes/asotry_tablet_import_entity/AsotryTabletImportEntityAsotryTabletImportEntityWrapper');
+    module_load_include('php','wrappers_custom','includes/user/UserUserWrapper');
+    
+    $query = new EntityFieldQuery();
+    $query->entityCondition('entity_type', 'asotry_tablet_import_entity')
+      ->entityCondition('bundle', 'asotry_tablet_import_entity');
+    $results = $query->execute();
+    if (isset($results['asotry_tablet_import_entity'])) {
+        $ids = array_keys($results['asotry_tablet_import_entity']);
+        foreach($ids as $id){
+            $import = new AsotryTabletImportEntityAsotryTabletImportEntityWrapper($id);
+            $filename = $import->getFileName();
+            $userUid = intval(substr($filename,0,4));
+            if($userUid != 0){
+                $atUser = new UserUserWrapper($userUid);
+                $ngoTerm = $atUser->getNgo();
+                $import->setNgo(array($ngoTerm[0]->tid));
+                $import->save();
+            }
+        }
+    }
+}
+
+/**
+ * Update ny tablet_useruid ho an'ny  asotry_tablet_import_entity rehetra
+ */
+function asotry_deploy_update_7025(){
+    module_load_include('php', 'wrappers_custom','includes/asotry_tablet_import_entity/AsotryTabletImportEntityAsotryTabletImportEntityWrapper');
+    module_load_include('php','wrappers_custom','includes/user/UserUserWrapper');
+    
+    $query = new EntityFieldQuery();
+    $query->entityCondition('entity_type', 'asotry_tablet_import_entity')
+      ->entityCondition('bundle', 'asotry_tablet_import_entity');
+    $results = $query->execute();
+    if (isset($results['asotry_tablet_import_entity'])) {
+        $ids = array_keys($results['asotry_tablet_import_entity']);
+        foreach($ids as $id){
+            $import = new AsotryTabletImportEntityAsotryTabletImportEntityWrapper($id);
+            $filename = $import->getFileName();
+            $userUid = intval(substr($filename,0,4));
+            if($userUid != 0){
+                $import->setTabletUserUid($userUid);
+                $import->save();
+            }
+        }
+    }
+}
+
+/**
+ * Mamafa ny relation Ml1 User person Audit manuel (nisy data test tavle tao) 
+ */
+
+function asotry_deploy_update_7026(){
+    return TRUE;
+}
+
+/**
+ * Mamafa ny relation Ml1 User person Audit manuel (nisy data test tavle tao) 
+ */
+
+function asotry_deploy_update_7027(){
+    return TRUE;
+}
+
+
+/**
+ * Manoa - Activate asotry tablet export module
+ */
+function asotry_deploy_update_7028(){
+    module_load_include('inc','asotry_deploy','asotry_deploy.util');
+    module_enable(array('asotry_tablet_export'));
+    cache_clear_all();
+}
+
+/**
+ * Ranto - Disable-Uninstall-enable [asotry_form] (nanampy variable_get)
+ */
+function asotry_deploy_update_7029(){
+    module_disable(array('asotry_form'));
+    drupal_uninstall_modules(array('asotry_form'));
+    module_enable(array('asotry_form'));
+    cache_clear_all();
+    
+}
+
+/**
+ * Ranto - Nanampy cache ho an'ny Views Master List sy Household List. 
+ *       - Enable features asotry_views_masterlist
+ *       - Enable features asotry_views_households
+ */
+function asotry_deploy_update_7030(){
+    module_enable(array('asotry_views_households','asotry_views_master_list'));
+}
+
+/**
+ * Ranto re-enable master_list & household_list
+ */
+function asotry_deploy_update_7031(){
+    module_enable(array('asotry_views_households','asotry_views_master_list'));
+}
+
+/**
+ * Ranto : Enable asotry_views_all_views Features
+ */
+function asotry_deploy_update_7032(){
+    module_disable(array('asotry_views_households','asotry_views_master_list'));
+    module_enable(array('asotry_views_all_views'));
+
+}
+
+/**
+ * Ranto : Disable-Uninstall-Enable asotry_server_idcard_printing
+ *           - Nosoloina ny table taloha
+ *           - lasa table 2 ny mitahiry ny data (card_tracking , temporary_printing)
+ */
+function asotry_deploy_update_7033(){
+    module_disable(array('asotry_server_idcard_printing'));
+    drupal_uninstall_modules(array('asotry_server_idcard_printing'));
+    module_enable(array('asotry_server_idcard_printing'));
+}
+
+/**
+ * Ranto : 1- Enable module asotry_dataformatter    
+ *         2- Enable module asotry_fd19asaleagri
+ *         3- Enable module asotry_fd19bgmapi 
+ *         4- Enable module asotry_fd19bgmelev
+ *         5- Enable module asotry_fd19bgmpisci
+ *         4- Enable module asotry_fd28 
+ */
+function asotry_deploy_update_7034(){
+    module_enable(array('asotry_dataformatter'));
+    module_enable(array('asotry_fd19asaleagri'));
+    module_enable(array('asotry_fd19bgmapi'));
+    module_enable(array('asotry_fd19bgmelev'));
+    module_enable(array('asotry_fd19bgmpisci'));
+    module_enable(array('asotry_fd28'));    
+}
+
+/**
+ * Ranto : 1- Enable module asotry_fd19agmagri
+ *       
+ */
+function asotry_deploy_update_7035(){
+    module_enable(array('asotry_fd19agmagri'));
+   
+}
+
+function asotry_deploy_update_7036(){
+    
+}
+
+/**
+ * ---- Ranto ---- : 
+ * 1- Manampy column ao @ ilay "card_tracking" sy "temporary_printing" \n
+ * 2- Enable module asotry_businessrules \n
+ * 3- Enable module asotry_error_manager \n
+ *       
+ */
+function asotry_deploy_update_7037(){
+    module_enable(array('asotry_businessrules'));
+   
+    /*$field = array(
+        'type' => 'varchar',
+        'length' => '35',
+        'not null' => TRUE,
+        'description' => 'HoH code',
+    );
+    db_add_field('card_tracking', 'hohcode', $field);
+    db_add_field('temporary_printing', 'hohcode', $field);*/
+}
+
+
+function asotry_deploy_update_7038(){
+    module_disable(array('asotry_error_manager'));
+    drupal_uninstall_modules(array('asotry_error_manager'));
+    module_enable(array('asotry_error_manager'));    
+}
+/**
+ * update field_animateur_name (255 characters)
+ */
+function asotry_deploy_update_7039(){
+
+    $new_spec = array(
+        'type' => 'varchar',
+        'length' => '254',
+        'default' => '',
+    );
+    db_change_field('field_data_field_animateur_name', 'field_animateur_name_value', 'field_animateur_name_value', $new_spec);
+}
+
+/**
+ * update field_nom_animateur (255 characters)
+ */
+function asotry_deploy_update_7040(){
+
+    $new_spec = array(
+        'type' => 'varchar',
+        'length' => '254',
+        'default' => '',
+    );
+    db_change_field('field_data_field_nom_animateur', 'field_nom_animateur_value', 'field_nom_animateur_value', $new_spec);
+}
+
+/**
+*
+ */
+function asotry_deploy_update_7041(){
+
+    $new_spec = array(
+
+        'type' => 'varchar',
+        'length' => '254',
+        'default' => '',
+    );
+    db_change_field('field_revision_field_nom_animateur', 'field_nom_animateur_value', 'field_nom_animateur_value', $new_spec);
+}
+
+/**
+ * update field_revision_field_animateur_name" (255 characters)
+ */
+function asotry_deploy_update_7042(){
+
+    $new_spec = array(
+        'type' => 'varchar',
+        'length' => '254',
+        'default' => '',
+    );
+    db_change_field('field_revision_field_animateur_name', 'field_animateur_name_value', 'field_animateur_name_value', $new_spec);
+}
+
+/**
+ * Update FD12 duree animation field (hovana ho decimal ilay integer)
+ */
+
+function asotry_deploy_update_7043(){
+    $field = 'field_duree_animation';
+
+      // Update the storage tables
+      $tables = array('field_data', 'field_revision');
+      foreach ($tables as $table) {
+          $tablename = $table .'_'. $field;
+          $fieldname = $field .'_value';
+          db_change_field($tablename, $fieldname, $fieldname, array(
+            'type' => 'numeric',
+            'precision' => 5,
+            'scale' => 2,
+            'not null' => TRUE,
+          ));
+      }
+
+      // Fetch the current field configuration
+      $field_config = db_query("SELECT data FROM {field_config} WHERE field_name = :field_name", array(
+              ':field_name' => $field,
+          ))
+          ->fetchObject();
+      $data = unserialize($field_config->data);
+
+      // Update the settings entry
+      $data['settings'] = array(
+          'precision' => 5,
+          'scale' => 2,
+          'decimal_separator' => '.',
+      );
+
+      // Store the new field config, update the field type at the same time
+      db_update('field_config')
+          ->fields(array(
+            'data' => serialize($data),
+            'type' => 'number_decimal',
+          ))
+          ->condition('field_name', $field)
+          ->execute();    
+
+}
+
+/**
+ * Update FD15 - Alaina daholo ny groupe rattaché @ FD15 dia atao update ny field FD15->setD15grouptype($group->getType())
+ */
+
+function asotry_deploy_update_7044(){
+    
+    $query = new EntityFieldQuery();
+    $query->entityCondition('entity_type', 'asotry_form')
+    ->entityCondition('bundle', 'fd15');
+    $result = $query->execute();
+    
+    if (isset($result['asotry_form'])) {
+        $entity_nids = array_keys($result['asotry_form']);
+        module_load_include('php', 'wrappers_custom','includes/asotry_form/Fd15AsotryFormWrapper');
+        module_load_include('php', 'wrappers_custom','includes/communitygroup/CommunitygroupCommunitygroupWrapper');
+        
+        foreach ($entity_nids as $id){
+            $fd15 = new Fd15AsotryFormWrapper($id);
+            $group = $fd15->getEntityGroup();
+            if($group != NULL){
+                $groupTypes = $group->getTagcommunitygrouptype();
+                $groupType = array_shift($groupTypes);
+                $fd15->setD15grouptype($groupType->tid);
+                $fd15->save();
+            }
+        }
+    }
+    
+}
+
+function asotry_deploy_update_7045(){
+    
+}
+
+/**
+ * Update ny AsotryForm localitycode property rehetra
+ */
+function asotry_deploy_update_7046(){
+    $query = db_select('eck_asotry_form','form');
+    $query->fields('form',array('id'));
+    $result = $query->execute();
+    module_load_include('php','wrappers_custom','includes/taxonomy_term/TagLocationTaxonomyTermWrapper');
+    module_load_include('php','wrappers_custom','includes/asotry_form/WdAsotryFormWrapper');
+    
+    while($record = $result->fetchAssoc()) {
+        $id = $record['id'];
+        WdAsotryFormWrapper::updateLocalityCodeProperty($id);
+    }
+}
+
+/**
+ * Update ny AsotryForm atao validated false daholo ny form rehetra
+ */
+function asotry_deploy_update_7047(){
+    $query = db_select('eck_asotry_form','form');
+    $query->fields('form',array('id'));
+    $result = $query->execute();
+    module_load_include('php','wrappers_custom','includes/taxonomy_term/TagLocationTaxonomyTermWrapper');
+    module_load_include('php','wrappers_custom','includes/asotry_form/WdAsotryFormWrapper');
+    
+    while($record = $result->fetchAssoc()) {
+        $id = $record['id'];
+        $wrapper = entity_metadata_wrapper('asotry_form',$id);
+        $wrapper->field_validated->set(FALSE);
+        $wrapper->save();
+    }
+}
+
+/**
+ * re-install asotry_import_plw_update
+ */
+function asotry_deploy_update_7048(){
+    module_disable(array('asotry_import_plw_update'));
+    drupal_uninstall_modules(array('asotry_import_plw_update'));
+    module_enable(array('asotry_import_plw_update')); 
+}
+
+/**
+ * re-install asotry_hohphoto
+ */
+function asotry_deploy_update_7049(){
+    module_disable(array('asotry_hohphoto'));
+    drupal_uninstall_modules(array('asotry_hohphoto'));
+    module_enable(array('asotry_hohphoto')); 
+}
+
+
+/**
+ * mamafa ny relation ao amin'ny person tag person status
+ */
+function asotry_deploy_update_7050(){
+    $result = relation_query()
+    ->propertyCondition('relation_type', 'person_tagpersonstatus')
+    ->execute();
+    $relation_list = relation_load_multiple(array_keys($result));
+
+    $rids = array();
+    foreach($relation_list as $relation){
+        $wrapper = entity_metadata_wrapper('relation',$relation);   
+        $rids[] = $wrapper->rid->value();   
+    }
+    if(!empty($rids))relation_delete_multiple($rids);
+}
+
+
+/**
+ * mi -install ny asotry_import_csv
+ * mi -re-install asotry_person_entity
+ */
+function asotry_deploy_update_7051(){
+    module_enable(array('asotry_import_csv')); 
+    module_disable(array('asotry_person_entity'));
+    drupal_uninstall_modules(array('asotry_person_entity'));
+    module_enable(array('asotry_person_entity')); 
+}
+
+/**
+ * mi -install ny asotry_statistic
+ */
+function asotry_deploy_update_7052(){
+    module_enable(array('asotry_statistic'));
+}
+
+/**
+ * manao update ny field Printed Card @ households
+ */
+function asotry_deploy_update_7053(){
+    module_load_include('php','wrappers_custom','includes/household_entity/HouseholdEntityHouseholdEntityWrapper');
+    $query = new EntityFieldQuery();
+    $query->entityCondition('entity_type', 'household_entity')
+    ->entityCondition('bundle', 'household_entity');
+    $results = $query->execute();
+    if (isset($results['household_entity'])) {
+        $ids = array_keys($results['household_entity']);
+        foreach($ids as $householdID){
+            $cardNumber = -1;
+            $dates = HouseholdEntityHouseholdEntityWrapper::getCardPrintingDates($householdID);
+            $household = new HouseholdEntityHouseholdEntityWrapper($householdID);
+            $countDates = count($dates);
+            $cardNumber += $countDates;
+            $household->setCardNumber($cardNumber);
+            $household->setPrintedCard($cardNumber > -1 ? TRUE :  FALSE);
+            $household->save();
+        }
+    }   
+}
+/**
+ * Nanampy field CardNumber any @ ilay table temporary_printing
+ */
+function asotry_deploy_update_7054(){
+    $field = array(
+        'type' => 'varchar',
+        //'not null' => TRUE,
+        'length' => '5',
+        'description' => 'Card Number',
+    );
+    db_add_field('card_tracking', 'cardnumber', $field);
+    db_add_field('temporary_printing', 'cardnumber', $field);
+}
+
+/**
+ * Fix - Nanitsy ilay bug lasa niverina verified=FALSE daholo ny forms rehetra
+ * rehefa miverina manao re-import.
+ */
+function asotry_deploy_update_7055(){
+    module_load_include('php','wrappers_custom','includes/asotry_form/WdAsotryFormWrapper');
+    $bundles = field_info_bundles('asotry_form');
+        
+    if (!ksort($bundles)) return false;
+    foreach ($bundles as $key => $value) {
+        
+        if($key != 'ml1' && $key != 'ml2' ){
+            try{
+                //------------atao isaky ny bundle ankoatra ny ml1 sy ml2------------------
+                $query = new EntityFieldQuery();
+
+                $query->entityCondition('entity_type', 'asotry_form')
+                ->entityCondition('bundle', $key)
+                //--Izay verified=FALSE ihany no alaina satria ireo no mila jerena sao efa nisy nanao verification
+                //--- dia vohitsaka noho ny nanao re-import dia lasa verified=FALSE indray
+                ->fieldCondition('field_verified', 'value', FALSE);
+              
+                $result = $query->execute();
+                if(isset($result['asotry_form'])){
+                    //$result = array_shift($result['asotry_form']);
+                    $forms = array();
+                    
+                    foreach($result['asotry_form'] as $formStdObject){
+                        $alreadyVerified = WdAsotryFormWrapper::getAsotryVerificationInfo($formStdObject->id,$key);
+                        if($alreadyVerified){
+                            //--Izay efa nanaovana verification kanefa lasa niverina verified=FALSE ihany no averina @ laoniny eto
+                            $wrapper = entity_metadata_wrapper('asotry_form',$formStdObject->id);
+                            $wrapper->field_verified->set(TRUE);
+                            $wrapper->status = variable_get('_ASOTRY_FORM_VERIFICATIONSTATUS_OK', 1);
+                            $wrapper->save();
+                        }
+                    }
+                }
+            }catch (Exception $e){
+                drupal_set_message('[asotry_deploy::asotry_deploy_update_7055()] Erreur:'.$e->getMessage(),'error');
+            }
+        }
+    }
+    
+}
+
+/**
+ * Mamerina ny form-date FD15 hitovy @ collaborationStartDate ho an'ny ADRA
+ */
+
+
+
+function asotry_deploy_update_7070(){
+        $counter = 0;
+        module_load_include('php','wrappers_custom','includes/asotry_form/Fd15AsotryFormWrapper');
+        module_load_include('php','wrappers_custom','includes/communitygroup/CommunitygroupCommunitygroupWrapper');
+        $query = new EntityFieldQuery();
+        $query->entityCondition('entity_type', 'asotry_form')
+        ->entityCondition('bundle', 'fd15')
+        ->fieldCondition('field_ngo','tid',1799,'=');
+        $results = $query->execute();
+        if (isset($results['asotry_form'])) {
+            $entity_ids = array_keys($results['asotry_form']);
+            foreach ($entity_ids as $id) {
+                try{
+                    $fd15 = new Fd15AsotryFormWrapper($id);
+                    if($fd15 != NULL){
+                        $updateFd15 = FALSE;
+                        if($fd15->getOperationtype()!=variable_get('_GROUP_REMOVE_MEMBER') 
+                        && $fd15->getOperationtype()!=variable_get('_DELETE_GROUP')
+                        && $fd15->getOperationtype()!=variable_get('_GROUP_ADD_MEMBER')){
+                            $group = $fd15->getEntityGroup();
+                            $collaborationStartDate = NULL;
+                            if($group != NULL){
+                                $collaborationStartDate = $group->getCollaborationstartdate();
+                                $collectDate = date('d/m/Y',$fd15->getFormdate());
+                                $collaborationDate = date('d/m/Y',$collaborationStartDate);
+                                $monthDiff = _datediff( $collectDate,$collaborationDate);
+                                // raha mihoatra ny 1 volana ilay difference dia afficher-na atao mise a jour
+                                if($monthDiff >= 1){
+                                    $counter++;
+                                    $result = relation_query('communitygroup', $group->getId())
+                                    ->propertyCondition('relation_type', 'communitygroupperson')
+                                    //->propertyOrderBy('rid','DESC')
+                                    ->execute();
+                                    $relation_list = relation_load_multiple(array_keys($result));
+                                    foreach($relation_list as $relation){
+                                        $relation_wrapper = entity_metadata_wrapper('relation',$relation);
+                                        $dateMemberStrat = $relation_wrapper->field_membership_start_date->value();
+                                        $formDate = $fd15->getFormdate();
+                                        $formDate = date('d-m-Y',$formDate);
+                                        $dateMemberStrat = date('d-m-Y',$dateMemberStrat);
+                                        if($dateMemberStrat == $formDate){
+                                            $updateFd15 = TRUE;
+                                            $timezone = date_default_timezone();
+                                            $Date = date('Y-m-d',$collaborationStartDate);
+                                            $relation->field_membership_start_date[LANGUAGE_NONE][0]['value'] = $Date;
+                                            $relation->field_membership_start_date[LANGUAGE_NONE][0]['timezone'] = $timezone;
+                                            $relation->field_membership_start_date[LANGUAGE_NONE][0]['timezone_db'] = $timezone;
+                                            $relation->field_membership_start_date[LANGUAGE_NONE][0]['date_type'] = "datetime";
+                                            //--- Save this new relation ----
+                                            if(!$rid = relation_save($relation)){
+                                                drupal_set_message(t('Unable to save the new Group Person relation ! '), 'error', FALSE);
+                                                return;
+                                            }
+                                        }
+                                    }
+                                    if($updateFd15 == TRUE){
+                                        $fd15->setFormdate($collaborationStartDate);
+                                        $fd15->save();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }catch (Exception $ex){
+                    drupal_set_message(t('[asotry_deploy::_asotry_deploy_list_fd15] erreur : error',array('error'=>$ex->getMessage())),'error');
+                }
+            }
+            echo $counter . ' fd15s';
+        }     
+    }
+
+ 
+ 
+
+
+    /**
+     * Mamerina ny formdate FD11 hitovy @ trainingStartDate 
+     */
+
+
+
+    function asotry_deploy_update_7071(){
+        module_load_include('php','wrappers_custom','includes/asotry_form/Fd11AsotryFormWrapper');
+        module_load_include('php','wrappers_custom','includes/communitygroup/CommunitygroupCommunitygroupWrapper');
+        $query = new EntityFieldQuery();
+        $query->entityCondition('entity_type', 'asotry_form')
+        ->entityCondition('bundle', 'fd11')
+        ->fieldCondition('field_ngo','tid',1799,'=');
+        $results = $query->execute();
+        $counter = 0;
+        if (isset($results['asotry_form'])) {
+            $entity_ids = array_keys($results['asotry_form']);
+            foreach ($entity_ids as $id) {
+                try{
+                    $fd11 = new Fd11AsotryFormWrapper($id);
+                    if($fd11 != NULL){
+                        $dateDebutFormation = $fd11->getTrainingStartDate();
+                        $collectDate = date('d/m/Y',$fd11->getFormdate());
+                        $dateDebutFormation = date('d/m/Y',$dateDebutFormation);
+                        $monthDiff = _datediff( $collectDate,$dateDebutFormation);
+                        // raha mihoatra ny 1 volana ilay difference dia afficher-na atao mise a jour
+                        if($monthDiff >= 1){
+                            $counter++;
+                            $fd11->setFormdate($fd11->getTrainingStartDate());
+                            $fd11->save();
+                        }
+                    }
+                }catch (Exception $ex){
+                    drupal_set_message(t('[asotry_deploy::_asotry_deploy_list_fd11] erreur : error',array('error'=>$ex->getMessage())),'error');
+                }
+            }
+            echo $counter . ' Fd11s';
+        }     
+    }
+   
+    
+    
+/**
+ * Manisy valeur ilay field_reference_date
+ */
+
+
+function asotry_deploy_update_7072(){
+    $bundles = array('fd15',
+                     'fd16',
+                     'fd11',
+                     'fd13',
+                     'fd25',
+                     'fd12',
+                     'fd21',
+                     'fd32c',
+                     'fd33a',
+                     'fd10',   
+                     'fd08',
+                     'fd32a',
+                     'fd32b',
+                     'fd34a'
+                     );
+    module_load_include('php','wrappers_custom','includes/asotry_form/WdAsotryFormWrapper');
+    
+    foreach ($bundles as $bundle) {
+        $counter = 0;
+        $total = 0;
+        
+       
+        $query = new EntityFieldQuery();
+        $query->entityCondition('entity_type', 'asotry_form')
+        ->entityCondition('bundle', $bundle);
+        $result = $query->execute();
+        if(isset($result['asotry_form'])){
+            //asesy ny asotry_form rehetra azo
+            $total = count($result['asotry_form']);
+            foreach($result['asotry_form'] as $formStdObject){
+                $wrapper = entity_metadata_wrapper('asotry_form',$formStdObject->id);
+                // alaina ny Formdate
+                $dateForm = $wrapper->field_formdate->value();
+                // ampidirina ato amin'ny reference date ny valeur azo avy amin'ny Formdate
+                $wrapper->field_reference_date->set($dateForm);
+                $wrapper->save();
+                $message = 'Bundle : '. $bundle .' ' .$counter++ .'/'. $total ;
+                drush_print($message);
+            }
+        }
+    }
+}
+ 
+ 
+
+/**
+ * Manisy valeur ilay field_reference_date any amin'ny relation
+ * ho an'ny fd17a sy fd17b fd18 fd20b fd29
+ */
+
+
+function asotry_deploy_update_7073(){
+    $relationNames = array('fd17bpersontagtechagriameliorees',
+        'fd17atagtechniquesagricultureame',
+        'fd20apersonstagelevageameliore',
+        'fd28personepargnescredit', 
+        'fd28personpartenairesvsl',
+        'fd28personutilisationcredits',
+        'fd28personactivityagr',
+        'fd31taggrnactivite',
+        'fd35tagtypecatastrophetyperepons',
+        'fd30tagfd30activitesdpmp',
+        'fd29taggrcdomaineactivite',
+        'fd20bpersontagpisciapiameliorees',
+        'fd18techAgri'
+        //'fd36tagfd36categorieproduits', (tsy misy field date_collecte ato @ relation FD36
+        );
+    foreach ($relationNames as $relationName) {
+        $message = 'Relation : '.$relationName;
+        drush_print($message);
+        $result = relation_query()
+            ->propertyCondition('relation_type', $relationName)
+            ->execute();
+            $relation_list = relation_load_multiple(array_keys($result));
+        foreach($relation_list as $relation){
+            $relation_wrapper = entity_metadata_wrapper('relation', $relation);
+            $dateCollecte = $relation_wrapper->field_date_collecte->value();
+            $relation_wrapper->field_reference_date->set($dateCollecte);
+            //--- Save this relation ----
+            if(!$rid = relation_save($relation)){
+                drupal_set_message(t('Unable to save this relation! '), 'error', FALSE);
+                return;
+            }
+        }
+    }
+}
+
+/**
+ * Manisy value ny printedCard isaky ny household ka efa nanaovana print card ilay Household
+ */
+
+function asotry_deploy_update_7074(){
+    module_load_include('php','wrappers_custom','includes/household_entity/HouseholdEntityHouseholdEntityWrapper');
+    //--- Alaina daholo izay household efa nanaovana printing dia atao TRUE ny printed card ----
+    $query = db_select('card_tracking', 'c')
+    ->fields('c',array('hid'));
+    $result = $query->execute();
+    $index = 0 ;
+    
+    while($record =  $result->fetchAssoc()){
+        $householdID = $record['hid'];
+        $household = new HouseholdEntityHouseholdEntityWrapper($householdID);
+        $household->setPrintedCard(TRUE);
+        $household->save();
+        drush_print('Household#'.$index++);
+    }
+
+}
+ 
+
+/**
+ * Manisy valeur ilay field_reference_date any amin'ny relation
+ * ho an'ny fd10 sy fd08
+ */
+
+
+function asotry_deploy_update_7075(){
+    $relationNames = array('fd08person',
+        'fd10personorganismpartenaire',
+        'fd10persontagautresvoletsasotry',
+        'fd10persontagserviceoffert',
+        );
+    foreach ($relationNames as $relationName) {
+        $message = 'Relation : '.$relationName;
+        drush_print($message);
+        $result = relation_query()
+            ->propertyCondition('relation_type', $relationName)
+            ->execute();
+            $relation_list = relation_load_multiple(array_keys($result));
+        foreach($relation_list as $relation){
+            $relation_wrapper = entity_metadata_wrapper('relation', $relation);
+            $dateCollecte = $relation_wrapper->field_date_collecte->value();
+            $relation_wrapper->field_reference_date->set($dateCollecte);
+            //--- Save this relation ----
+            if(!$rid = relation_save($relation)){
+                drupal_set_message(t('Unable to save this relation! '), 'error', FALSE);
+                return;
+            }
+        }
+    }
+}
+ 
+
+
+    
+/**
+ * Manisy valeur ilay field_reference_date fd19
+ */
+
+
+function asotry_deploy_update_7076(){
+    $bundles = array('fd19agmagri','fd19asaleagri','fd19bgmapi','fd19bgmelev','fd19bgmpisci');  
+    module_load_include('php','wrappers_custom','includes/asotry_form/WdAsotryFormWrapper');
+    foreach ($bundles as $bundle) {
+        $message = 'Bundle : '.$bundle;
+        drush_print($message);
+        $query = new EntityFieldQuery();
+        $query->entityCondition('entity_type', 'asotry_form')
+        ->entityCondition('bundle', $bundle);
+        $result = $query->execute();
+        if(isset($result['asotry_form'])){
+            //asesy ny asotry_form rehetra azo
+            foreach($result['asotry_form'] as $formStdObject){
+                $wrapper = entity_metadata_wrapper('asotry_form',$formStdObject->id);
+                // alaina ny Formdate
+                $dateForm = $wrapper->field_formdate->value();
+                // ampidirina ato amin'ny reference date ny valeur azo avy amin'ny Formdate
+                $wrapper->field_reference_date->set($dateForm);
+                $wrapper->save();
+            }
+        }
+    }
+}
+
+/**
+ * Activate modules asotry_import_household_move & asotry_import_person_move_csv
+ */
+function asotry_deploy_update_7077(){
+    module_enable(array('asotry_import_household_move','asotry_import_person_move_csv'));
+}
+
+/**
+ * Activate features asotry_data_model_fd06
+ */
+function asotry_deploy_update_7078(){
+    module_enable(array('asotry_data_model_fd06'));
+}
+
+/*
+ * Activate features asotry_data_model_fd07
+ */
+function asotry_deploy_update_7079(){
+    module_enable(array('asotry_data_model_fd07'));
+}
+ 
+
+/**
+ * Activate features asotry_fd06.module, asotry_fd07.module
+ */
+function asotry_deploy_update_7080(){
+    module_enable(array('asotry_fd06','asotry_fd07'));
+}
+
+/**
+ * Re-cctivate asotry_form.module to load FD06, FD07 bundle name
+ */
+function asotry_deploy_update_7081(){
+    module_disable(array('asotry_form'));
+    module_enable(array('asotry_form'));
+}
+
+/**
+ * activate asotry_mail.module
+ *
+function asotry_deploy_update_7082(){
+    module_enable(array('asotry_mail'));
+}
+
+/**
+ * Update ny AsotryForm fokontany_tid,commune_tid,district_tid,region_tid property
+ */
+function asotry_deploy_update_7085(){
+    $query = db_select('eck_asotry_form','form');
+    $query->fields('form',array('id','type'));
+    $result = $query->execute();
+    module_load_include('php','wrappers_custom','includes/taxonomy_term/TagLocationTaxonomyTermWrapper');
+    module_load_include('php','wrappers_custom','includes/asotry_form/WdAsotryFormWrapper');
+    $count = 1;
+    
+    while($record = $result->fetchAssoc()) {
+        $id = $record['id'];
+        $type = $record['type'];
+        WdAsotryFormWrapper::setFormLocation($id);
+        drush_print($count++. ' '.$type. '#'. $id);
+    }
+}
+
+/**
+ * Regularisation activity type : 
+ *     Ny ataon'ity function ity dia mitady izay personne relais lasa nanao adhesion indroa t@ meme activite
+ *     t@ meme FD16 dia manala ny iray.  
+ */
+function asotry_deploy_update_7086(){
+    // maka ny olona rehetra manana activite ka miverina in-2 nefa fiche iray ihany no nampidirana azy
+    $sql = "SELECT 
+	person.id as Person_Id,
+	fd16Person_fd16_2.endpoints_entity_id as Fiche_Id,
+	activitytype_1.field_activitytype_tid as Activity_type_1,
+	activitytype_2.field_activitytype_tid as Activity_type_2,
+	fd16Person_person_1.entity_id as Relation_id_1,
+	fd16Person_person_2.entity_id as Relation_id_2
+
+        FROM main_eck_person_entity person
+
+	/* ----------------------- PERSONNE RELAIS ---------------------------- */ 
+	/* B.1 Maka ny olona rehetra ao @ relation fd16Person */ 
+	JOIN main_field_data_endpoints fd16Person_person_1
+		ON fd16Person_person_1.bundle = 'fd16person' 
+		AND fd16Person_person_1.endpoints_r_index = '0' /* maka ny id n'ilay olona */ 
+		AND fd16Person_person_1.endpoints_entity_id = person.id
+
+	/* C.2 Ampitoviana ny rid an'ilay olona sy ilay fiche */ 
+	JOIN main_field_data_endpoints fd16Person_fd16_1
+		ON  fd16Person_fd16_1.bundle = 'fd16person'
+		AND fd16Person_fd16_1.endpoints_r_index = '1' 
+		AND fd16Person_fd16_1.entity_id = fd16Person_person_1.entity_id 
+
+	JOIN main_field_data_field_verified verifiedFd16_1
+		ON  verifiedFd16_1.bundle = 'fd16' 
+		AND verifiedFd16_1.entity_type = 'asotry_form' 
+		AND verifiedFd16_1.entity_id = fd16Person_fd16_1.endpoints_entity_id
+	
+	JOIN main_field_data_field_activitytype activitytype_1
+		ON  activitytype_1.bundle = 'fd16' 
+		AND activitytype_1.entity_type = 'asotry_form' 
+		AND activitytype_1.entity_id = fd16Person_fd16_1.endpoints_entity_id 
+
+        /* ----------------------- PERSONNE RELAIS ---------------------------- */ 
+	/* B.1 Maka ny olona rehetra ao @ relation fd16Person */ 
+	JOIN main_field_data_endpoints fd16Person_person_2
+		ON  fd16Person_person_2.bundle = 'fd16person' 
+		AND fd16Person_person_2.endpoints_r_index = '0' /* maka ny id n'ilay olona */ 
+		AND fd16Person_person_2.endpoints_entity_id = person.id
+
+	/* C.2 Ampitoviana ny rid an'ilay olona sy ilay fiche */ 
+	JOIN main_field_data_endpoints fd16Person_fd16_2
+		ON  fd16Person_fd16_2.bundle = 'fd16person'
+		AND fd16Person_fd16_2.endpoints_r_index = '1' 
+		AND fd16Person_fd16_2.entity_id = fd16Person_person_2.entity_id 
+
+	JOIN main_field_data_field_verified verifiedFd16_2
+		ON  verifiedFd16_1.bundle = 'fd16' 
+		AND verifiedFd16_1.entity_type = 'asotry_form' 
+		AND verifiedFd16_1.entity_id = fd16Person_fd16_2.endpoints_entity_id
+	
+	JOIN main_field_data_field_activitytype activitytype_2
+		ON  activitytype_2.bundle = 'fd16' 
+		AND activitytype_2.entity_type = 'asotry_form' 
+		AND activitytype_2.entity_id = fd16Person_fd16_2.endpoints_entity_id 
+
+        WHERE verifiedFd16_1.field_verified_value IN (1)
+            AND verifiedFd16_2.field_verified_value IN (1)
+            AND activitytype_1.field_activitytype_tid = activitytype_2.field_activitytype_tid
+            AND fd16Person_person_1.entity_id <> fd16Person_person_2.entity_id
+
+        GROUP BY Id
+    ";
+    $result = db_query($sql);
+    $relation_ids = array();
+    while($record = $result->fetchAssoc() ){
+        $relation_ids[] = $record['Relation_id_2'];
+    }
+    relation_delete_multiple($relation_ids);
+}
+/**
+ * Activate Modules : 
+ *      - asotry_query_builder
+ *      - asotry_query_builder_chart
+ *      - google_chart_tools
+ *      - _asotry_query_builder_initPeriod() 
+ */
+
+function asotry_deploy_update_7087(){
+    module_enable(array('asotry_query_builder','asotry_query_builder_chart','google_chart_tools'));
+    //--- Initialization-n'ilay table 'period'. Eto no manisy ny valeur period rehetra .
+    //_asotry_query_builder_initPeriod();
+}
+
+
+/**
+ * Activate Fatures : 
+ *      - asotry_query_builder_data_model (features)
+ *     
+ */
+
+function asotry_deploy_update_7088(){
+    module_enable(array('asotry_query_builder_data_model'));
+}
+
+/**
+ * Manao ny bundles cycliques ho lasa isCyclic == TRUE
+ */
+function asotry_deploy_update_7089(){
+    module_load_include('php','wrappers_custom','includes/asotry_form/WdAsotryFormWrapper');
+    // atao ato daholo izay bundle cyclique rehetra
+    // ny tsy cyclique efa par defaut 0 ny valeur-ny
+    $bundles = array('fd06','fd07','fd17a','fd17b','fd18','fd20a','fd20b','fd28','fd29','fd30','fd31','fd36');
+        
+    foreach ($bundles as $value) {
+        try{
+            $query = new EntityFieldQuery();
+
+            $bundleName = trim($value);
+            
+            $query->entityCondition('entity_type', 'asotry_form')
+            ->entityCondition('bundle', $bundleName);
+
+            $result = $query->execute();
+            if(isset($result['asotry_form'])){
+
+                foreach($result['asotry_form'] as $formStdObject){
+                    $wrapper = entity_metadata_wrapper('asotry_form',$formStdObject->id);
+                    $wrapper->is_cyclic->set(1);
+                    $wrapper->save();
+                }
+            }
+        }catch (Exception $e){
+            drupal_set_message('[asotry_deploy::asotry_deploy_update_7089()] Erreur:'.$e->getMessage(),'error');
+        }
+    }
+}
+
+/**
+ * Install asotry_person_entity_schema : vivre_mch table
+ */
+
+function asotry_deploy_update_7090(){
+    //cache_clear_all();
+    module_enable(array('asotry_person_entity_schema'));
+}
+
+/**
+ * Enable features asotry_taxonomy_data_model
+ * revert-field-bases, asotry_fd16_data model
+ */
+
+function asotry_deploy_update_7097(){
+    //cache_clear_all();
+    drush_invoke('features-revert','asotry_data_model_field_bases',array("-y","--force"));
+    drush_invoke('features-revert','asotry_data_model_fd16',array("-y","--force"));
+    module_enable(array('asotry_taxonomy_data_model'));
+}
+
+
+/**
+ * Manisy valeur ilay field_reference_date ao @ FD26
+ */
+
+
+function asotry_deploy_update_7098(){
+    $bundles = array('fd26');
+    module_load_include('php','wrappers_custom','includes/asotry_form/WdAsotryFormWrapper');
+    
+    foreach ($bundles as $bundle) {
+        $counter = 0;
+        $total = 0;
+        
+       
+        $query = new EntityFieldQuery();
+        $query->entityCondition('entity_type', 'asotry_form')
+        ->entityCondition('bundle', $bundle);
+        $result = $query->execute();
+        if(isset($result['asotry_form'])){
+            //asesy ny asotry_form rehetra azo
+            $total = count($result['asotry_form']);
+            foreach($result['asotry_form'] as $formStdObject){
+                $wrapper = entity_metadata_wrapper('asotry_form',$formStdObject->id);
+                // alaina ny Formdate
+                $dateForm = $wrapper->field_formdate->value();
+                // ampidirina ato amin'ny reference date ny valeur azo avy amin'ny Formdate
+                $wrapper->field_reference_date->set($dateForm);
+                $wrapper->save();
+                $message = 'Bundle : '. $bundle .' ' .$counter++ .'/'. $total ;
+                drush_print($message);
+            }
+        }
+    }
+}
+ 
+
+/**
+ * Install asotry_query_builder_schema : table indicatorFormulaValue et period
+ * Sy Manisy ny valeur ao anaty table period
+ */
+
+function asotry_deploy_update_7100(){
+    module_enable(array('asotry_query_builder_schema'));
+    _asotry_query_builder_initPeriod();
+}
+
+/**
+ * 1- Manampy column ao @ ilay "indicatorFormulaValue"
+ */
+function asotry_deploy_update_7101(){
+    /*$field = array(
+        'type' => 'text',
+        'not null' => FALSE,
+        'description' => 'JSON List',
+    );
+    db_add_field('indicatorFormulaValue', 'jsonlist', $field);*/
+    /**
+     * Updated By Ranto on March 02 2017
+     * Nesorina ity satria tsy zaka n'ilay field TEXT ao @ MySQL ilay data fa lehibe loatra.
+     * Natao fichier no hitazomana ny data rehetra.
+     */
+    
+}
+
+/**
+ * 1- Enable asotry_query_builder_period
+ */
+function asotry_deploy_update_7102(){
+    module_enable(array('asotry_query_builder_period'));
+    
+}
+
+/**
+ * 1- Enable asotry_temporary_person
+ */
+function asotry_deploy_update_7104(){
+    module_enable(array('asotry_temporary_person'));
+    
+}
+/**
+ * Creation table temporary_plw_info
+ */
+function asotry_deploy_update_7105(){
+    $schema['temporary_plw_info'] = array(
+     'description' => 'Table to store temporary PLW info',
+        'fields' => array(
+            'id' => array(
+                'type' => 'serial',
+                'not null' => TRUE,
+                'description' => 'Primary Key: Unique aggregator static media asset ID.',
+            ),
+            'uuid' => array(
+                'type' => 'varchar',
+                'length' => 255,
+                'not null' => TRUE,
+                'description' => 'PLW UUID',
+            ),
+            'temporary_code' => array(
+                'type' => 'varchar',
+                'length' => 255,
+                'not null' => TRUE,
+                'description' => 'Temporary Code',
+            ),
+            'month' => array(
+                'description' => 'month',
+                'type' => 'int',
+                'not null' => FALSE,
+            ),
+            'status_code' => array(
+                'description' => 'Status code',
+                'type' => 'int',
+                'not null' => TRUE,
+             ),
+            'status_tid' => array(
+                'description' => 'Status tid',
+                'type' => 'int',
+                'not null' => TRUE,
+            ),
+            'dpa_date' => array(
+                'type' => 'varchar',
+                'length' => 255,
+                'description' => 'DPA Date',
+            ),
+            'da_date' => array(
+                'type' => 'varchar',
+                'length' => 255,
+                'description' => 'DA Date',
+            ),
+            'update_date' => array(
+                'type' => 'varchar',
+                'length' => 255,
+                'description' => 'Update Date',
+            ),
+            
+        ),
+        'primary key' => array('id'),
+    );
+
+    db_create_table('temporary_plw_info', $schema['temporary_plw_info']);
+
+    
+}
+
+/**
+ * Create table plw_import_error
+ */
+function asotry_deploy_update_7109(){
+    $schema['plw_import_error'] = array(
+     'description' => 'Table to store PLW import error',
+        'fields' => array(
+            'id' => array(
+                'type' => 'serial',
+                'not null' => TRUE,
+                'description' => 'Primary Ke',
+            ),
+            'uuid' => array(
+                'type' => 'varchar',
+                'length' => 255,
+                'not null' => TRUE,
+                'description' => 'PLW UUID',
+            ),
+            'personID' => array(
+                'type' => 'int',
+                'not null' => TRUE,
+                'description' => 'Temporary Code',
+            ),
+            'code' => array(
+                'type' => 'varchar',
+                'length' => 25,
+                'not null' => TRUE,
+                'default' => '',
+                'description' => 'Temporary Code',
+            ),
+            'month' => array(
+                'description' => 'month',
+                'type' => 'int',
+                'not null' => FALSE,
+                'default' => 1,
+            ),
+            'status_code' => array(
+                'description' => 'Status code',
+                'type' => 'int',
+                'not null' => TRUE,
+            ),
+            'status_tid' => array(
+                'description' => 'Status tid',
+                'type' => 'int',
+                'not null' => TRUE,
+            ),
+            'dpa_date' => array(
+                'type' => 'int',
+                'description' => 'DPA Date',
+            ),
+            'da_date' => array(
+                'type' => 'int',
+                'description' => 'DA Date',
+            ),
+            'update_date' => array(
+                'type' => 'int',
+                'description' => 'Update Date',
+            ),
+            'fixed' => array(
+                'type' => 'int',
+                'not null' => FALSE,
+                'default' => 0,
+                'description' => 'If 1, this has been reviewd and fixed else not reviewed and not yet fixed',
+            ),
+            'date_fixed' => array(
+                'type' => 'int',
+                'not null' => FALSE,
+                'description' => 'If 1, this has been reviewd and fixed else not reviewed and not yet fixed',
+            ),
+            'date_import' => array(
+                'type' => 'int',
+                'not null' => TRUE,
+                'description' => 'If 1, this has been reviewd and fixed else not reviewed and not yet fixed',
+            ),
+            
+        ),
+        'primary key' => array('id'),
+    );
+
+    db_create_table('plw_import_error', $schema['plw_import_error']);
+
+    
+}
+
+
+/**
+ * Manao ny update ny bundles tsy cyclic ho lasa isCyclic == FALSE
+ */
+function asotry_deploy_update_7111(){
+    module_load_include('php','wrappers_custom','includes/asotry_form/WdAsotryFormWrapper');
+    // atao ato daholo izay bundle cyclique rehetra
+    // ny tsy cyclique efa par defaut 0 ny valeur-ny
+    
+    // ireto ny bundle cyclcic 
+    // array('fd06','fd07','fd17a','fd17b','fd18','fd20a','fd20b','fd28','fd29','fd30','fd31','fd36');
+    
+    $not_cyclic_bundles = array('fd08','fd11','fd12','fd13','fd14','fd15','fd16',
+                                'fd19agmagri','fd19asaleagri','fd19bgmapi','fd19bgmelev','fd19bgmpisci',
+                                /* mbola misy ny FD23a sy FD23b izay tonga dia atao TRUE avy hatrany any @ import*/
+                                'fd21','fd25','fd26','fd32a','fd32b','fd32c','fd33a','fd34a','fd35',
+    );
+        
+    foreach ($not_cyclic_bundles as $value) {
+        try{
+            $query = new EntityFieldQuery();
+
+            $bundleName = trim($value);
+            
+            $query->entityCondition('entity_type', 'asotry_form')
+            ->entityCondition('bundle', $bundleName);
+
+            $result = $query->execute();
+            if(isset($result['asotry_form'])){
+                
+                $i= 1;
+                $count = count($result['asotry_form']);
+
+                foreach($result['asotry_form'] as $formStdObject){
+                    $wrapper = entity_metadata_wrapper('asotry_form',$formStdObject->id);
+                    $wrapper->is_cyclic->set(0);
+                    $wrapper->save();
+                    
+                    if(function_exists('drush_print')){
+                        drush_print($value . ': '.$i++.'/'.$count);
+                    }
+                }
+            }
+        }catch (Exception $e){
+            drupal_set_message('[asotry_deploy::asotry_deploy_update_7111()] Erreur:'.$e->getMessage(),'error');
+        }
+    }
+}
+
+
+/**
+ * Fix - Nanitsy ilay bug lasa niverina verified=FALSE daholo ny forms rehetra
+ * rehefa miverina manao re-import. Avy @ ity indray mitoraka ity jerena koa raha
+ * isCyclic = FALSE ihany no averina atao verified=TRUE.
+ */
+function asotry_deploy_update_7112(){
+    module_load_include('php','wrappers_custom','includes/asotry_form/WdAsotryFormWrapper');
+    $bundles = field_info_bundles('asotry_form');
+        
+    if (!ksort($bundles)) return false;
+    foreach ($bundles as $key => $value) {
+        
+        if($key != 'ml1' && $key != 'ml2' ){
+            try{
+                //------------atao isaky ny bundle ankoatra ny ml1 sy ml2------------------
+                $query = new EntityFieldQuery();
+
+                $query->entityCondition('entity_type', 'asotry_form')
+                ->entityCondition('bundle', $key)
+                ->propertyCondition('is_cyclic',0,'=') // Forms tsy cyclic no alaina
+                //--Izay verified=FALSE ihany no alaina satria ireo no mila jerena sao efa nisy nanao verification
+                //--- dia vohitsaka noho ny nanao re-import dia lasa verified=FALSE indray
+                ->fieldCondition('field_verified', 'value', FALSE);
+              
+                $result = $query->execute();
+                if(isset($result['asotry_form'])){
+                    //$result = array_shift($result['asotry_form']);
+                    $forms = array();
+                    $i= 1;
+                    $count = count($result['asotry_form']);
+                    foreach($result['asotry_form'] as $formStdObject){
+                        $alreadyVerified = WdAsotryFormWrapper::getAsotryVerificationInfo($formStdObject->id,$key);
+                        if($alreadyVerified){
+                            //--Izay efa nanaovana verification kanefa lasa niverina verified=FALSE ihany no averina @ laoniny eto
+                            $wrapper = entity_metadata_wrapper('asotry_form',$formStdObject->id);
+                            $wrapper->field_verified->set(TRUE);
+                            $wrapper->status = variable_get('_ASOTRY_FORM_VERIFICATIONSTATUS_OK', 1);
+                            $wrapper->save();
+                            if(function_exists('drush_print')){
+                                drush_print($key . ': '.$i++.'/'.$count);
+                            }
+                        }
+                    }
+                }
+            }catch (Exception $e){
+                drupal_set_message('[asotry_deploy::asotry_deploy_update_7112()] Erreur:'.$e->getMessage(),'error');
+            }
+        }
+    }
+    
+}
+
+/**
+ * Update manao ny specialist_validate = TRUE ho an'izay form efa vite MNE validation
+ */
+
+function asotry_deploy_update_7113(){
+    $transaction = db_transaction();
+    
+    try{
+        
+        $updateScript = "
+                UPDATE   
+                    main_eck_asotry_form form
+
+                JOIN 
+                    main_field_data_field_verified verified
+                    ON form.id = verified.entity_id
+                    AND verified.entity_type = 'asotry_form'
+
+                SET
+                    form.specialist_validated = 1
+                WHERE
+                    verified.field_verified_value = 1 ";
+
+        $query = db_query($updateScript)->execute();
+        
+    }catch(Exception $e){
+        
+        $transaction->rollback();
+        if(function_exists('drush_print')){
+            drush_print('asotry_deploy_update_7113 :'. $e->getMessage());
+        }
+        drupal_set_message('asotry_deploy_update_7113 :'.$e->getMessage(),'error');
+    }
+}
+
+
+/**
+ * Update manao ny status = 1 (OK Pour verification) form efa vita MNE validation
+ */
+
+function asotry_deploy_update_7114(){
+    $transaction = db_transaction();
+    
+    try{
+        
+        $updateScript = "
+                UPDATE   
+                    main_eck_asotry_form form
+
+                JOIN 
+                    main_field_data_field_verified verified
+                    ON form.id = verified.entity_id
+                    AND verified.entity_type = 'asotry_form'
+
+                SET
+                    form.status = 1
+                WHERE
+                    verified.field_verified_value = 1 ";
+
+        $query = db_query($updateScript)->execute();
+        
+    }catch(Exception $e){
+        
+        $transaction->rollback();
+        if(function_exists('drush_print')){
+            drush_print('asotry_deploy_update_7114 :'. $e->getMessage());
+        }
+        drupal_set_message('asotry_deploy_update_7114 :'.$e->getMessage(),'error');
+    }
+}
+
+
+/**
+ * Update manao ny form ho lasa specialist_validated = 1 raha toa ka efa misy message
+ * ao @ status_message dia heverina fa efa nijery an'ilay fiche ny specialist.
+ * T@ tsy mbola nisy ny button review_specialist dia efa NOTE no niasana.
+ */
+
+function asotry_deploy_update_7116(){
+    
+    $transaction = db_transaction();
+    
+    try{
+        
+        $updateScript = "
+                UPDATE 
+                    asotry_dev.main_eck_asotry_form form
+                SET
+                    form.specialist_validated = '1'
+                WHERE
+                    form.status_message <> ''
+                    AND form.specialist_validated = '0' ";
+                    
+
+        $query = db_query($updateScript)->execute();
+        
+    }catch(Exception $e){
+        
+        $transaction->rollback();
+        if(function_exists('drush_print')){
+            drush_print('asotry_deploy_update_7116 :'. $e->getMessage());
+        }
+        drupal_set_message('asotry_deploy_update_7116 :'.$e->getMessage(),'error');
+    }
+}
+
+/**
+ * Enable features 'asotry_data_model_fd23a' , modules 'asotry_fd23a','asotry_fd23a_schema'
+ */
+
+
+function asotry_deploy_update_7117(){
+    module_enable(array('asotry_data_model_fd23a','asotry_fd23a','asotry_fd23a_schema'));
+}
+
+/**
+ * Disable -Enable asotry_form.module : Mba ahafahana mi-reset ny variagble_get
+ */
+
+
+function asotry_deploy_update_7119(){
+    module_disable(array('asotry_form_module'));
+    drupal_uninstall_modules(array('asotry_form_module'));
+    module_enable(array('asotry_form_module'));
+}
+/**
+ * Enable fatures FD23b & asotry_fd23b
+ */
+function asotry_deploy_update_7121(){
+    module_enable(array('asotry_data_model_fd23b','asotry_fd23b'));
+    
+}
+
+/**
+ * Install asotry_query_builder_renderer module 
+ */
+function asotry_deploy_update_7122(){
+    module_enable(array('asotry_query_builder_renderer'));
+    
+}
+
+/**
+ * UpDate Table asotry_mail : add field domain_or_type and commune_tid
+ */
+function asotry_deploy_update_7123() {
+    $field1 = array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+    );
+    $field2 = array(
+        'type' => 'int',
+        'not null' => FALSE,
+        'default' => 0,
+    );
+    db_add_field('asotry_mail', 'commune_tid', $field1);
+    db_add_field('asotry_mail', 'domain_or_type', $field2);
+}
+
+/**
+ * UpDate mamafa ny if rehetra ka mitovy ny uuid na title - ny
+ */
+
+
+function asotry_deploy_update_7127() {
+    // alaina daholo aloha ny form rehetra ankoatra ny fd15
+    $query = "
+    SELECT 
+	eckForm1.id as ID1,
+	eckForm1.title as TITLE1,
+	eckForm1.type as TYPE1,
+	verified1.field_verified_value as VERIFIED1,
+
+	eckForm2.id as ID2,
+	eckForm2.title as TITLE2,
+	eckForm2.type as TYPE2,
+	verified2.field_verified_value as VERIFIED2
+
+    FROM 
+	asotry_dev.main_eck_asotry_form eckForm1
+
+    JOIN 
+	asotry_dev.main_eck_asotry_form eckForm2
+	on eckForm1.title = eckForm2.title
+
+    JOIN 
+	asotry_dev.main_field_data_field_verified verified1
+	ON eckForm1.id = verified1.entity_id
+	AND verified1.bundle = eckForm1.type
+	AND verified1.deleted = 0
+
+    JOIN 
+	asotry_dev.main_field_data_field_verified verified2
+	ON eckForm2.id = verified2.entity_id
+	AND verified2.bundle = eckForm2.type
+	AND verified2.deleted = 0
+
+    WHERE
+	eckForm1.id < eckForm2.id
+    AND 
+	eckForm1.title <> ''
+
+    ORDER BY eckForm1.id ASC";
+            
+    $result = db_query($query);
+    // rehefa azo dia fafana ilay faharoa
+    while($record =$result->fetchAssoc() ){
+        if($record['TYPE1'] != 'fd15' &&  $record['TYPE1'] != 'fd16'){
+            $id = $record['ID2'];
+            $wrapper = entity_metadata_wrapper('asotry_form',$id);
+            $wrapper->delete();
+            if(function_exists('drush_print')){
+                drush_print('Form ID : '.$id.' de type : '.$record['TYPE1'].' supprimé');
+            }
+        }
+        if($record['TYPE1'] == 'fd16'){
+            $id1 = $record['ID1'];
+            $id2 = $record['ID2'];
+            // raha efa verifié ilay voalohany dia fafana ilay faharoa
+            if($record['VERIFIED1'] && !$record['VERIFIED2']){
+                $wrapper = entity_metadata_wrapper('asotry_form',$id2);
+                $wrapper->delete();
+                if(function_exists('drush_print')){
+                    drush_print('Form ID : '.$id2.' de type : '.$record['TYPE1'].' Supprimé');
+                }
+            // raha efa verifié ilay faharoa dia fafana ilay voalohany
+            }elseif (!$record['VERIFIED1'] && $record['VERIFIED2']) {
+                $wrapper = entity_metadata_wrapper('asotry_form',$id1);
+                $wrapper->delete();
+                if(function_exists('drush_print')){
+                    drush_print('Form ID : '.$id1.' de type : '.$record['TYPE1'].' Supprimé');
+                }
+            // raha mbola tsy misy verifié dia fafana ilay faharoa
+            }elseif (!$record['VERIFIED1'] && !$record['VERIFIED2']) {
+                $wrapper = entity_metadata_wrapper('asotry_form',$id2);
+                $wrapper->delete();
+                if(function_exists('drush_print')){
+                    drush_print('Form ID : '.$id2.' de type : '.$record['TYPE1'].' Supprimé');
+                }
+            }
+            // tsy misy ny oe verifier izy roa fa ny iray ihany
+        }
+    }
+    
+    // mamafa group sy fd15 creation group mifanaraka aminy
+    $query = "
+    SELECT 
+	group1.id as ID1,
+	group1.title as TITLE1,
+	groupID1.field_groupid_value CODE1,
+        fd15_1.entity_id FD15_1,
+        MODIFIED_GROUP1.field_lastmodified_value as GROUP_MODIFIED1,
+	
+	group2.id as ID2,
+	group2.title as TITLE2,
+	groupID2.field_groupid_value CODE2,
+        fd15_2.entity_id FD15_2,
+        MODIFIED_GROUP2.field_lastmodified_value as GROUP_MODIFIED2
+
+    FROM 
+	asotry_dev.main_eck_communitygroup group1
+	
+    JOIN 
+	asotry_dev.main_eck_communitygroup group2
+	
+
+    JOIN 
+	asotry_dev.main_field_data_field_groupid groupID1
+	ON group1.id = groupID1.entity_id
+	AND groupID1.bundle = 'communitygroup'
+	AND groupID1.entity_type = 'communitygroup'
+	AND groupID1.deleted = 0
+	
+    JOIN 
+	asotry_dev.main_field_data_field_groupid groupID2
+	ON group2.id = groupID2.entity_id
+	AND groupID2.bundle = 'communitygroup'
+	AND groupID2.entity_type = 'communitygroup'
+	AND groupID2.deleted = 0
+        
+    JOIN
+        asotry_dev.main_field_data_field_entity_group fd15_1
+        ON group1.id = fd15_1.field_entity_group_target_id
+        AND fd15_1.entity_type = 'asotry_form'
+        AND fd15_1.bundle = 'fd15'
+        AND fd15_1.deleted = 0
+               
+    JOIN
+        asotry_dev.main_field_data_field_lastmodified MODIFIED_GROUP1
+        ON group1.id = MODIFIED_GROUP1.entity_id
+        AND MODIFIED_GROUP1.entity_type = 'communitygroup'
+        AND MODIFIED_GROUP1.bundle = 'communitygroup'
+        AND MODIFIED_GROUP1.deleted = 0
+        
+    JOIN
+        asotry_dev.main_field_data_field_lastmodified MODIFIED_GROUP2
+        ON group1.id = MODIFIED_GROUP2.entity_id
+        AND MODIFIED_GROUP2.entity_type = 'communitygroup'
+        AND MODIFIED_GROUP2.bundle = 'communitygroup'
+        AND MODIFIED_GROUP2.deleted = 0
+        
+    JOIN
+        asotry_dev.main_field_data_field_entity_group fd15_2
+        ON group2.id = fd15_2.field_entity_group_target_id
+        AND fd15_2.entity_type = 'asotry_form'
+        AND fd15_2.bundle = 'fd15'
+        AND fd15_2.deleted = 0
+
+    JOIN
+        asotry_dev.main_field_data_field_operationtype Opera1
+        ON fd15_1.entity_id = Opera1.entity_id
+        AND Opera1.bundle = 'fd15'
+        AND Opera1.field_operationtype_value IN (1,4,6)
+        AND Opera1.deleted = 0
+      
+    JOIN
+        asotry_dev.main_field_data_field_operationtype Opera2
+        ON fd15_1.entity_id = Opera2.entity_id
+		AND Opera2.bundle = 'fd15'
+        AND Opera2.field_operationtype_value IN (1,4,6)
+
+    WHERE
+	groupID1.field_groupid_value = groupID2.field_groupid_value 
+    AND 
+	group1.id < group2.id
+
+    ORDER BY group1.id ASC";
+                
+    $result = db_query($query);
+    // rehefa azo dia jerena par cas
+    while($record =$result->fetchAssoc() ){
+        $id1 = $record['ID1'];
+        $id2 = $record['ID2'];
+        $fd15_1 = $record['FD15_1'];
+        $fd15_2 = $record['FD15_2'];
+        $lastModified1 = strtotime($record['GROUP_MODIFIED1']);
+        $lastModified2 = strtotime($record['GROUP_MODIFIED2']);
+        
+        // izay group efa ela ny last modified-ny no fafana
+        // timestamp no mivoka eto dia kely izay ela
+        if($lastModified1 > $lastModified2){
+            $wrapper = entity_metadata_wrapper('communitygroup',$id2);
+            $wrapper->delete();
+            if(function_exists('drush_print')){
+                drush_print('Group ID : '.$id2.' Supprimé');
+            }
+            $wrapper = entity_metadata_wrapper('asotry_form',$fd15_2);
+            $wrapper->delete();
+            if(function_exists('drush_print')){
+                drush_print('Fd15 ID : '.$fd15_2.' Supprimé');
+            }
+        }
+        elseif($lastModified1 < $lastModified2){
+            $wrapper = entity_metadata_wrapper('communitygroup',$id1);
+            $wrapper->delete();
+            if(function_exists('drush_print')){
+                drush_print('Group ID : '.$id1.' Supprimé');
+            }
+            $wrapper = entity_metadata_wrapper('asotry_form',$fd15_1);
+            $wrapper->delete();
+            if(function_exists('drush_print')){
+                drush_print('Fd15 ID : '.$fd15_1.' Supprimé');
+            }
+        }
+        // raha mitovy dia fafana ilay faharoa
+        elseif($lastModified1 == $lastModified2){
+            $wrapper = entity_metadata_wrapper('communitygroup',$id2);
+            $wrapper->delete();
+            if(function_exists('drush_print')){
+                drush_print('Group ID : '.$id2.' Supprimé');
+            }
+            $wrapper = entity_metadata_wrapper('asotry_form',$fd15_2);
+            $wrapper->delete();
+            if(function_exists('drush_print')){
+                drush_print('Fd15 ID : '.$fd15_2.' Supprimé');
+            }
+        }
+    }
+    // maka ny fd15 ambiny ity
+    $query = "
+    SELECT 
+	eckForm1.id as ID1,
+	eckForm1.title as TITLE1,
+	eckForm1.type as TYPE1,
+	verified1.field_verified_value as VERIFIED1,
+
+	eckForm2.id as ID2,
+	eckForm2.title as TITLE2,
+	eckForm2.type as TYPE2,
+	verified2.field_verified_value as VERIFIED2
+
+    FROM 
+	asotry_dev.main_eck_asotry_form eckForm1
+
+    JOIN 
+	asotry_dev.main_eck_asotry_form eckForm2
+	on eckForm1.title = eckForm2.title
+
+    JOIN 
+	asotry_dev.main_field_data_field_verified verified1
+	ON eckForm1.id = verified1.entity_id
+	AND verified1.bundle = eckForm1.type
+	AND verified1.deleted = 0
+
+    JOIN 
+	asotry_dev.main_field_data_field_verified verified2
+	ON eckForm2.id = verified2.entity_id
+	AND verified2.bundle = eckForm2.type
+	AND verified2.deleted = 0
+        
+    JOIN
+        asotry_dev.main_field_data_field_operationtype Opera1
+        ON eckForm1.id = Opera1.entity_id
+	AND Opera1.bundle = eckForm2.type
+        AND Opera1.field_operationtype_value IN (2,3,5)
+	AND Opera1.deleted = 0
+    JOIN
+        asotry_dev.main_field_data_field_operationtype Opera2
+        ON eckForm2.id = Opera2.entity_id
+	AND Opera2.bundle = eckForm2.type
+        AND Opera2.field_operationtype_value IN (2,3,5)
+	AND Opera2.deleted = 0
+        
+    WHERE
+	eckForm1.id < eckForm2.id
+    AND 
+	eckForm1.title <> ''
+    AND
+        eckForm2.type = 'fd15'
+
+    ORDER BY eckForm1.id ASC";  
+    
+    $result = db_query($query);
+    // rehefa azo dia jerena par cas
+    while($record =$result->fetchAssoc() ){
+        $id1 = $record['ID1'];
+        $id2 = $record['ID2'];
+        // raha efa verifié ilay voalohany dia fafana ilay faharoa
+        if($record['VERIFIED1'] && !$record['VERIFIED2']){
+            $wrapper = entity_metadata_wrapper('asotry_form',$id2);
+            $wrapper->delete();
+            if(function_exists('drush_print')){
+                drush_print('Form ID : '.$id2.' Supprimé');
+            }
+        // raha efa verifié ilay faharoa dia fafana ilay voalohany
+        }elseif (!$record['VERIFIED1'] && $record['VERIFIED2']) {
+            $wrapper = entity_metadata_wrapper('asotry_form',$id1);
+            $wrapper->delete();
+            if(function_exists('drush_print')){
+                drush_print('Form ID : '.$id1.' Supprimé');
+            }
+        // raha mbola tsy misy verifié dia fafana ilay faharoa
+        }elseif (!$record['VERIFIED1'] && !$record['VERIFIED2']) {
+            $wrapper = entity_metadata_wrapper('asotry_form',$id2);
+            $wrapper->delete();
+            if(function_exists('drush_print')){
+                drush_print('Form ID : '.$id2.' Supprimé');
+            }
+        // raha samy verifié dia fafana ilay faharoa
+        }
+        elseif ($record['VERIFIED1'] && $record['VERIFIED2']) {
+            $wrapper = entity_metadata_wrapper('asotry_form',$id2);
+            $wrapper->delete();
+            if(function_exists('drush_print')){
+                drush_print('Form ID : '.$id2.' Supprimé');
+            }
+        }
+    }
+}
+/**
+ * Manampy field json_cumulatif ao amin'ny table indicatorFormulaValue
+ */
+function asotry_deploy_update_7128() {
+     $field = array(
+        'description' => 'json cumulatif rows',
+        'type' => 'text',
+        'not null' => FALSE,
+    );
+    db_add_field('indicatorFormulaValue', 'json_cumulatif', $field);
+}
+
+/**
+ * 7129 : remove group not in fd15
+ */
+function asotry_deploy_update_7129() {
+    $query = "
+    SELECT 
+	group1.id as ID1,
+	group1.title as TITLE1,
+	groupID1.field_groupid_value CODE1,
+	
+	group2.id as ID2,
+	group2.title as TITLE2,
+	groupID2.field_groupid_value CODE2
+
+    FROM 
+	asotry_dev.main_eck_communitygroup group1
+	
+    JOIN 
+	asotry_dev.main_eck_communitygroup group2
+	
+    JOIN 
+	asotry_dev.main_field_data_field_groupid groupID1
+	ON group1.id = groupID1.entity_id
+	AND groupID1.bundle = 'communitygroup'
+	AND groupID1.entity_type = 'communitygroup'
+	AND groupID1.deleted = 0
+	
+    JOIN 
+	asotry_dev.main_field_data_field_groupid groupID2
+	ON group2.id = groupID2.entity_id
+	AND groupID2.bundle = 'communitygroup'
+	AND groupID2.entity_type = 'communitygroup'
+	AND groupID2.deleted = 0
+
+    WHERE
+	groupID1.field_groupid_value = groupID2.field_groupid_value 
+    AND 
+	group1.id < group2.id
+
+    ORDER BY group1.id ASC";
+    
+    $result = db_query($query);
+    // rehefa azo dia fafana ilay faharoa
+    while($record =$result->fetchAssoc() ){
+        $id = $record['ID2'];
+        $wrapper = entity_metadata_wrapper('communitygroup',$id);
+        $wrapper->delete();
+        if(function_exists('drush_print')){
+            drush_print('Group ID'.$id.'supprimé');
+        }
+    }
+
+
+}
+
+
+
+/**
+ * 7130 : Mampiditra ny olona membre groupe ho ao anaty table beneficiaire
+ */
+function asotry_deploy_update_7130() {
+ 
+    module_enable(array('asotry_query_builder_beneficiary'));
+ 
+    module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/TagLocationTaxonomyTermWrapper');
+    module_load_include('php','wrappers_custom','includes/user/UserUserWrapper');
+    $query = "
+            SELECT 
+            person.id as ID,
+            person.title as CODE,
+            tagcommunitygrouptype.field_tagcommunitygrouptype_tid as TYPE_TID, 
+            groupMemberShipStartDate.field_membership_start_date_value as START_DATE,
+            groupMemberShipEndDate.field_membership_end_date_value as END_DATE,
+            component.field_tag_component_tid as COMPONENT_TID
+
+
+            FROM 
+            main_eck_person_entity person 
+
+            JOIN main_field_data_endpoints communitygroupperson1 
+            ON communitygroupperson1.bundle = 'communitygroupperson' 
+            AND communitygroupperson1.endpoints_r_index = '0' 
+            AND communitygroupperson1.endpoints_entity_id = person.id 
+
+            JOIN main_field_data_endpoints communitygroupperson2 
+            ON communitygroupperson2.bundle = 'communitygroupperson' 
+            AND communitygroupperson2.endpoints_r_index = '1' 
+            AND communitygroupperson2.entity_id = communitygroupperson1.entity_id 
+
+            JOIN main_field_data_field_membership_end_date groupMemberShipEndDate 
+            ON groupMemberShipEndDate.bundle = 'communitygroupperson' 
+            AND groupMemberShipEndDate.entity_type = 'relation' 
+            AND groupMemberShipEndDate.entity_id = communitygroupperson2.entity_id 
+
+            JOIN main_field_data_field_membership_start_date groupMemberShipStartDate 
+            ON groupMemberShipStartDate.bundle = 'communitygroupperson' 
+            AND groupMemberShipStartDate.entity_type = 'relation' 
+            AND groupMemberShipStartDate.entity_id = communitygroupperson2.entity_id 
+
+            JOIN main_field_data_field_tagcommunitygrouptype tagcommunitygrouptype 
+            ON tagcommunitygrouptype.entity_id = communitygroupperson2.endpoints_entity_id 
+            AND tagcommunitygrouptype.entity_type = 'communitygroup' 
+            AND tagcommunitygrouptype.bundle = 'communitygroup' 
+
+            JOIN main_field_data_field_tag_component component 
+            ON  component.entity_id = tagcommunitygrouptype.field_tagcommunitygrouptype_tid 
+            AND component.entity_type = 'taxonomy_term' 
+            AND component.bundle = 'tag_community_group_type' ";
+    
+    $result = db_query($query);
+    // alaina aloha ilay location ijerena hoe aiza no ong misy ilay olona
+    $tagNgos = _get_taxonomy_term('tag_ngo');
+    $location_codes = array();
+    foreach ($tagNgos as $NgoId => $Ngo) {
+        // alaina avy eo ny manager an'ilay ONG
+        $ManagerUid = UserUserWrapper::getNgoManagerUid($NgoId);
+        if ($ManagerUid != NULL) {
+            $Manager = new UserUserWrapper($ManagerUid);
+            // alaina ny commune misy ilay manager ny ONG satria iny no mitovy amin'ny commune an'ilay ONG
+            $communes = $Manager->getTagcommune();
+            foreach ($communes as $commune) {
+                $communeTerm = new TagLocationTaxonomyTermWrapper($commune->tid);
+                $location_codes[$Ngo][] = $communeTerm->getTermecode();
+            }
+        }
+    }
+    $i = 0;
+    while($record =$result->fetchAssoc() ){
+        $personId = $record['ID'];
+        $personCode = $record['CODE'];
+        $activity_type = GROUP_ACTIVITY;
+        $type_tid = $record['TYPE_TID']; 
+        $component_tid = $record['COMPONENT_TID'];
+        $start_date = strtotime($record['START_DATE']);
+        $end_date = $record['END_DATE'] != NULL ? strtotime($record['END_DATE']) : NULL;
+        
+        $communeCode = substr($personCode, 0, 4);
+        if(in_array($communeCode, $location_codes['ADRA'])){
+            $ngo_tid = 1799;
+        }
+        if(in_array($communeCode, $location_codes['AIM'])){
+            $ngo_tid = 1800;
+        }
+        if(in_array($communeCode, $location_codes['LOL'])){
+            $ngo_tid = 1801;
+        }
+        $added = addPersonToTableBeneficiary($personId, $personCode, $activity_type, $type_tid, $component_tid, $ngo_tid, $start_date, $end_date);
+        if($added){
+            if(function_exists('drush_print')){
+                drush_print(++$i . ' Insertion réussie : '.$personId.' '. $personCode.' '. $activity_type.' '. $type_tid.' '. $component_tid.' '. $ngo_tid.' '. $start_date.' '. $end_date);
+            }
+        }
+    }
+}
+
+ 
+/**
+ * 7131 : Mmpiditra ny olona personne relais ho ao anaty table beneficiaire
+ */
+
+function asotry_deploy_update_7131() {
+ 
+    module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/TagLocationTaxonomyTermWrapper');
+    module_load_include('php','wrappers_custom','includes/user/UserUserWrapper');
+    $query = "
+            SELECT 
+            person.id as ID,
+            person.title as CODE, 
+            activitytype.field_activitytype_tid as TYPE_TID,
+            activityTypeComponent.field_tag_component_tid as COMPONENT_TID,
+            collaborationstartDate.field_collaborationstartdate_value as START_DATE,
+            collaborationendDate.field_collaborationenddate_value as END_DATE
+
+            FROM main_eck_person_entity person 
+
+            JOIN main_field_data_endpoints fd16Person_Person 
+            ON fd16Person_Person.bundle = 'fd16person' 
+            AND fd16Person_Person.endpoints_r_index = '0' 
+            AND fd16Person_Person.endpoints_entity_id = person.id
+
+            JOIN main_field_data_endpoints fd16Person_fd16 
+            ON fd16Person_fd16.bundle = 'fd16person' 
+            AND fd16Person_fd16.endpoints_r_index = '1' 
+            AND fd16Person_fd16.entity_id = fd16Person_Person.entity_id 
+
+            JOIN main_field_data_field_collaborationenddate collaborationendDate 
+            ON collaborationendDate.bundle = 'fd16person' 
+            AND collaborationendDate.entity_type = 'relation' 
+            AND collaborationendDate.entity_id = fd16Person_Person.entity_id 
+
+            JOIN main_field_data_field_collaborationstartdate collaborationstartDate 
+            ON collaborationstartDate.bundle = 'fd16person' 
+            AND collaborationstartDate.entity_type = 'relation' 
+            AND collaborationstartDate.entity_id = fd16Person_Person.entity_id 
+
+            JOIN main_field_data_field_activitytype activitytype 
+            ON activitytype.bundle = 'fd16' 
+            AND activitytype.entity_type = 'asotry_form' 
+            AND activitytype.entity_id = fd16Person_fd16.endpoints_entity_id 
+
+            JOIN main_field_data_field_tag_component activityTypeComponent 
+            ON activityTypeComponent.entity_id = activitytype.field_activitytype_tid 
+            AND activityTypeComponent.entity_type = 'taxonomy_term' 
+            AND activityTypeComponent.bundle = 'tag_persontype' ";
+    
+    $result = db_query($query);
+    // alaina aloha ilay location ijerena hoe aiza no ong misy ilay olona
+    $tagNgos = _get_taxonomy_term('tag_ngo');
+    $location_codes = array();
+    foreach ($tagNgos as $NgoId => $Ngo) {
+        // alaina avy eo ny manager an'ilay ONG
+        $ManagerUid = UserUserWrapper::getNgoManagerUid($NgoId);
+        if ($ManagerUid != NULL) {
+            $Manager = new UserUserWrapper($ManagerUid);
+            // alaina ny commune misy ilay manager ny ONG satria iny no mitovy amin'ny commune an'ilay ONG
+            $communes = $Manager->getTagcommune();
+            foreach ($communes as $commune) {
+                $communeTerm = new TagLocationTaxonomyTermWrapper($commune->tid);
+                $location_codes[$Ngo][] = $communeTerm->getTermecode();
+            }
+        }
+    }
+    $i = 0;
+    while($record =$result->fetchAssoc() ){
+        $personId = $record['ID'];
+        $personCode = $record['CODE'];
+        $activity_type = PERSON_RELAIS_ACTIVITY;
+        $type_tid = $record['TYPE_TID']; 
+        $component_tid = $record['COMPONENT_TID'];
+        $start_date = strtotime($record['START_DATE']);
+        $end_date = $record['END_DATE'] != NULL ? strtotime($record['END_DATE']) : NULL;
+        
+        $communeCode = substr($personCode, 0, 4);
+        if(in_array($communeCode, $location_codes['ADRA'])){
+            $ngo_tid = 1799;
+        }
+        if(in_array($communeCode, $location_codes['AIM'])){
+            $ngo_tid = 1800;
+        }
+        if(in_array($communeCode, $location_codes['LOL'])){
+            $ngo_tid = 1801;
+        }
+        $added = addPersonToTableBeneficiary($personId, $personCode, $activity_type, $type_tid, $component_tid, $ngo_tid, $start_date, $end_date);
+        if($added){
+            if(function_exists('drush_print')){
+                drush_print(++$i. ' insertion réussie : '.$personId.' '. $personCode.' '. $activity_type.' '. $type_tid.' '. $component_tid.' '. $ngo_tid.' '. $start_date.' '. $end_date);
+            }
+        }
+    }
+}
+/**
+ *  Enable module asotry_query_builder_beneficiaire_renderer
+ */
+function asotry_deploy_update_7132(){
+    module_enable(array('asotry_query_builder_beneficiaire_renderer'));
+} 
+
+
+ 
+/**
+ * 7133 : Manao modification ny femme plw ho updateSatus(FALSE)
+ */
+
+/*function asotry_deploy_update_7133() {
+ 
+    module_load_include('php', 'wrappers_custom', 'includes/person_entity/PersonEntityPersonEntityWrapper');
+    $query = "SELECT "
+            . " endpoints_entity_id as personID "
+            . " FROM asotry_dev.main_field_data_endpoints "
+            . " WHERE bundle = 'person_tagpersonstatus' "
+            . " AND endpoints_entity_type = 'person_entity'";
+    
+    $result = db_query($query);
+    while($record =$result->fetchAssoc() ){
+        try{
+            $personId = $record['personID'];
+            $person = new PersonEntityPersonEntityWrapper($personId);
+            $person->updateStatus(FALSE);
+        }catch(Exception $e){
+            if(function_exists('drush_print')){
+                drush_print('[Error] '. $e->getMessage());
+            }
+        }
+    }
+}*/
+
+/**
+ * 7134 : Manao modification ny femme plw ho updateSatus(FALSE)
+ */
+/*
+function asotry_deploy_update_7134() {
+ 
+    module_load_include('php', 'wrappers_custom', 'includes/person_entity/PersonEntityPersonEntityWrapper');
+    $query = "  SELECT
+                    endpoints.endpoints_entity_id as personID
+                FROM
+                    asotry_dev.main_field_data_endpoints endpoints
+
+                JOIN main_field_data_field_isbeneficiary isBeneficiary
+                    ON isBeneficiary.entity_id = endpoints.endpoints_entity_id
+                    AND isBeneficiary.entity_type = 'person_entity'
+                    AND isBeneficiary.bundle        = 'person_entity'
+
+                WHERE
+                        endpoints.bundle = 'person_tagpersonstatus'
+                    AND
+                        endpoints.endpoints_entity_type = 'person_entity'
+                    AND
+                        endpoints.endpoints_r_index = 0
+                    AND
+                       isBeneficiary.field_isbeneficiary_value  = 1
+                    
+                    GROUP BY endpoints.endpoints_entity_id
+                    #LIMIT 10
+                 ";
+    
+    $result = db_query($query);
+    $i = 0;
+    while($record =$result->fetchAssoc() ){
+        try{
+            $personId = $record['personID'];
+            $person = new PersonEntityPersonEntityWrapper($personId);
+            $person->updateStatus(FALSE);
+            if(function_exists('drush_print')){
+                drush_print(++$i . ' ' .$person->getId() . ' '. $person->getTitle());
+            }
+        }catch(Exception $e){
+            if(function_exists('drush_print')){
+                drush_print('[Error] '. $e->getMessage());
+            }
+        }
+    }
+}
+
+*/
+
+/**
+ * 7135 : Mampiditra ny menage ho ao anty relation fd16person
+ */
+/*function asotry_deploy_update_7135() {
+    try {
+
+        $results = relation_query()
+                ->propertyCondition('relation_type', 'fd16person')
+                ->execute();
+        $i = 1;
+        foreach($results as $key => $value){
+            $relation_list = relation_load_multiple(array($key));
+            foreach ($relation_list as $relation) {
+                // alaina ny id an'ilay olona dia tadiavina avy eo ny householdId
+                $person = $relation->endpoints['und'][0]['entity_id'];
+                $sql_get_household = "SELECT field_household_entity_target_id as Household_Id "
+                                     . "FROM asotry_dev.main_field_data_field_household_entity "
+                                     . "where entity_type = 'person_entity' and bundle = 'person_entity' "
+                                     . "and entity_id =".$person;
+                $result = db_query($sql_get_household);
+                while($record =$result->fetchAssoc() ){
+                    $household_id = $record['Household_Id'];
+                }
+                $relation_wrapper = entity_metadata_wrapper('relation', $relation);
+                $relation_wrapper->field_household_entity->set($household_id);
+
+                if ($rid = relation_save($relation)) {
+                    drush_print(t($i .' : FD16Person Enregistrement reussi') . ' Household ID: '. $household_id);
+                }else {
+                    drush_print(t($i .' : FD16Person Enregistrement echoué'). ' Household ID: '. $household_id);
+                }
+                $i++;
+            }
+        }
+        
+        // eto indray ny an'ny communitygroupperson
+        $results = relation_query()
+                ->propertyCondition('relation_type', 'communitygroupperson')
+                ->execute();
+        $i = 1;
+        foreach($results as $key => $value){
+            $relation_list = relation_load_multiple(array($key));
+            foreach ($relation_list as $relation) {
+                // alaina ny id an'ilay olona dia tadiavina avy eo ny householdId
+                $person = $relation->endpoints['und'][0]['entity_id'];
+                $sql_get_household = "SELECT field_household_entity_target_id as Household_Id "
+                                     . "FROM asotry_dev.main_field_data_field_household_entity "
+                                     . "where entity_type = 'person_entity' and bundle = 'person_entity' "
+                                     . "and entity_id =".$person;
+                $result = db_query($sql_get_household);
+                while($record =$result->fetchAssoc() ){
+                    $household_id = $record['Household_Id'];
+                }
+                $relation_wrapper = entity_metadata_wrapper('relation', $relation);
+                $relation_wrapper->field_household_entity->set($household_id);
+
+                if ($rid = relation_save($relation)) {
+                    drush_print(t($i .' : CommunityGroupPerson Enregistrement reussi'). ' Household ID: '. $household_id);
+                }else {
+                    drush_print(t($i .' : CommunityGroupPerson Enregistrement echoué'). ' Household ID: '. $household_id);
+                }
+                $i++;
+            }
+        }
+    } catch (Exception $ex) {
+        drush_print(t('Erreur :@error', array('@error' => $ex->getMessage())), 'error');
+    }
+}*/
+
+/**
+ * 7136 : Nampiana field householdId ilay tableBeneficiary
+ */
+function asotry_deploy_update_7136() {
+    $field = array(
+        'type' => 'int',
+        'length' => '11',
+    );
+    db_add_field('tableBeneficiary', 'householdId', $field);
+}
+
+
+/**
+ * 7137 : Nanao update ilay tableBeneficiary hisy householdId
+ */
+function asotry_deploy_update_7137() {
+    // alaina daholo ilay ligne ao anaty tableBenef
+    $i = 0;
+    $select = "SELECT id,personId FROM main_tableBeneficiary";
+    $result = db_query($select);
+    while ($record = $result->fetchAssoc()) {
+        // dai asesy ary alaina ny householdId an'ilay olona
+        $selectHousehold = "Select field_household_entity_target_id as householdId FROM main_field_data_field_household_entity household
+            where household.entity_type = 'person_entity'
+            AND household.bundle = 'person_entity'
+            AND entity_id = ";
+        $selectHousehold .= $record['personId'];
+        $resultHousehold = db_query($selectHousehold);
+        while ($recordHousehold = $resultHousehold->fetchAssoc()) {
+            // rehefa azo dia setter-na ilay householdId
+            db_update('tableBeneficiary')
+            ->fields(array(
+                'householdId' => $recordHousehold['householdId'],
+            ))
+            ->condition('id', $record['id'], '=')
+            ->execute();
+            drush_print($i++);
+        }
+    }
+}
+
+
+/**
+ * 7138 : init householdId
+ *      Naverina nantsoina ity mba hi-initialiser-na ny field householdId ao @ tableBenef
+ */
+function asotry_deploy_update_7138() {
+    // alaina daholo ilay ligne ao anaty tableBenef
+    $i = 0;
+    $select = "SELECT id,personId FROM main_tableBeneficiary";
+    $result = db_query($select);
+    while ($record = $result->fetchAssoc()) {
+        // dai asesy ary alaina ny householdId an'ilay olona
+        $selectHousehold = "Select field_household_entity_target_id as householdId FROM main_field_data_field_household_entity household
+            where household.entity_type = 'person_entity'
+            AND household.bundle = 'person_entity'
+            AND entity_id = ";
+        $selectHousehold .= $record['personId'];
+        $resultHousehold = db_query($selectHousehold);
+        while ($recordHousehold = $resultHousehold->fetchAssoc()) {
+            // rehefa azo dia setter-na ilay householdId
+            db_update('tableBeneficiary')
+            ->fields(array(
+                'householdId' => $recordHousehold['householdId'],
+            ))
+            ->condition('id', $record['id'], '=')
+            ->execute();
+            drush_print($i++);
+        }
+    }
+}
+
+
+/**
+ * Enable 'asotry_fd33b'
+ */
+function asotry_deploy_update_7139(){
+    module_enable(array('asotry_fd33b','asotry_fd34b'));
+}
+
+/**
+ * Enable 'asotry_data_model_fd33b'
+ */
+function asotry_deploy_update_7140(){
+    module_enable(array('asotry_data_model_fd33b'));
+}
+
+/**
+ * Update ny fd31 fokontany_tid,commune_tid,district_tid,region_tid property
+ */
+function asotry_deploy_update_7141(){
+    
+    module_load_include('php','wrappers_custom','includes/taxonomy_term/TagLocationTaxonomyTermWrapper');
+    module_load_include('php','wrappers_custom','includes/asotry_form/WdAsotryFormWrapper');
+    
+    $count = 1;
+    
+    $query = new EntityFieldQuery();
+    $query->entityCondition('entity_type', 'asotry_form')
+            ->entityCondition('bundle', 'fd31')
+            ->propertyOrderBy('id', 'ASC')
+            ->propertyCondition('type', 'fd31', '=');
+    $entities = $query->execute();
+    if (isset($entities['asotry_form'])) {
+        $entities = array_keys($entities['asotry_form']);
+        
+        foreach ($entities as $id) {
+            
+            $type = 'fd31';
+            WdAsotryFormWrapper::updateLocalityCodeProperty($fd31_id);
+            WdAsotryFormWrapper::setFormLocation($id);
+            drush_print($count++. ' '.$type. '#'. $id);
+        }
+    }
+}
+
+/**
+ * Enable 'asotry_data_model_fd34b'
+ */
+function asotry_deploy_update_7142(){
+    module_enable(array('asotry_data_model_fd34b'));
+}

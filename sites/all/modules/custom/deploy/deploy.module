@@ -1,0 +1,208 @@
+<?php
+
+
+    /**
+     * hook_menu
+     */
+    function asotry_deploy_menu(){
+        $items['mne/test/updb/fd15'] =array(
+            'title' => t('Liste Fd15'),
+            'page callback' => t('_asotry_deploy_list_fd15'),
+            'page arguments'=> array(4,5),
+            'access callback' => TRUE
+        );
+        $items['mne/test/updb/fd11'] =array(
+            'title' => t('Liste Fd11'),
+            'page callback' => t('_asotry_deploy_list_fd11'),
+            'page arguments'=> array(4,5),
+            'access callback' => TRUE
+        );
+        $items['mne/test/updb/fd16'] =array(
+            'title' => t('Liste Fd16'),
+            'page callback' => t('_asotry_deploy_list_fd16'),
+            'page arguments'=> array(4,5),
+            'access callback' => TRUE
+        );
+         return $items;
+    }
+
+    /**
+     * Liste ny Fd15 rehetra ka mifanalavitra ny date de collect sy ny collaboration start date
+     */
+    function _asotry_deploy_list_fd15(){
+        $counter = 0;
+        module_load_include('php','wrappers_custom','includes/asotry_form/Fd15AsotryFormWrapper');
+        module_load_include('php','wrappers_custom','includes/communitygroup/CommunitygroupCommunitygroupWrapper');
+        $query = new EntityFieldQuery();
+        $query->entityCondition('entity_type', 'asotry_form')
+        ->entityCondition('bundle', 'fd15')
+        ->fieldCondition('field_ngo','tid',1799,'=');
+        $results = $query->execute();
+        if (isset($results['asotry_form'])) {
+            $entity_ids = array_keys($results['asotry_form']);
+            foreach ($entity_ids as $id) {
+                try{
+                    $fd15 = new Fd15AsotryFormWrapper($id);
+                    if($fd15 != NULL){
+                        $updateFd15 = FALSE;
+                        if($fd15->getOperationtype()!=variable_get('_GROUP_REMOVE_MEMBER') 
+                        && $fd15->getOperationtype()!=variable_get('_DELETE_GROUP')
+                        && $fd15->getOperationtype()!=variable_get('_GROUP_ADD_MEMBER')){
+                            $group = $fd15->getEntityGroup();
+                            $collaborationStartDate = NULL;
+                            if($group != NULL){
+                                $collaborationStartDate = $group->getCollaborationstartdate();
+                                $collectDate = date('d/m/Y',$fd15->getFormdate());
+                                $collaborationDate = date('d/m/Y',$collaborationStartDate);
+                                $monthDiff = _datediff( $collectDate,$collaborationDate);
+                                // raha mihoatra ny 1 volana ilay difference dia afficher-na atao mise a jour
+                                if($monthDiff >= 1){
+                                    $counter++;
+                                    $result = relation_query('communitygroup', $group->getId())
+                                    ->propertyCondition('relation_type', 'communitygroupperson')
+                                    //->propertyOrderBy('rid','DESC')
+                                    ->execute();
+                                    $relation_list = relation_load_multiple(array_keys($result));
+                                    foreach($relation_list as $relation){
+                                        $relation_wrapper = entity_metadata_wrapper('relation',$relation);
+                                        $dateMemberStrat = $relation_wrapper->field_membership_start_date->value();
+                                        $formDate = $fd15->getFormdate();
+                                        $formDate = date('d-m-Y',$formDate);
+                                        $dateMemberStrat = date('d-m-Y',$dateMemberStrat);
+                                        if($dateMemberStrat == $formDate){
+                                            $updateFd15 = TRUE;
+                                            $timezone = date_default_timezone();
+                                            $Date = date('Y-m-d',$collaborationStartDate);
+                                            $relation->field_membership_start_date[LANGUAGE_NONE][0]['value'] = $Date;
+                                            $relation->field_membership_start_date[LANGUAGE_NONE][0]['timezone'] = $timezone;
+                                            $relation->field_membership_start_date[LANGUAGE_NONE][0]['timezone_db'] = $timezone;
+                                            $relation->field_membership_start_date[LANGUAGE_NONE][0]['date_type'] = "datetime";
+                                            //--- Save this new relation ----
+                                            if(!$rid = relation_save($relation)){
+                                                drupal_set_message(t('Unable to save the new Group Person relation ! '), 'error', FALSE);
+                                                return;
+                                            }
+                                        }
+                                    }
+                                    if($updateFd15 == TRUE){
+                                        $fd15->setFormdate($collaborationStartDate);
+                                        $fd15->save();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }catch (Exception $ex){
+                    drupal_set_message(t('[asotry_deploy::_asotry_deploy_list_fd15] erreur : error',array('error'=>$ex->getMessage())),'error');
+                }
+            }
+            echo $counter . ' fd15s';
+        }     
+    }
+    
+    
+    /**
+     * Liste ny Fd11 rehetra ka mifanalavitra ny date de collect sy ny collaboration start date
+     */
+    function _asotry_deploy_list_fd11(){
+        module_load_include('php','wrappers_custom','includes/asotry_form/Fd11AsotryFormWrapper');
+        module_load_include('php','wrappers_custom','includes/communitygroup/CommunitygroupCommunitygroupWrapper');
+        $query = new EntityFieldQuery();
+        $query->entityCondition('entity_type', 'asotry_form')
+        ->entityCondition('bundle', 'fd11')
+        ->fieldCondition('field_ngo','tid',1799,'=');
+        $results = $query->execute();
+        $counter = 0;
+        if (isset($results['asotry_form'])) {
+            $entity_ids = array_keys($results['asotry_form']);
+            foreach ($entity_ids as $id) {
+                try{
+                    $fd11 = new Fd11AsotryFormWrapper($id);
+                    if($fd11 != NULL){
+                        $dateDebutFormation = $fd11->getTrainingStartDate();
+                        $collectDate = date('d/m/Y',$fd11->getFormdate());
+                        $dateDebutFormation = date('d/m/Y',$dateDebutFormation);
+                        $monthDiff = _datediff( $collectDate,$dateDebutFormation);
+                        // raha mihoatra ny 1 volana ilay difference dia afficher-na atao mise a jour
+                        if($monthDiff >= 1){
+                            $counter++;
+                            $fd11->setFormdate($fd11->getTrainingStartDate());
+                            $fd11->save();
+                        }
+                    }
+                }catch (Exception $ex){
+                    drupal_set_message(t('[asotry_deploy::_asotry_deploy_list_fd11] erreur : error',array('error'=>$ex->getMessage())),'error');
+                }
+            }
+            echo $counter . ' Fd11s';
+        }     
+    }
+    
+    
+    /**
+     * Liste ny Fd16 rehetra ka mifanalavitra ny date de collect sy ny collaboration start date
+     */
+    function _asotry_deploy_list_fd16(){
+        $counter = 0;
+        module_load_include('php','wrappers_custom','includes/asotry_form/Fd16AsotryFormWrapper');
+        module_load_include('php','wrappers_custom','includes/communitygroup/CommunitygroupCommunitygroupWrapper');
+        $query = new EntityFieldQuery();
+        $query->entityCondition('entity_type', 'asotry_form')
+        ->entityCondition('bundle', 'fd16')
+        ->fieldCondition('field_ngo','tid',1799,'=');
+        $results = $query->execute();
+        if (isset($results['asotry_form'])) {
+            $entity_ids = array_keys($results['asotry_form']);
+            foreach ($entity_ids as $id) {
+                try{
+                    $fd16 = new Fd16AsotryFormWrapper($id);
+                    if($fd16 != NULL){
+                        $updateFd16 = FALSE;
+                        if($fd16->getD16formoperationtype()==variable_get('_PERSON_REGISTER_TO_ACTIVITY_TYPE')){
+                            $collectDate = date('d/m/Y',$fd16->getFormdate());
+                            $collaborationDate = date('d/m/Y',$fd16->getCollaborationstartdate());
+                            $monthDiff = _datediff( $collectDate,$collaborationDate);
+                            // raha mihoatra ny 1 volana ilay difference dia afficher-na atao mise a jour
+                            // tamin'ny voalohany mbola ts nisy ilay collaborationstartDate dia lasa 01-01-1970 ilay izy
+                            // lasa ambony be ilay diff
+                            // izay no mahatonga an'ity < 12 ity
+                            if($monthDiff >= 1 && $monthDiff < 12){
+                                $counter++;
+                                $result = relation_query('asotry_form', $id)
+                                ->propertyCondition('relation_type', 'fd16person')
+                                ->execute();
+                                $relation_list = relation_load_multiple(array_keys($result));
+                                foreach($relation_list as $relation){
+                                    $relation_wrapper = entity_metadata_wrapper('relation',$relation);
+                                    $collaborationStartDate = date('Y-m-d',$relation_wrapper->field_collaborationstartdate->value());
+                                    $FormDAte = date('Y-m-d',$fd16->getFormdate());
+                                    if($collaborationStartDate == $FormDAte){
+                                        $updateFd16 = TRUE;
+                                        $relation_wrapper = entity_metadata_wrapper('relation',$relation);
+                                        $fromdate = date('Y-m-d',$fd16->getCollaborationstartdate());
+                                        $timezone = date_default_timezone();
+                                        $relation->field_collaborationstartdate[LANGUAGE_NONE][0]['value'] = $fromdate;
+                                        $relation->field_collaborationstartdate[LANGUAGE_NONE][0]['timezone'] = $timezone;
+                                        $relation->field_collaborationstartdate[LANGUAGE_NONE][0]['timezone_db'] = $timezone;
+                                        $relation->field_collaborationstartdate[LANGUAGE_NONE][0]['date_type'] = "datetime";
+
+                                        if(!$rid = relation_save($relation)){
+                                          drupal_set_message(t('Unable to update D16Form Person  relation ! '), 'error', FALSE);
+                                          return FALSE;
+                                        }
+                                    }
+                                }
+                                if($updateFd16 == TRUE){
+                                    $fd16->setFormdate($fd16->getCollaborationstartdate());
+                                    $fd16->save();
+                                }
+                            }
+                        }
+                    }
+                }catch (Exception $ex){
+                    drupal_set_message(t('[asotry_deploy::_asotry_deploy_list_fd16] erreur : error',array('error'=>$ex->getMessage())),'error');
+                }
+            }
+            echo $counter . ' fd16s';
+        }     
+    }

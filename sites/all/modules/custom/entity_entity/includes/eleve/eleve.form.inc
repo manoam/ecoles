@@ -189,7 +189,7 @@ function _ecoles_eleve_form($form, &$form_state, $eleve_id) {
 
                     $markup = '<div class="message_inscrit_no">';
                     $markup .= t("<p>Cet élève n'est pas encore inscrit dans notre écoles pour cet année scolaire</p>");
-                    $markup .= '<a href=' . base_path() . 'ecoles/eleve/re-inscription?eleve_id=' . $eleve->getId() . '>' . t('Inscrire') . '';
+                    $markup .= '<a href=' . base_path() . 'ecoles/eleve/re-inscription?eleve_id=' . $eleve->getId() . '>' . t('Inscrire') . '</a>';
                     $markup .= '</div>';
 
                     $form['eleve_class']['eleve_class'] = array(
