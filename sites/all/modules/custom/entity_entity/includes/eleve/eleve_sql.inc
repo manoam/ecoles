@@ -22,11 +22,19 @@ function _eleve_sql_list_eleve($niveau_tid = NULL, $class_tid = NULL,$taompianar
         $sql .= " date_naiss.field_date_naiss_value as DATE_NAISS,";
         
         $sql .= " niveau_name.name as NIVEAU_NAME,";
-        $sql .= " class_name.name as CLASS_NAME,";
+        
+        if($class_tid != NULL){
+            $sql .= " class_name.name as CLASS_NAME,";
+        }
+        
         $sql .= " taompianarana_name.name as TAOMPIANARANA_NAME,";
         
         $sql .= " e.niveau_tid as NIVEAU_TID,";
-        $sql .= " e.class_tid as CLASS_TID,";
+        
+        if($class_tid != NULL){
+            $sql .= " e.class_tid as CLASS_TID,";
+        }
+        
         $sql .= " e.taompianarana_tid as TAOMPIANARANA_TID";
         
         $sql .= " FROM";
@@ -64,8 +72,10 @@ function _eleve_sql_list_eleve($niveau_tid = NULL, $class_tid = NULL,$taompianar
         $sql .= " JOIN taxonomy_term_data niveau_name";
         $sql .= " ON  niveau_name.tid = e.niveau_tid";
         
-        $sql .= " JOIN taxonomy_term_data class_name";
-        $sql .= " ON  class_name.tid = e.class_tid";
+        if($class_tid != NULL){
+            $sql .= " JOIN taxonomy_term_data class_name";
+            $sql .= " ON  class_name.tid = e.class_tid";
+        }
         
         $sql .= " JOIN taxonomy_term_data taompianarana_name";
         $sql .= " ON  taompianarana_name.tid = e.taompianarana_tid";
