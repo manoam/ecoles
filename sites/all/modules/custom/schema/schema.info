@@ -1,6 +1,6 @@
 name = Schema
 description = Schema relation table
-package = ECOLES
+package = ModuleEcoles
 core = 7.x
 version = 7.x-1.1
 

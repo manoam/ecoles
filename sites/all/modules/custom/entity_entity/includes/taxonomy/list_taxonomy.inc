@@ -2,7 +2,6 @@
 
 function list_taxonomy_list($form, &$form_state,$vocabulary) {
     
-    $output = "";
     $tags   = _get_taxonomy_term($vocabulary);
     $header = array(t('ID'), t('NOM'), t('VOIR'));
     $rows   = array();
@@ -10,7 +9,11 @@ function list_taxonomy_list($form, &$form_state,$vocabulary) {
     foreach ($tags as $key => $name) {
         $rows[] = array($key, $name,l(t('voir'),'ecoles/utile/'.$key));
     }
+    if($vocabulary == 'taompianarana'){
+        $vocabulary = t('Année scolaire');
+    }
     
+    $output = '<div class="uper_title"> Liste des : '.$vocabulary."</div>";
     if(count($rows) != 0){
         $limit = 10;
         $current_table = pager_default_initialize(count($rows), $limit);
@@ -26,6 +29,8 @@ function list_taxonomy_list($form, &$form_state,$vocabulary) {
         '#prefix' => '<div id="">',
         '#suffix' => '</div>'
     );
+    
+    $form['#attached']['css'][] = array('data' => drupal_get_path('module', 'entity_entity') . '/tools/css_entity.css', 'type' => 'file');
     
     return $form;
 }

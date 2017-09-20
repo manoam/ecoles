@@ -1,5 +1,5 @@
 name = Import Eleve CSV
 description = Import eleve
-package = ECOLES
+package = ModuleEcoles
 core = 7.x
 version = 7.x-1.1
