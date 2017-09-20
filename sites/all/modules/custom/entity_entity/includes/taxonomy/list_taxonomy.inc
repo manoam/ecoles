@@ -1,8 +1,32 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+function list_taxonomy_list($form, &$form_state,$vocabulary) {
+    
+    $output = "";
+    $tags   = _get_taxonomy_term($vocabulary);
+    $header = array(t('ID'), t('NOM'), t('VOIR'));
+    $rows   = array();
+    
+    foreach ($tags as $key => $name) {
+        $rows[] = array($key, $name,l(t('voir'),'ecoles/utile/'.$key));
+    }
+    
+    if(count($rows) != 0){
+        $limit = 10;
+        $current_table = pager_default_initialize(count($rows), $limit);
+        $chunks = array_chunk($rows, $limit, TRUE);
+        $output .= theme('table', array('header' => $header,'rows' => $chunks[$current_table],));
+        $output .= theme('pager', array('quantity', count($rows)));
+    }else{
+         $output .= theme('table', array('header' => $header,'rows' => array()));
+    }
+    $form['table'] = array(
+        '#type' => 'markup',
+        '#markup' => $output,
+        '#prefix' => '<div id="">',
+        '#suffix' => '</div>'
+    );
+    
+    return $form;
+}
+    

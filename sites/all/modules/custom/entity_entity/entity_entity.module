@@ -55,12 +55,21 @@ function entity_entity_menu() {
         'file path' => drupal_get_path('module','entity_entity'),
         'access callback' => 'edit_configuration_permission',
     );
-    
-    $items['ecoles/taxonomy/%'] =array(
+    /**
+     *  taxonomy no manomboka eto
+     */
+    $items['ecoles/utile/%'] =array(
         'page callback' => 'drupal_get_form',
         'file' => 'includes/taxonomy/taxonomy_form.inc',
         'file path' => drupal_get_path('module', 'entity_entity'),
         'page arguments' => array('_taxonomy_load_form',2),
+        'access callback' => 'admin_taxonomy_acces',
+    );
+    $items['ecoles/utile/list/%'] =array(
+        'page callback' => 'drupal_get_form',
+        'file' => 'includes/taxonomy/list_taxonomy.inc',
+        'file path' => drupal_get_path('module', 'entity_entity'),
+        'page arguments' => array('list_taxonomy_list',3),
         'access callback' => 'admin_taxonomy_acces',
     );
     return $items;

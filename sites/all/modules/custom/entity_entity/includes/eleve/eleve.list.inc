@@ -139,7 +139,7 @@ function _eleve_list_list($form, &$form_state) {
     $form['table'] = array(
         '#type' => 'markup',
         '#markup' => $output,
-        '#prefix' => '<div id="relationtable">',
+        '#prefix' => '<div id="">',
         '#suffix' => '</div>'
     );
     
@@ -258,7 +258,7 @@ function _eleve_list_list_no_class($form, &$form_state) {
         t('Sexe'),
         t('Date de naissance'),
         t('Niveau'),
-        t('Voire'),
+        t('Voir'),
     );
     
     $niveau_tid = isset($form_state['niveau_tid'])? $form_state['niveau_tid'] : NULL;
@@ -282,7 +282,7 @@ function _eleve_list_list_no_class($form, &$form_state) {
         $row[] = $eleve['SEXE'];
         $row[] = $eleve['DATE_NAISS'];
         $row[] = $eleve['NIVEAU_NAME'];
-        $row[] = l('voire','eleve/eleve/'.$eleve['ID']);
+        $row[] = l('voir','eleve/eleve/'.$eleve['ID']);
         
         $rows[] = $row;
     }
