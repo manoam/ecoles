@@ -44,7 +44,7 @@ function configuration_form($form,&$form_state){
     $form['eleve'] = array(
         '#title'    => t('ELEVE'),
         '#type'     => 'fieldset',
-        '#prefix' => '<div class="eleve_main_view">',
+        '#prefix' => '<div class="list_eleve">',
         '#suffix' => '</div>',
     );
     
@@ -68,7 +68,7 @@ function configuration_form($form,&$form_state){
     $form['export_import'] = array(
         '#title'    => t('EXPORT / IMPORT'),
         '#type'     => 'fieldset',
-        '#prefix' => '<div class="view_left">',
+        '#prefix' => '<div class="eleve_main_view">',
         '#suffix' => '</div>',
     );
     
@@ -79,6 +79,22 @@ function configuration_form($form,&$form_state){
         '#multiple'     => TRUE,
         '#options'      => $roles_options,
         '#default_value'=> variable_get('IMPORT_EXPORT_ACCESS'),
+    ) ;
+    
+    $form['taxonomy'] = array(
+        '#title'    => t('TAXONOMY'),
+        '#type'     => 'fieldset',
+        '#prefix' => '<div class="view_left">',
+        '#suffix' => '</div>',
+    );
+    
+            
+    $form['taxonomy']['VIEWS_TAXONOMY'] = array(
+        '#title'        => t('Type d\'utilisateur qui peut <b> <i> Modifier et Voire la liste des taxonomy </b> </i>'),
+        '#type'         => 'select',
+        '#multiple'     => TRUE,
+        '#options'      => $roles_options,
+        '#default_value'=> variable_get('VIEWS_TAXONOMY'),
     ) ;
     
     return system_settings_form($form);

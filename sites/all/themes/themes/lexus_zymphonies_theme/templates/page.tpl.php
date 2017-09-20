@@ -248,7 +248,7 @@
           <li><a class="linkedin" href="<?php echo theme_get_setting('linkedin_profile_url'); ?>" target="_blank" rel="me"><i class="fa fa-linkedin"></i></a></li>
           <li><a class="pinterest" href="<?php echo theme_get_setting('pinterest_profile_url'); ?>" target="_blank" rel="me"><i class="fa fa-pinterest"></i></a></li>
           <li><a class="youtube" href="<?php echo theme_get_setting('youtube_profile_url'); ?>" target="_blank" rel="me"><i class="fa fa-youtube"></i></a></li>
-          <li><a class="rss" href="<?php print $front_page; ?>rss.xml"><i class="fa fa-rss"></i></a></li>
+          <!-- <li><a class="rss" href="<?php print $front_page; ?>rss.xml"><i class="fa fa-rss"></i></a></li>-->
          </ul>
         </span>
       <?php endif; ?>
@@ -257,8 +257,9 @@
     </div>
 
   </div>
-  <div class="credits">
-    <?php print t('Design by'); ?><a href="http://www.zymphonies.com"> Zymphonies</a>
-  </div>
-
+    <!--
+    <div class="credits">
+      <?php print t('Design by'); ?><a href="http://www.zymphonies.com"> Zymphonies</a>
+    </div>
+    -->
 </div>

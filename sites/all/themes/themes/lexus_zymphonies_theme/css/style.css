@@ -1559,6 +1559,7 @@ ol.search-results {
 #footer {
     overflow: hidden;
     clear: both;
+    background-color: #0194CA;
 }
 
 .footer_credit {
