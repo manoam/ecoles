@@ -197,6 +197,23 @@ function _look_up_eleve_in_eleve_taompianarana($eleve_id) {
     return NULL;
 }
 
+function _eleve_list_get_eleve_by_niveau($niveau_tid = NULL) {
+    
+    $list = array();
+
+    // ity no maka ny list ny eleve
+    $sql = _eleve_sql_list_eleve_by_niveau($niveau_tid);
+    
+    $result = db_query($sql);
+    
+    while ($record  = $result->fetchAssoc()) {
+        $list[]     = $record;
+    }
+    
+    return $list;
+}
+
+
 function _eleve_list_get_eleve_no_class($niveau_tid = NULL) {
     
     $list = array();

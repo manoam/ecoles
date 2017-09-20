@@ -304,7 +304,7 @@ function export_to_excel_submit($form, &$form_state) {
         $niveau             = new NiveauTaxonomyTermWrapper($eleve_niveau);
         $excel_name         = t('Liste_eleves_'.$niveau->getName().'_'.date('d_M_Y'));
         $key_not_to_excel   = array('ID','TAOMPIANARANA_TID','SEXE_TID','NIVEAU_TID','TAOMPIANARANA_NAME');
-        $rows               = _eleve_list_get_list($eleve_niveau);
+        $rows               = _eleve_list_get_eleve_by_niveau($eleve_niveau);
         
         $form_state['excel']= _export_list_eleve_to_excel_rows($excel_name ,$header ,$rows,$key_not_to_excel);
     }

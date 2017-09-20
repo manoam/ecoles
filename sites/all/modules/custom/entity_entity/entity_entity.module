@@ -76,7 +76,15 @@ function entity_entity_menu() {
 }
 
 function admin_taxonomy_acces() {
-    return  TRUE;
+    
+    global $user;
+    
+    foreach (variable_get('VIEWS_TAXONOMY') as $role => $value) {
+        if(user_has_role($role,$user)){
+            return TRUE;
+        }
+    }
+    return FALSE;
 }
 
 /**
