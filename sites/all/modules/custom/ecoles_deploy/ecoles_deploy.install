@@ -1,9 +1,10 @@
 <?php
 
+
 /**
  *  mi-activer ny features anakiroa
  */
-function deploy_update_7001(){
+function ecoles_deploy_update_7001(){
     
     module_enable(array('ecoles_eleves_entity','ecoles_field_base_and_taxonomy'));
     cache_clear_all();

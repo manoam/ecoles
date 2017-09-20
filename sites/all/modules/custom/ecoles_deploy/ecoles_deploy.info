@@ -1,4 +1,4 @@
-name = Deploy
+name = Ecoles Deploy
 description = Ecoles Deploy Module
 core = 7.x
 package = ModuleEcoles

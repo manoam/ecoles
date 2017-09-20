@@ -294,6 +294,8 @@ function _ecoles_create_eleve_form($form, &$form_state) {
         '#title' => t('Date de naissance'),
         '#size' => '18',
         '#date_format' => 'd - M - Y',
+        '#date_year_range' => '-30:-10',
+        '#date_month_range' => '-:-',
         '#date_label_position' => 'none',
         '#required' => TRUE,
         '#attributes' => array('placeholder' => array('Daty nahaterahana'), 'class' => array('date_create')),
