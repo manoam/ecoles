@@ -15,6 +15,7 @@ function _taxonomy_load_form($form, &$form_state, $tid) {
                 $form['taxonomy'] = array(
                     '#type' => 'fieldset',
                     '#title' => t('Taxonomy : ' . $tag->getBundle()),
+                    '#attributes' => array('class' => array('eleve_main_view')),
                 );
 
                 $form['taxonomy']['name'] = array(
@@ -134,16 +135,19 @@ function _taxonomy_create_form($form, &$form_state, $vocabulary) {
 
     if ($vocabulary != NULL) {
 
+        
+        $form['taxonomy'] = array(
+            '#type' => 'fieldset',
+            '#title' => t('Taxonomy : ' . $vocabulary),
+            '#attributes' => array('class' => array('eleve_main_view')),
+        );
+        
+        
         if($vocabulary == 'Année scolaire'){
             $vocabulary = 'taompianarana';
         }
         
         $form_state['vocabulary'] = $vocabulary;
-
-        $form['taxonomy'] = array(
-            '#type' => 'fieldset',
-            '#title' => t('Taxonomy : ' . $vocabulary),
-        );
 
         $form['taxonomy']['name'] = array(
             '#type' => 'textfield',
@@ -184,6 +188,7 @@ function _taxonomy_create_form($form, &$form_state, $vocabulary) {
                     '#date_format' => 'd - M - Y',
                     '#date_label_position' => 'none',
                     '#required' => TRUE,
+                    '#attributes' => array('class' => array('date_create')),
                 );
 
                 break;
@@ -229,7 +234,7 @@ function _taxonomy_create_form($form, &$form_state, $vocabulary) {
 
         $form['taxonomy']['submit'] = array(
             '#type' => 'submit',
-            '#value' => t('Enregistrer les modification'),
+            '#value' => t('Enregistrer'),
         );
 
         $form['#attached']['css'][] = array('data' => drupal_get_path('module', 'entity_entity') . '/tools/css_entity.css', 'type' => 'file');
