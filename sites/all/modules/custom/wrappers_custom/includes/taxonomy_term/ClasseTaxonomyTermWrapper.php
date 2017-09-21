@@ -50,31 +50,74 @@ class ClasseTaxonomyTermWrapper extends WdTaxonomyTermWrapper {
     public static function getClassByNiveau($niveau_tid) {
 
         $records = array();
-        
+
         if ($niveau_tid != NULL) {
 
             $query = new EntityFieldQuery();
-            
+
             $query->entityCondition('entity_type', 'taxonomy_term')
                     ->entityCondition('bundle', 'classe')
                     ->fieldCondition('field_niveau', 'tid', $niveau_tid, '=');
-            
+
             $tids = $query->execute();
-            
+
             if (isset($tids['taxonomy_term'])) {
-                
+
                 $tids = array_keys($tids['taxonomy_term']);
-                
+
                 foreach ($tids as $tid) {
-                    
+
                     $newterm = new ClasseTaxonomyTermWrapper($tid);
-                    
+
                     $records[intval($newterm->getTid())] = $newterm->getName();
                 }
             }
         }
-        
+
         return $records;
     }
 
+    /**
+     * Sets field_used
+     *
+     * @param $value
+     *
+     * @return $this
+     */
+    public function setUsed($value, $format = NULL) {
+        $this->setText('field_used', $value, $format);
+        return $this;
+    }
+
+    /**
+     * Retrieves field_used
+     *
+     * @return mixed
+     */
+    public function getUsed($format = WdEntityWrapper::FORMAT_DEFAULT, $markup_format = NULL) {
+        return $this->getText('field_used', $format, $markup_format);
+    }
+
+    public static function add($name, $niveau, $description = NULL) {
+
+        if ($name != NULL && $niveau != NULL ) {
+
+            try {
+                $period = ClasseTaxonomyTermWrapper::create();
+                $period->setName($name);
+                $period->setDescription($description);
+                $period->setNiveau($niveau);
+                $period->setUsed(0);
+                $period->save();
+                
+                return $period;
+                
+            } catch (Exception $ex) {
+
+                drupal_set_message(t('Erreur de creation de taxonomy Period :' . $ex->getMessage()));
+                return NULL;
+            }
+        }
+        return NULL;
+    }
 }

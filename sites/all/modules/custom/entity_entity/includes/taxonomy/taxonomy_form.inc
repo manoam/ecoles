@@ -39,7 +39,15 @@ function _taxonomy_load_form($form, &$form_state, $tid) {
                             '#attributes' => array('class' => array('sexe_select')),
                         );
 
+                        if ($class->getUsed() == '0' || $class->getUsed() == 0) {
+                            $form['taxonomy']['submit'] = array(
+                                '#type' => 'submit',
+                                '#value' => t('Enregistrer les modification'),
+                                '#weight' => 200,
+                            );
+                        }
                         break;
+
                     case 'niveau':
 
                         // ampiana ity indray raha niveau
@@ -50,50 +58,79 @@ function _taxonomy_load_form($form, &$form_state, $tid) {
                             '#default_value' => $niveau->getCode(),
                         );
 
+                        if ($niveau->getUsed() == '0' || $niveau->getUsed() == 0) {
+                            $form['taxonomy']['submit'] = array(
+                                '#type' => 'submit',
+                                '#value' => t('Enregistrer les modification'),
+                                '#weight' => 200,
+                            );
+                        }
+
                         break;
+
                     case 'taompianarana':
 
                         module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/TaompianaranaTaxonomyTermWrapper');
                         // ampiana ity indray raha niveau
                         $taompianarana = new TaompianaranaTaxonomyTermWrapper($tid);
-                        
+
                         $form['taxonomy']['start_date'] = array(
                             '#type' => 'textfield',
                             '#title' => t('Date debut de l\'année scolaire : '),
                             '#default_value' => date('d - M - Y', $taompianarana->getStartDate()),
                         );
-                        
+
                         $form['taxonomy']['end_date'] = array(
                             '#type' => 'textfield',
                             '#title' => t('Date fin de l\'année scolaire : '),
                             '#default_value' => date('d - M - Y', $taompianarana->getEndDate()),
                         );
 
+                        if ($taompianarana->getUsed() == '0' || $taompianarana->getUsed() == 0) {
+                            $form['taxonomy']['submit'] = array(
+                                '#type' => 'submit',
+                                '#value' => t('Enregistrer les modification'),
+                                '#weight' => 200,
+                            );
+                        }
+
                         break;
-                    
+
                     case 'period':
 
                         module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/PeriodTaxonomyTermWrapper');
+                        
                         // ampiana ity indray raha niveau
                         $period = new PeriodTaxonomyTermWrapper($tid);
-                        
-                        $form['taxonomy']['taompianaran'] = array(
-                            '#type' => 'textfield',
+
+                        $options = _get_taxonomy_term('taompianarana');
+                        $form['taxonomy']['taompianarana'] = array(
+                            '#type' => 'select',
                             '#title' => t('Année scolaire : '),
-                            '#default_value' => $period->getTaompianarana()->name,
+                            '#options'=>$options,
+                            '#default_value' => $period->getTaompianarana()->tid,
+                            '#attributes' => array('class' => array('sexe_select')),
                         );
-                        
+
                         $form['taxonomy']['start_date'] = array(
                             '#type' => 'textfield',
                             '#title' => t('Date debut de cette periode : '),
                             '#default_value' => date('d - M - Y', $period->getStartDate()),
                         );
-                        
+
                         $form['taxonomy']['end_date'] = array(
                             '#type' => 'textfield',
                             '#title' => t('Date fin de cette periode : '),
                             '#default_value' => date('d - M - Y', $period->getEndDate()),
                         );
+
+                        if ($period->getUsed() == '0' || $period->getUsed() == 0) {
+                            $form['taxonomy']['submit'] = array(
+                                '#type' => 'submit',
+                                '#value' => t('Enregistrer les modification'),
+                                '#weight' => 200,
+                            );
+                        }
 
                         break;
 
@@ -108,14 +145,10 @@ function _taxonomy_load_form($form, &$form_state, $tid) {
                     '#default_value' => str_replace(array('<p>', '</p>'), array('', ''), $tag->getDescription()),
                 );
 
-                $form['taxonomy']['submit'] = array(
-                    '#type' => 'submit',
-                    '#value' => t('Enregistrer les modification'),
-                );
-
                 $form['#attached']['css'][] = array('data' => drupal_get_path('module', 'entity_entity') . '/tools/css_entity.css', 'type' => 'file');
             }
-        } catch (Exception $e) {
+        } catch (Exception $ex) {
+
             drupal_set_message(t('Taxonomy introvable'), 'error');
         }
     }
@@ -124,29 +157,98 @@ function _taxonomy_load_form($form, &$form_state, $tid) {
 
 function _taxonomy_load_form_submit($form, &$form_state) {
 
-    $tag = new WdTaxonomyTermWrapper($form_state['tid']);
-    $tag->setName($form_state['values']['name']);
-    $tag->setDescription($form_state['values']['description']);
-    $tag->save();
-}
+    $tid = $form_state['tid'];
+    $name = $form_state['values']['name'];
+    $description = $form_state['values']['description'];
 
+    $term = new WdTaxonomyTermWrapper($tid);
+    $vocabulary = $term->getBundle();
+
+    try {
+
+        switch ($vocabulary) {
+
+            case 'classe':
+
+                $niveau = $form_state['values']['niveau'];
+
+                $classe = new ClasseTaxonomyTermWrapper($tid);
+                $classe->setName($name);
+                $classe->setDescription($description);
+                $classe->setNiveau($niveau);
+                $classe->save();
+
+                break;
+
+            case 'taompianarana':
+
+                $start_date = strtotime($form_state['values']['start_date']);
+                $end_date = strtotime($form_state['values']['end_date']);
+
+                $taompianarana = new TaompianaranaTaxonomyTermWrapper($tid);
+                $taompianarana->setName($name);
+                $taompianarana->setDescription($description);
+                $taompianarana->setStartDate($start_date);
+                $taompianarana->setEndDate($end_date);
+                $taompianarana->save();
+
+                break;
+
+            case 'period':
+
+                $taompianarana = $form_state['values']['taompianarana'];
+                $start_date = strtotime($form_state['values']['start_date']);
+                $end_date = strtotime($form_state['values']['end_date']);
+
+                $period = new PeriodTaxonomyTermWrapper($tid);
+                $period->setName($name);
+                $period->setDescription($description);
+                $period->setStartDate($start_date);
+                $period->setEndDate($end_date);
+                $period->setTaompianarana($taompianarana);
+                $period->save();
+
+                break;
+
+            case 'niveau':
+
+                $code = $form_state['values']['code'];
+
+                $niveau = new NiveauTaxonomyTermWrapper($tid);
+                $niveau->setName($name);
+                $niveau->setDescription($description);
+                $niveau->setCode($code);
+                $niveau->save();
+
+                break;
+
+            default:
+                break;
+        }
+        
+        drupal_set_message(t('Enregistrement reussi'));
+    } catch (Exception $ex) {
+
+        drupal_set_message(t('Enregistrement echoué'), 'error');
+    }
+}
 
 function _taxonomy_create_form($form, &$form_state, $vocabulary) {
 
     if ($vocabulary != NULL) {
 
-        
+
         $form['taxonomy'] = array(
             '#type' => 'fieldset',
             '#title' => t('Taxonomy : ' . $vocabulary),
             '#attributes' => array('class' => array('eleve_main_view')),
         );
-        
-        
-        if($vocabulary == 'Année scolaire'){
+
+
+        if ($vocabulary == 'Année scolaire') {
             $vocabulary = 'taompianarana';
         }
-        
+
         $form_state['vocabulary'] = $vocabulary;
 
         $form['taxonomy']['name'] = array(
@@ -168,8 +270,8 @@ function _taxonomy_create_form($form, &$form_state, $vocabulary) {
                     '#required' => TRUE,
                     '#attributes' => array('class' => array('sexe_select')),
                 );
-
                 break;
+
             case 'taompianarana':
 
                 // ampiana ity indray raha niveau
@@ -190,7 +292,6 @@ function _taxonomy_create_form($form, &$form_state, $vocabulary) {
                     '#required' => TRUE,
                     '#attributes' => array('class' => array('date_create')),
                 );
-
                 break;
 
             case 'period':
@@ -210,6 +311,7 @@ function _taxonomy_create_form($form, &$form_state, $vocabulary) {
                     '#date_format' => 'd - M - Y',
                     '#date_label_position' => 'none',
                     '#required' => TRUE,
+                    '#attributes' => array('class' => array('date_create')),
                 );
 
                 $form['taxonomy']['end_date'] = array(
@@ -218,14 +320,22 @@ function _taxonomy_create_form($form, &$form_state, $vocabulary) {
                     '#date_format' => 'd - M - Y',
                     '#date_label_position' => 'none',
                     '#required' => TRUE,
+                    '#attributes' => array('class' => array('date_create')),
                 );
+                break;
 
+            case 'niveau':
+
+                $form['taxonomy']['code'] = array(
+                    '#type' => 'textfield',
+                    '#title' => t('Code utilisant pour l\'import excel'),
+                    '#required' => TRUE,
+                );
                 break;
 
             default:
                 break;
         }
-
 
         $form['taxonomy']['description'] = array(
             '#type' => 'textarea',
@@ -240,4 +350,55 @@ function _taxonomy_create_form($form, &$form_state, $vocabulary) {
         $form['#attached']['css'][] = array('data' => drupal_get_path('module', 'entity_entity') . '/tools/css_entity.css', 'type' => 'file');
     }
     return $form;
+}
+
+function _taxonomy_create_form_submit($form, &$form_state) {
+
+    $vocabulary = $form_state['vocabulary'];
+    $name = $form_state['values']['name'];
+    $description = $form_state['values']['description'];
+    $saved = NULL;
+
+    switch ($vocabulary) {
+
+        case 'classe':
+
+            $niveau = $form_state['values']['niveau'];
+            $saved = ClasseTaxonomyTermWrapper::add($name, $niveau, $description);
+
+            break;
+
+        case 'taompianarana':
+
+            $start_date = strtotime($form_state['values']['start_date']);
+            $end_date = strtotime($form_state['values']['end_date']);
+            $saved = TaompianaranaTaxonomyTermWrapper::add($name, $start_date, $end_date, $description);
+
+            break;
+
+        case 'period':
+
+            $taompianarana = $form_state['values']['taompianarana'];
+            $start_date = strtotime($form_state['values']['start_date']);
+            $end_date = strtotime($form_state['values']['end_date']);
+            $saved = PeriodTaxonomyTermWrapper::add($name, $taompianarana, $start_date, $end_date, $description);
+
+            break;
+
+        case 'niveau':
+
+            $code = $form_state['values']['code'];
+            $saved = NiveauTaxonomyTermWrapper::add($name, $code, $description);
+
+            break;
+
+        default:
+            break;
+    }
+
+    if ($saved != NULL) {
+        drupal_set_message(t('Enregistrement reussi'));
+    } else {
+        drupal_set_message(t('Enregistrement echoué'), 'error');
+    }
 }

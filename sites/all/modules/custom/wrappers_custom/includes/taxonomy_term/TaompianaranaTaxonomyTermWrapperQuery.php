@@ -88,4 +88,27 @@ class TaompianaranaTaxonomyTermWrapperQuery extends WdTaxonomyTermWrapperQuery {
     return $this->orderByField('field_end_date.value', $direction);
   }
 
+  /**
+   * Query by field_used
+   *
+   * @param mixed $field_used
+   * @param string $operator
+   *
+   * @return $this
+   */
+  public function byUsed($field_used, $operator = NULL) {
+    return $this->byFieldConditions(array('field_used' => array($field_used, $operator)));
+  }
+
+  /**
+   * Order by field_used
+   *
+   * @param string $direction
+   *
+   * @return $this
+   */
+  public function orderByUsed($direction = 'ASC') {
+    return $this->orderByField('field_used.value', $direction);
+  }
+
 }
