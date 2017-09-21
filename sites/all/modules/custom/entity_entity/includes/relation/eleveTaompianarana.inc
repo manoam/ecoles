@@ -1,5 +1,8 @@
 <?php
 
+module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/ClasseTaxonomyTermWrapper');
+module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/NiveauTaxonomyTermWrapper');
+module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/TaompianaranaTaxonomyTermWrapper');
 function _insertIntoEleveTaompianarana($eleve_id, $taompianarana_tid, $niveau_tid, $class_tid = NULL) {
 
     if (
