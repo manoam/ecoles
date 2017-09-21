@@ -37,3 +37,7 @@
 .page-title{
     display: none;
 }
+
+.text_right{
+    text-align: right;
+}

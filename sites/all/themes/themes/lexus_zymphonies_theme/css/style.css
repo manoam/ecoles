@@ -2001,3 +2001,17 @@ div.warning {
 li.a{
     width: 100%;
 }
+
+#block-user-login{
+    width: 50%;
+    margin: 4% auto;
+    border: 1px solid #DDD;
+}
+
+#block-user-login .content{
+    margin: 30px;
+}
+
+#first-time p{
+    display: none;
+}

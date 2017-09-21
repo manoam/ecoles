@@ -13,7 +13,8 @@ function list_taxonomy_list($form, &$form_state,$vocabulary) {
         $vocabulary = t('Année scolaire');
     }
     
-    $output = '<div class="uper_title"> Liste des : '.$vocabulary."</div>";
+    $output  = '<div class="uper_title eleve_main_view"> Liste des : '.$vocabulary."</div>";
+    $output .= '<div class="view_left text_right"><a href="/ecoles/utile/add/'.$vocabulary.'"> Ajouter nouveau </a> </div>';
     if(count($rows) != 0){
         $limit = 10;
         $current_table = pager_default_initialize(count($rows), $limit);

@@ -72,6 +72,13 @@ function entity_entity_menu() {
         'page arguments' => array('list_taxonomy_list',3),
         'access callback' => 'admin_taxonomy_acces',
     );
+    $items['ecoles/utile/add/%'] =array(
+        'page callback' => 'drupal_get_form',
+        'file' => 'includes/taxonomy/taxonomy_form.inc',
+        'file path' => drupal_get_path('module', 'entity_entity'),
+        'page arguments' => array('_taxonomy_create_form',3),
+        'access callback' => 'admin_taxonomy_acces',
+    );
     return $items;
 }
 
