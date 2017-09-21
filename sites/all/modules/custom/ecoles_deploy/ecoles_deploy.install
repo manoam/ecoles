@@ -33,3 +33,11 @@ function ecoles_deploy_update_7003(){
     features_revert();
     cache_clear_all();
 }
+
+/**
+ *  Manao revert ity
+ */
+function ecoles_deploy_update_7004(){
+    features_revert();
+    cache_clear_all();
+}
