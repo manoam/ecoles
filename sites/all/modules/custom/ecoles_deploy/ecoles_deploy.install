@@ -9,3 +9,19 @@ function ecoles_deploy_update_7001(){
     module_enable(array('ecoles_eleves_entity','ecoles_field_base_and_taxonomy'));
     cache_clear_all();
 }
+
+function ecoles_deploy_update_7002(){
+    
+    $id = db_insert('eck_eleve')->fields(array(
+                        'id'         => 1,
+                        'type'       => 'eleve',
+                        'title'      => 'eleve',
+                        'uid'        => 0,
+                        'created'    => 0,
+                        'changed'    => 0,
+                        'uuid'       => 'asdasdasd',
+                    )
+                )
+                ->execute();
+    cache_clear_all();
+}
