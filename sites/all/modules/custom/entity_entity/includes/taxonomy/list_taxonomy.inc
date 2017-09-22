@@ -2,6 +2,7 @@
 
 function list_taxonomy_list($form, &$form_state,$vocabulary) {
     
+    $vocabularyname   = $vocabulary;
     $tags   = _get_taxonomy_term($vocabulary);
     $header = array(t('ID'), t('NOM'), t('VOIR'));
     $rows   = array();
@@ -10,10 +11,10 @@ function list_taxonomy_list($form, &$form_state,$vocabulary) {
         $rows[] = array($key, $name,l(t('voir'),'ecoles/utile/'.$key));
     }
     if($vocabulary == 'taompianarana'){
-        $vocabulary = t('Année scolaire');
+        $vocabularyname = t('Année scolaire');
     }
     
-    $output  = '<div class="uper_title eleve_main_view"> Liste des : '.$vocabulary." </div>";
+    $output  = '<div class="uper_title eleve_main_view"> Liste des : '.$vocabularyname." </div>";
     $output .= '<div class="view_left text_right"><a href="/ecoles/utile/add/'.$vocabulary.'"> Ajouter nouveau </a> </div>';
     if(count($rows) != 0){
         $limit = 10;
