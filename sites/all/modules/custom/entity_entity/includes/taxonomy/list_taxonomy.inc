@@ -2,6 +2,7 @@
 
 function list_taxonomy_list($form, &$form_state,$vocabulary) {
     
+    global $base_url;
     $vocabularyname   = $vocabulary;
     $tags   = _get_taxonomy_term($vocabulary);
     $header = array(t('ID'), t('NOM'), t('VOIR'));
@@ -15,7 +16,7 @@ function list_taxonomy_list($form, &$form_state,$vocabulary) {
     }
     
     $output  = '<div class="uper_title eleve_main_view"> Liste des : '.$vocabularyname." </div>";
-    $output .= '<div class="view_left text_right"><a href="/ecoles/utile/add/'.$vocabulary.'"> Ajouter nouveau </a> </div>';
+    $output .= '<div class="view_left text_right"><a href="'. $base_url .'/ecoles/utile/add/'.$vocabulary.'"> Ajouter nouveau </a> </div>';
     if(count($rows) != 0){
         $limit = 10;
         $current_table = pager_default_initialize(count($rows), $limit);
