@@ -41,3 +41,12 @@ function ecoles_deploy_update_7004(){
     features_revert();
     cache_clear_all();
 }
+/**
+ *
+ */
+function ecoles_deploy_update_7005(){
+ cache_clear_all();
+ features_revert();
+ cache_clear_all();
+ features_revert();
+}

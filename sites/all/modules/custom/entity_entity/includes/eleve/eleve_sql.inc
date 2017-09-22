@@ -24,6 +24,7 @@ function _eleve_sql_list_eleve($niveau_tid = NULL, $class_tid = NULL,$taompianar
         $sql .= " niveau_name.name as NIVEAU_NAME,";
         $sql .= " class_name.name as CLASS_NAME,";
         $sql .= " taompianarana_name.name as TAOMPIANARANA_NAME,";
+        $sql .= " e.eleve_id as ID,";
         
         $sql .= " e.niveau_tid as NIVEAU_TID,";
         $sql .= " e.class_tid as CLASS_TID,";        

@@ -1,7 +1,7 @@
 Accueil {"url":"<front>","weight":"-50"}
 élèves {"url":"ecoles\/eleve\/list","weight":"-49"}
 -Ajouter Nouveau {"url":"ecoles\/eleve\/create","weight":"-50"}
--Re-inscription  {"url":"ecoles\/eleve\/re-inscription","weight":"-49"}
+-Re-inscription {"url":"ecoles\/eleve\/re-inscription","weight":"-49"}
 -élève no classé {"url":"ecoles\/eleve-no-class\/list","weight":"-48"}
 -Liste des élèves actuel {"url":"ecoles\/eleve\/list","weight":"-47"}
 -Liste de tous les élèves {"url":"liste\/eleves","weight":"-46"}
@@ -9,7 +9,6 @@ Configuration {"url":"ecoles\/configuration","weight":"-46"}
 Export/import {"url":"ecoles\/eleve\/import-export","weight":"-48"}
 -import csv {"url":"ecoles\/eleve\/import-csv","weight":"-50"}
 -Export vers excel {"url":"ecoles\/eleve\/export","weight":"-49"}
-Utille {"url":"ecoles\/taxonomy\/list","weight":"-47"}
 Utile {"url":"ecoles\/utile\/list","weight":"-47"}
 -Année scolaire {"url":"ecoles\/utile\/list\/taompianarana","weight":"-50"}
 -Niveau {"url":"ecoles\/utile\/list\/niveau","weight":"-48"}

@@ -88,6 +88,7 @@ function _eleve_list_list($form, &$form_state) {
         t('Date de naissance'),
         t('Niveau'),
         t('Classe'),
+        t('Voir'),
     );
     
     $niveau_tid = isset($form_state['niveau_tid'])? $form_state['niveau_tid'] : NULL;
@@ -110,6 +111,7 @@ function _eleve_list_list($form, &$form_state) {
         $row[] = $eleve['DATE_NAISS'];
         $row[] = $eleve['NIVEAU_NAME'];
         $row[] = $eleve['CLASS_NAME'];
+        $row[] = l('Voir','eleve/eleve/'.$eleve['ID']);
         
         $rows[] = $row;
     }
