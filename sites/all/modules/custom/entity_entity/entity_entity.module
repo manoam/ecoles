@@ -24,6 +24,16 @@ function entity_entity_menu() {
         'access callback' => 'create_eleve_permission',
     );
     
+    $items['eleve/eleve/%/modif'] =array(
+        'title' => t('Modification'),
+        'page callback' => 'drupal_get_form',
+        'file' => 'includes/eleve/eleve.form.inc',
+        'file path' => drupal_get_path('module', 'entity_entity'),
+        'page arguments' => array('_ecoles_eleve_form_edit',2),
+        'access callback' => 'create_eleve_permission',
+        'type'=> MENU_LOCAL_TASK,
+        'weight' => 4,
+    );
     $items['ecoles/eleve/list'] =array(
         'page callback' => 'drupal_get_form',
         'file' => 'includes/eleve/eleve.list.inc',
