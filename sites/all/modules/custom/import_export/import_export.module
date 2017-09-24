@@ -125,17 +125,13 @@ function import_from_xlsx_form_validate(&$form, &$form_state) {
 
         $xlsx = new SimpleXLSX( $form_state['values']['xlsxfile'] );
 
-        if($xlsx->rows() != FALSE){
 
-            foreach( $xlsx->rows() as $line ) {
+        foreach( $xlsx->rowsEleve() as $line ) {
 
-                if (count($line) != 13) {
-                    form_set_error('xlsxfile', t('This file has the incorrect number of columns. Expecting 13'));
-                }
-                break;
+            if (count($line) != 13) {
+                form_set_error('xlsxfile', t('This file has the incorrect number of columns. Expecting 13'));
             }
-        }else{
-            form_set_error('xlsxfile', t('Erreur de sheet'));
+            break;
         }
     }
 }
@@ -159,11 +155,9 @@ function import_from_xlsx_form_submit($form, &$form_state) {
 
         $xlsx = new SimpleXLSX( $filename );
 
-        if($xlsx->rows() != FALSE){
-            foreach( $xlsx->rows() as $line ) {
+        foreach( $xlsx->rowsEleve() as $line ) {
 
-                $batch['operations'][] = array('import_from_xlsx_import_line', array($line));
-            }
+            $batch['operations'][] = array('import_from_xlsx_import_line', array($line));
         }
 
     }
