@@ -100,7 +100,7 @@ class ClasseTaxonomyTermWrapper extends WdTaxonomyTermWrapper {
 
     public static function add($name, $niveau, $description = NULL) {
 
-        if ($name != NULL && $niveau != NULL ) {
+        if ($name != NULL && $niveau != NULL) {
 
             try {
                 $period = ClasseTaxonomyTermWrapper::create();
@@ -109,9 +109,8 @@ class ClasseTaxonomyTermWrapper extends WdTaxonomyTermWrapper {
                 $period->setNiveau($niveau);
                 $period->setUsed(0);
                 $period->save();
-                
+
                 return $period;
-                
             } catch (Exception $ex) {
 
                 drupal_set_message(t('Erreur de creation de taxonomy Period :' . $ex->getMessage()));
@@ -120,4 +119,46 @@ class ClasseTaxonomyTermWrapper extends WdTaxonomyTermWrapper {
         }
         return NULL;
     }
+
+    public static function getClasseByCode($code) {
+
+        if ($code != NULL) {
+
+            $query = new EntityFieldQuery();
+            $query->entityCondition('entity_type', 'taxonomy_term')
+                    ->entityCondition('bundle', 'classe')
+                    ->fieldCondition('field_code', 'value', $code, '=');
+
+            $tids = $query->execute();
+            if (isset($tids['taxonomy_term'])) {
+                $tids = array_keys($tids['taxonomy_term']);
+                foreach ($tids as $tid) {
+                    return $tid;
+                }
+            }
+        }
+        return NULL;
+    }
+
+    /**
+     * Sets field_code
+     *
+     * @param $value
+     *
+     * @return $this
+     */
+    public function setCode($value, $format = NULL) {
+        $this->setText('field_code', $value, $format);
+        return $this;
+    }
+
+    /**
+     * Retrieves field_code
+     *
+     * @return mixed
+     */
+    public function getCode($format = WdEntityWrapper::FORMAT_DEFAULT, $markup_format = NULL) {
+        return $this->getText('field_code', $format, $markup_format);
+    }
+
 }

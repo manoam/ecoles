@@ -10,6 +10,42 @@
 function ecoles_taxonomy_field_default_field_instances() {
   $field_instances = array();
 
+  // Exported field_instance: 'taxonomy_term-classe-field_code'.
+  $field_instances['taxonomy_term-classe-field_code'] = array(
+    'bundle' => 'classe',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 2,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_code',
+    'label' => 'code',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'maxlength_js' => 0,
+        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 4,
+    ),
+  );
+
   // Exported field_instance: 'taxonomy_term-classe-field_niveau'.
   $field_instances['taxonomy_term-classe-field_niveau'] = array(
     'bundle' => 'classe',
@@ -40,7 +76,7 @@ function ecoles_taxonomy_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 1,
+      'weight' => 2,
     ),
   );
 
@@ -76,7 +112,7 @@ function ecoles_taxonomy_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 32,
+      'weight' => 5,
     ),
   );
 

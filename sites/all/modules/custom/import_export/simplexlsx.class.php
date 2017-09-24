@@ -870,14 +870,20 @@ class SimpleXLSX {
 
     public function rowsEleve() {
 
-        $sheet = $this->sheets();
         $worksheet_id = 1;
-        foreach ($sheet as $key => $value){
-            $worksheet_id = $key;
-        }
+
         if (( $ws = $this->worksheet($worksheet_id) ) === false) {
-            return array();
+
+            $sheet = $this->sheets();
+            
+            foreach ($sheet as $key => $value) {
+                $worksheet_id = $key;
+            }
+            if (( $ws = $this->worksheet($worksheet_id) ) === false) {
+                return array();
+            }
         }
+        
         $rows = array();
         $curR = 0;
 

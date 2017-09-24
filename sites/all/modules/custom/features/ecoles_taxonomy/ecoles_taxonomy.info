@@ -8,6 +8,7 @@ dependencies[] = features
 dependencies[] = taxonomy
 dependencies[] = text
 features[features_api][] = api:2
+features[field_instance][] = taxonomy_term-classe-field_code
 features[field_instance][] = taxonomy_term-classe-field_niveau
 features[field_instance][] = taxonomy_term-classe-field_used
 features[field_instance][] = taxonomy_term-niveau-field_code

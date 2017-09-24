@@ -50,3 +50,13 @@ function ecoles_deploy_update_7005(){
  cache_clear_all();
  features_revert();
 }
+
+
+/**
+ * Manampy filed code ao amin'ny classe
+ */
+function ecoles_deploy_update_7006(){
+    cache_clear_all();
+    features_revert();
+    cache_clear_all();
+}

@@ -85,9 +85,18 @@ function import_from_xlsx_form() {
         '#type' => 'fieldset',
         '#title' => t('Import xlsx'),
     );
+    
+    $markup  = t('<p>Pour importer un fichier excel veullez assurer que les colones suivant sont existe et ordre :</p>');
+    $markup .= t('<p> Numero matricule, Nom, Prénom, Sexe, Date de naissance, Lieu de Naissance,'
+            . 'Adresse, Numero Telephone, Nom du père, Fonction Père, Nom Mère, Fonction Mère ,Niveau ,Classe');
+    
+    $form['import']['description'] = array(
+        '#type' => 'markup',
+        '#markup' => $markup,
+    );
 
     $form['import']['xlsxfile'] = array(
-        '#title' => t('CSV File'),
+        '#title' => t('Fichier excel'),
         '#type' => 'file',
         '#description' => ($max_size = parse_size(ini_get('upload_max_filesize'))) ? t('Due to server restrictions, the <strong>maximum upload file size is !max_size</strong>. Files that exceed this size will be disregarded.', array('!max_size' => format_size($max_size))) : '',
     );
@@ -159,6 +168,8 @@ function import_from_xlsx_form_submit($form, &$form_state) {
 
             $batch['operations'][] = array('import_from_xlsx_import_line', array($line));
         }
+        
+        $batch['operations'][] = array('import_export_unlink_file', array($filename));
 
     }
 
@@ -180,9 +191,11 @@ function import_from_xlsx_import_line($line, &$context) {
     $nom_mere   = trim($line[10]);
     $funct_mere = trim($line[11]);
     $niveau     = trim($line[12]);
+    $classe     = trim($line[13]);
 
     
     $niveau_tid = NiveauTaxonomyTermWrapper::getNiveauByCode($niveau);
+    $classe_tid = ClasseTaxonomyTermWrapper::getClasseByCode($classe);
     
     if (is_numeric($num_mat) && strtotime($date_naiss) > 0 && in_array($sex, array(1, 2)) ) {
 
@@ -198,7 +211,7 @@ function import_from_xlsx_import_line($line, &$context) {
 
                 $taompianarana_tid = variable_get('TAOMPIANARANA');
 
-                $saved = _insertIntoEleveTaompianarana($eleve_id, $taompianarana_tid, $niveau_tid);
+                $saved = _insertIntoEleveTaompianarana($eleve_id, $taompianarana_tid, $niveau_tid,$classe_tid);
 
                 if ($saved != NULL) {
                     drupal_set_message(t('Enregistrement reussi'));
@@ -432,4 +445,11 @@ function _export_list_eleve_to_excel_rows($excel_name, $header, $rows,$key_not_t
         }
     }
     return NULL;
+}
+
+function import_export_unlink_file($file , &$context) {
+    
+    if (file_exists($destination_file)) {
+        unlink($destination_file);
+    }
 }
