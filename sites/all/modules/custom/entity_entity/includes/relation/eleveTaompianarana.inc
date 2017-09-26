@@ -3,7 +3,8 @@
 module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/ClasseTaxonomyTermWrapper');
 module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/NiveauTaxonomyTermWrapper');
 module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/TaompianaranaTaxonomyTermWrapper');
-function _insertIntoEleveTaompianarana($eleve_id, $taompianarana_tid, $niveau_tid, $class_tid = NULL) {
+
+function _insertIntoEleveTaompianarana($eleve_id, $taompianarana_tid, $niveau_tid, $redoublement_tid = NULL, $class_tid = NULL) {
 
     if (
             $eleve_id != NULL &&
@@ -18,7 +19,8 @@ function _insertIntoEleveTaompianarana($eleve_id, $taompianarana_tid, $niveau_ti
                         'taompianarana_tid' => $taompianarana_tid,
                         'niveau_tid' => $niveau_tid,
                         'class_tid' => $class_tid,
-                            )
+                        'redoublement_tid' => $redoublement_tid,
+                        )
                     )
                     ->execute();
 
@@ -59,6 +61,7 @@ function _updateEleveTaompianarana($fieldAndValue, $conditions) {
                 'taompianarana_tid',
                 'niveau_tid',
                 'class_tid',
+                'redoublement_tid',
             );
 
             //-- Tadiavina ao anatin'ny liste field aloha ilay $field ao @ condition sao tsy ao akory

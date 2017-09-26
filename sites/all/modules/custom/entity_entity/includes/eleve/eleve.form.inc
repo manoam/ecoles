@@ -178,7 +178,7 @@ function _ecoles_eleve_form($form, &$form_state, $eleve_id) {
                 if ($find_info != NULL) {
 
                     $markup = '<div class="message_inscrit_yes">';
-                    $markup .= t("<p>Cet élève est inscrit dans notre écoles. ");
+                    $markup .= t("<p>Cet élève est inscrit dans notre écoles  pour cette année scolaire. ");
                     $markup .= t("Il est déjà dans le niveau " . $find_info['NIVEAU_NAME'] . ".");
 
                     if (isset($find_info['CLASS_NAME'])) {
@@ -217,7 +217,7 @@ function _ecoles_eleve_form($form, &$form_state, $eleve_id) {
                 } else {
 
                     $markup = '<div class="message_inscrit_no">';
-                    $markup .= t("<p>Cet élève n'est pas encore inscrit dans notre écoles pour cet année scolaire</p>");
+                    $markup .= t("<p>Cet élève n'est pas encore inscrit dans notre écoles pour cette année scolaire</p>");
                     $markup .= '<a href=' . base_path() . 'ecoles/eleve/re-inscription?eleve_id=' . $eleve->getId() . '>' . t('Inscrire') . '</a>';
                     $markup .= '</div>';
 
@@ -424,7 +424,7 @@ function _ecoles_create_eleve_form($form, &$form_state) {
     $form['eleve_class'] = array(
         '#type' => 'fieldset',
         '#title' => t('Classe'),
-        '#prefix' => '<div class="view_left">',
+        '#prefix' => '<div class="list_eleve">',
         '#suffix' => '</div>',
     );
 
@@ -437,15 +437,15 @@ function _ecoles_create_eleve_form($form, &$form_state) {
         '#required' => TRUE,
     );
 
-//    
-//    $options        = _get_taxonomy_term('classe');
-//    $options[NULL]  = t('- Select -');
-//
-//    $form['eleve_class']['eleve_class'] = array(
-//        '#type' => 'select',
-//        '#title' => t('Classe (Facultatif)'),
-//        '#options' => $options
-//    );
+    
+    $options        = _get_taxonomy_term('redoublement');
+    $options[NULL]  = t('- Select -');
+
+    $form['eleve_class']['eleve_redouble'] = array(
+        '#type' => 'select',
+        '#title' => t('Redoublement :'),
+        '#options' => $options
+    );
 
     $form['submit'] = array(
         '#type' => 'submit',
@@ -487,6 +487,7 @@ function _ecoles_create_eleve_form_submit($form, &$form_state) {
         $adrres_tuteur = $values['adrres_tuteur'];
         $tel = $values['tel'];
         $niveau_tid = $values['eleve_niveau'];
+        $eleve_redouble = $values['eleve_redouble'];
         $error_message = array();
 
         $eleve_id = EleveEleveWrapper::addEleve($num_mat, $nom, $prenom, $sexe, $date, $lieu, $adress, $tel, $nom_pere, $function_pere, $nom_mere, $function_mere, $nom_tuteur, $function_tuteur, $num_tel_tuteur, $adrres_tuteur, $error_message);
@@ -514,7 +515,7 @@ function _ecoles_create_eleve_form_submit($form, &$form_state) {
 
             $taompianarana_tid = variable_get('TAOMPIANARANA');
 
-            $saved = _insertIntoEleveTaompianarana($eleve_id, $taompianarana_tid, $niveau_tid);
+            $saved = _insertIntoEleveTaompianarana($eleve_id, $taompianarana_tid, $niveau_tid,$eleve_redouble);
 
             if ($saved != NULL) {
                 drupal_set_message(t('Enregistrement reussi'));
@@ -747,7 +748,16 @@ function _ecoles_reinscription_eleve_form($form, &$form_state) {
 
         $form['eleve_class']['eleve_niveau'] = array(
             '#type' => 'select',
-            '#title' => t('Niveau'),
+            '#title' => t('Niveau :'),
+            '#required' => TRUE,
+            '#options' => $options
+        );
+        
+        $options = _get_taxonomy_term('redoublement');
+
+        $form['eleve_class']['eleve_redouble'] = array(
+            '#type' => 'select',
+            '#title' => t('Redoublement :'),
             '#required' => TRUE,
             '#options' => $options
         );
@@ -791,11 +801,12 @@ function _ecoles_reinscription_eleve_form_submit($form, &$form_state) {
 
         $eleve = EleveEleveWrapper::getByNumMat($form_state['values']['num_mat']);
         $niveau_tid = $form_state['values']['eleve_niveau'];
+        $eleve_redouble = $form_state['values']['eleve_redouble'];
         $taompianarana_tid = variable_get('TAOMPIANARANA');
 
         if ($eleve != NULL) {
 
-            $saved = _insertIntoEleveTaompianarana($eleve->getId(), $taompianarana_tid, $niveau_tid);
+            $saved = _insertIntoEleveTaompianarana($eleve->getId(), $taompianarana_tid, $niveau_tid,$eleve_redouble);
 
             if ($saved != NULL) {
                 drupal_set_message(t('Enregistrement reussi'));

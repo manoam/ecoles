@@ -5,6 +5,7 @@ define('TEMPLET_EXCEL', 'template_excel.xlsx');
 
 module_load_include('list.inc', 'entity_entity', 'includes/eleve/eleve');
 module_load_include('php', 'wrappers_custom', 'includes/eleve/EleveEleveWrapper');
+module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/RedoublementTaxonomyTermWrapper');
 module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/ClasseTaxonomyTermWrapper');
 module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/NiveauTaxonomyTermWrapper');
 module_load_include('inc', 'entity_entity', 'includes/relation/eleveTaompianarana');
@@ -88,8 +89,13 @@ function import_from_xlsx_form() {
     
     $markup  = t('<p>Pour importer un fichier excel veullez assurer que les colones suivant sont existe et ordre :</p>');
     $markup .= t('<p> Numero matricule, Nom, Prénom, Sexe, Date de naissance, Lieu de Naissance,'
-            . 'Adresse, Numero Telephone, Nom du père, Fonction Père, Nom Mère, Fonction Mère, Nom Tuteur, Fonction Tuteur, Num Tel Tuteur, Adresse Tuteur, Niveau, Classe');
-    
+            . 'Adresse, Numero Telephone, Nom du père, Fonction Père, Nom Mère, Fonction Mère, Nom Tuteur, Fonction Tuteur, Num Tel Tuteur, Adresse Tuteur, Niveau, Classe, Redoublement');
+    $markup .= t('<p>Pour le <b> sexe </b>: <ul> <li> 1 => Homme </li> <li> 2 => Femme </li></ul></p>');
+    $markup .= t('<p>Pour le <b> niveau </b> veuillez voir dans la '. l('list niveau','ecoles/utile/list/niveau'). ' et utilisez le code pour l\'import excel ou csv </p>');
+    $markup .= t('<p>Pour la <b> Classe </b> veuillez voir dans la '. l('list classe','ecoles/utile/list/classe'). ' et utilisez le code pour l\'import excel ou csv </p>');
+    $markup .= t('<p>Pour le <b> Redoublement </b>: <ul> <li> P => Passant </li> <li> R => Redoublant </li> <li> T => Triplant </li></ul></p>');
+
+
     $form['import']['description'] = array(
         '#type' => 'markup',
         '#markup' => $markup,
@@ -103,7 +109,7 @@ function import_from_xlsx_form() {
 
     $form['import']['submit'] = array(
         '#type' => 'submit',
-        '#value' => t('Save'),
+        '#value' => t('Importer ce fichier'),
     );
 
     $form['#validate'] = array(
@@ -138,8 +144,8 @@ function import_from_xlsx_form_validate(&$form, &$form_state) {
 
         foreach( $xlsx->rowsEleve() as $line ) {
 
-            if (count($line) != 18) {
-                form_set_error('xlsxfile', t('This file has the incorrect number of columns. Expecting 18'));
+            if (count($line) != 19) {
+                form_set_error('xlsxfile', t('This file has the incorrect number of columns. Expecting 19'));
             }
             break;
         }
@@ -197,10 +203,12 @@ function import_from_xlsx_import_line($line, &$context) {
     $adress_tuteur  = trim($line[15]);
     $niveau         = trim($line[16]);
     $classe         = trim($line[17]);
+    $redoublement   = trim($line[18]);
 
     
     $niveau_tid = NiveauTaxonomyTermWrapper::getNiveauByCode($niveau);
     $classe_tid = ClasseTaxonomyTermWrapper::getClasseByCode($classe);
+    $redouble_tid = RedoublementTaxonomyTermWrapper::getByCode($redoublement);
     
     if (is_numeric($num_mat) && strtotime($date_naiss) > 0 && in_array($sex, array(1, 2)) ) {
 
@@ -216,7 +224,7 @@ function import_from_xlsx_import_line($line, &$context) {
 
                 $taompianarana_tid = variable_get('TAOMPIANARANA');
 
-                $saved = _insertIntoEleveTaompianarana($eleve_id, $taompianarana_tid, $niveau_tid,$classe_tid);
+                $saved = _insertIntoEleveTaompianarana($eleve_id, $taompianarana_tid, $niveau_tid,$redouble_tid,$classe_tid);
 
                 if ($saved != NULL) {
                     drupal_set_message(t('Enregistrement reussi'));
