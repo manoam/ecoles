@@ -60,3 +60,38 @@ function ecoles_deploy_update_7006(){
     features_revert();
     cache_clear_all();
 }
+
+
+/**
+ * Manampy filed momba ny tuteur ao amin'ny eleve sy mi-setter ilay redoublement
+ */
+function ecoles_deploy_update_7006(){
+    cache_clear_all();
+    features_revert();
+    cache_clear_all();
+    features_revert();
+    cache_clear_all();
+    features_revert();
+    cache_clear_all();
+    features_revert();
+    cache_clear_all();
+    features_revert();
+    cache_clear_all();
+    features_revert();
+    cache_clear_all();
+    
+    module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/RedoublementTaxonomyTermWrapper');
+    
+    $redoublement = RedoublementTaxonomyTermWrapper::create();
+    $redoublement->setName('Passant');
+    $redoublement->save();
+    
+    $redoublement = RedoublementTaxonomyTermWrapper::create();
+    $redoublement->setName('Redoublant');
+    $redoublement->save();
+    
+    $redoublement = RedoublementTaxonomyTermWrapper::create();
+    $redoublement->setName('Triplant');
+    $redoublement->save();
+    
+}

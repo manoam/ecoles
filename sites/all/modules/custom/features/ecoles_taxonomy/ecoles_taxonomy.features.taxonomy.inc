@@ -33,6 +33,14 @@ function ecoles_taxonomy_taxonomy_default_vocabularies() {
       'module' => 'taxonomy',
       'weight' => 0,
     ),
+    'redoublement' => array(
+      'name' => 'Redoublement',
+      'machine_name' => 'redoublement',
+      'description' => '',
+      'hierarchy' => 0,
+      'module' => 'taxonomy',
+      'weight' => 0,
+    ),
     'sexe' => array(
       'name' => 'Sexe',
       'machine_name' => 'sexe',
