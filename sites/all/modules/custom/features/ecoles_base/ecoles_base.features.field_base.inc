@@ -73,6 +73,27 @@ function ecoles_base_field_default_field_bases() {
     'type' => 'text',
   );
 
+  // Exported field_base: 'field_adress_tuteur'.
+  $field_bases['field_adress_tuteur'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_adress_tuteur',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'max_length' => 255,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
+  );
+
   // Exported field_base: 'field_code'.
   $field_bases['field_code'] = array(
     'active' => 1,
@@ -317,6 +338,27 @@ function ecoles_base_field_default_field_bases() {
     'type' => 'text',
   );
 
+  // Exported field_base: 'field_nom_tuteur'.
+  $field_bases['field_nom_tuteur'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_nom_tuteur',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'max_length' => 255,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
+  );
+
   // Exported field_base: 'field_num_mat'.
   $field_bases['field_num_mat'] = array(
     'active' => 1,
@@ -324,6 +366,27 @@ function ecoles_base_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_num_mat',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'max_length' => 255,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
+  );
+
+  // Exported field_base: 'field_num_tel_tuteur'.
+  $field_bases['field_num_tel_tuteur'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_num_tel_tuteur',
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -408,6 +471,27 @@ function ecoles_base_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_profession_pere',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'max_length' => 255,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
+  );
+
+  // Exported field_base: 'field_profession_tuteur'.
+  $field_bases['field_profession_tuteur'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_profession_tuteur',
     'indexes' => array(
       'format' => array(
         0 => 'format',

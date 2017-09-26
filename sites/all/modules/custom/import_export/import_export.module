@@ -83,12 +83,12 @@ function import_from_xlsx_form() {
 
     $form['import'] = array(
         '#type' => 'fieldset',
-        '#title' => t('Import xlsx'),
+        '#title' => t('Import fichier excel (xlsx)'),
     );
     
     $markup  = t('<p>Pour importer un fichier excel veullez assurer que les colones suivant sont existe et ordre :</p>');
     $markup .= t('<p> Numero matricule, Nom, Prénom, Sexe, Date de naissance, Lieu de Naissance,'
-            . 'Adresse, Numero Telephone, Nom du père, Fonction Père, Nom Mère, Fonction Mère ,Niveau ,Classe');
+            . 'Adresse, Numero Telephone, Nom du père, Fonction Père, Nom Mère, Fonction Mère, Nom Tuteur, Fonction Tuteur, Num Tel Tuteur, Adresse Tuteur, Niveau, Classe');
     
     $form['import']['description'] = array(
         '#type' => 'markup',
@@ -110,6 +110,7 @@ function import_from_xlsx_form() {
         'import_from_xlsx_validate_fileupload',
         'import_from_xlsx_form_validate',
     );
+    
     return $form;
 }
 
@@ -137,8 +138,8 @@ function import_from_xlsx_form_validate(&$form, &$form_state) {
 
         foreach( $xlsx->rowsEleve() as $line ) {
 
-            if (count($line) != 13) {
-                form_set_error('xlsxfile', t('This file has the incorrect number of columns. Expecting 13'));
+            if (count($line) != 18) {
+                form_set_error('xlsxfile', t('This file has the incorrect number of columns. Expecting 18'));
             }
             break;
         }
@@ -190,8 +191,12 @@ function import_from_xlsx_import_line($line, &$context) {
     $func_pere  = trim($line[9]);
     $nom_mere   = trim($line[10]);
     $funct_mere = trim($line[11]);
-    $niveau     = trim($line[12]);
-    $classe     = trim($line[13]);
+    $nom_tuteur     = trim($line[12]);
+    $funct_tuteur   = trim($line[13]);
+    $num_tel_tuteur = trim($line[14]);
+    $adress_tuteur  = trim($line[15]);
+    $niveau         = trim($line[16]);
+    $classe         = trim($line[17]);
 
     
     $niveau_tid = NiveauTaxonomyTermWrapper::getNiveauByCode($niveau);
@@ -205,7 +210,7 @@ function import_from_xlsx_import_line($line, &$context) {
             
             $error_message = array();
 
-            $eleve_id = EleveEleveWrapper::addEleve($num_mat, $nom, $prenom, $sex, $date_naiss, $lieu, $adress, $num_tel, $nom_pere, $func_pere, $nom_mere, $funct_mere, $error_message);
+            $eleve_id = EleveEleveWrapper::addEleve($num_mat, $nom, $prenom, $sex, $date_naiss, $lieu, $adress, $num_tel, $nom_pere, $func_pere, $nom_mere, $funct_mere, $nom_tuteur ,$funct_tuteur,$num_tel_tuteur,$adress_tuteur,$error_message);
 
             if ($eleve_id != NULL && $niveau_tid != NULL) {
 

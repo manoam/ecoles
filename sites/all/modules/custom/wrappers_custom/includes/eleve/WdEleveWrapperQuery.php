@@ -164,4 +164,27 @@ class WdEleveWrapperQuery extends WdWrapperQuery {
     return $this->orderByProperty('changed', $direction);
   }
 
+  /**
+   * Query by uuid
+   *
+   * @param string $uuid
+   * @param string $operator
+   *
+   * @return $this
+   */
+  public function byUuid($uuid, $operator = NULL) {
+    return $this->byPropertyConditions(array('uuid' => array($uuid, $operator)));
+  }
+
+  /**
+   * Order by uuid
+   *
+   * @param string $direction
+   *
+   * @return $this
+   */
+  public function orderByUuid($direction = 'ASC') {
+    return $this->orderByProperty('uuid', $direction);
+  }
+
 }

@@ -332,7 +332,7 @@ class EleveEleveWrapper extends WdEleveWrapper {
      * @param type $nom_mere
      * @param type $function_mere
      */
-    public static function addEleve($num_mat, $nom, $prenom = NULL, $sexe, $date_naiss, $lieu, $adress, $tel, $nom_pere = NULL, $function_pere = NULL, $nom_mere = NULL, $function_mere = NULL, &$error_message = array()) {
+    public static function addEleve($num_mat, $nom, $prenom = NULL, $sexe, $date_naiss, $lieu, $adress, $tel, $nom_pere = NULL, $function_pere = NULL, $nom_mere = NULL, $function_mere = NULL, $nom_tuteur = NULL, $fonction_tutuer = NULL,$numtel_tutuer = NULL,$adress_tuteur = NULL, &$error_message = array()) {
 
         $return = 0;
 
@@ -344,9 +344,9 @@ class EleveEleveWrapper extends WdEleveWrapper {
                 $find = EleveEleveWrapper::getByNumMat($num_mat);
 
                 if ($find == NULL) {
-                    
+
                     // jerena indray raha mbola tsy misy mitovy amin'ilay ankizy ao
-                    $lookUpEleve    = EleveEleveWrapper::lookUpEleve($nom, $prenom, $sexe, $date_naiss);
+                    $lookUpEleve = EleveEleveWrapper::lookUpEleve($nom, $prenom, $sexe, $date_naiss);
 
                     if ($lookUpEleve == NULL) {
 
@@ -365,17 +365,21 @@ class EleveEleveWrapper extends WdEleveWrapper {
                         $eleve->setNomMere($nom_mere);
                         $eleve->setProfessionMere($function_mere);
                         $eleve->setTel($tel);
+                        $eleve->setNomTuteur($nom_tuteur);
+                        $eleve->setProfessionTuteur($fonction_tutuer);
+                        $eleve->setNumTelTuteur($numtel_tutuer);
+                        $eleve->setAdressTuteur($adress_tuteur);
                         $eleve->setPhoto(array(PUBLIC_FILE . '/' . FILE_PHOTO . '/' . variable_get('PHOTO_NAME', 'ELEVE.jpg')));
 
                         $eleve->save();
 
                         $return = $eleve->getId();
-                    }else{
-                        $link = l('élève' , 'eleve/eleve/'.$lookUpEleve);
-                        $error_message[] = t('Cet élève resemble à cet '.$link);
+                    } else {
+                        $link = l('élève', 'eleve/eleve/' . $lookUpEleve);
+                        $error_message[] = t('Cet élève resemble à cet ' . $link);
                     }
                 } else {
-                    $error_message[] = t('Le numero matricule '.$num_mat.' existe déjà');
+                    $error_message[] = t('Le numero matricule ' . $num_mat . ' existe déjà');
                 }
             } catch (Exception $ex) {
                 drupal_set_message($ex->getMessage());
@@ -442,8 +446,8 @@ class EleveEleveWrapper extends WdEleveWrapper {
 
             $query = _eleve_sql_get_by_id($id);
 
-            if($query != NULL){
-                
+            if ($query != NULL) {
+
                 $result = db_query($query);
 
                 while ($record = $result->fetchAssoc()) {
@@ -523,8 +527,7 @@ class EleveEleveWrapper extends WdEleveWrapper {
         return $this->get('field_sex');
     }
 
-    
-    public static function lookUpEleve($nom, $prenom , $sex,$date_naiss) {
+    public static function lookUpEleve($nom, $prenom, $sex, $date_naiss) {
 
         $fullname1 = trim(str_replace(" ", "", $nom . $prenom));
         $fullname2 = trim(str_replace(" ", "", $prenom . $nom));
@@ -562,4 +565,89 @@ class EleveEleveWrapper extends WdEleveWrapper {
 
         return NULL;
     }
+
+    /**
+     * Sets field_nom_tuteur
+     *
+     * @param $value
+     *
+     * @return $this
+     */
+    public function setNomTuteur($value, $format = NULL) {
+        $this->setText('field_nom_tuteur', $value, $format);
+        return $this;
+    }
+
+    /**
+     * Retrieves field_nom_tuteur
+     *
+     * @return mixed
+     */
+    public function getNomTuteur($format = WdEntityWrapper::FORMAT_DEFAULT, $markup_format = NULL) {
+        return $this->getText('field_nom_tuteur', $format, $markup_format);
+    }
+
+    /**
+     * Sets field_profession_tuteur
+     *
+     * @param $value
+     *
+     * @return $this
+     */
+    public function setProfessionTuteur($value, $format = NULL) {
+        $this->setText('field_profession_tuteur', $value, $format);
+        return $this;
+    }
+
+    /**
+     * Retrieves field_profession_tuteur
+     *
+     * @return mixed
+     */
+    public function getProfessionTuteur($format = WdEntityWrapper::FORMAT_DEFAULT, $markup_format = NULL) {
+        return $this->getText('field_profession_tuteur', $format, $markup_format);
+    }
+
+    /**
+     * Sets field_adress_tuteur
+     *
+     * @param $value
+     *
+     * @return $this
+     */
+    public function setAdressTuteur($value, $format = NULL) {
+        $this->setText('field_adress_tuteur', $value, $format);
+        return $this;
+    }
+
+    /**
+     * Retrieves field_adress_tuteur
+     *
+     * @return mixed
+     */
+    public function getAdressTuteur($format = WdEntityWrapper::FORMAT_DEFAULT, $markup_format = NULL) {
+        return $this->getText('field_adress_tuteur', $format, $markup_format);
+    }
+
+    /**
+     * Sets field_num_tel_tuteur
+     *
+     * @param $value
+     *
+     * @return $this
+     */
+    public function setNumTelTuteur($value, $format = NULL) {
+        $this->setText('field_num_tel_tuteur', $value, $format);
+        return $this;
+    }
+
+    /**
+     * Retrieves field_num_tel_tuteur
+     *
+     * @return mixed
+     */
+    public function getNumTelTuteur($format = WdEntityWrapper::FORMAT_DEFAULT, $markup_format = NULL) {
+        return $this->getText('field_num_tel_tuteur', $format, $markup_format);
+    }
+
 }

@@ -379,4 +379,96 @@ class EleveEleveWrapperQuery extends WdEleveWrapperQuery {
     return $this->orderByField('field_sex.value', $direction);
   }
 
+  /**
+   * Query by field_nom_tuteur
+   *
+   * @param mixed $field_nom_tuteur
+   * @param string $operator
+   *
+   * @return $this
+   */
+  public function byNomTuteur($field_nom_tuteur, $operator = NULL) {
+    return $this->byFieldConditions(array('field_nom_tuteur' => array($field_nom_tuteur, $operator)));
+  }
+
+  /**
+   * Order by field_nom_tuteur
+   *
+   * @param string $direction
+   *
+   * @return $this
+   */
+  public function orderByNomTuteur($direction = 'ASC') {
+    return $this->orderByField('field_nom_tuteur.value', $direction);
+  }
+
+  /**
+   * Query by field_profession_tuteur
+   *
+   * @param mixed $field_profession_tuteur
+   * @param string $operator
+   *
+   * @return $this
+   */
+  public function byProfessionTuteur($field_profession_tuteur, $operator = NULL) {
+    return $this->byFieldConditions(array('field_profession_tuteur' => array($field_profession_tuteur, $operator)));
+  }
+
+  /**
+   * Order by field_profession_tuteur
+   *
+   * @param string $direction
+   *
+   * @return $this
+   */
+  public function orderByProfessionTuteur($direction = 'ASC') {
+    return $this->orderByField('field_profession_tuteur.value', $direction);
+  }
+
+  /**
+   * Query by field_adress_tuteur
+   *
+   * @param mixed $field_adress_tuteur
+   * @param string $operator
+   *
+   * @return $this
+   */
+  public function byAdressTuteur($field_adress_tuteur, $operator = NULL) {
+    return $this->byFieldConditions(array('field_adress_tuteur' => array($field_adress_tuteur, $operator)));
+  }
+
+  /**
+   * Order by field_adress_tuteur
+   *
+   * @param string $direction
+   *
+   * @return $this
+   */
+  public function orderByAdressTuteur($direction = 'ASC') {
+    return $this->orderByField('field_adress_tuteur.value', $direction);
+  }
+
+  /**
+   * Query by field_num_tel_tuteur
+   *
+   * @param mixed $field_num_tel_tuteur
+   * @param string $operator
+   *
+   * @return $this
+   */
+  public function byNumTelTuteur($field_num_tel_tuteur, $operator = NULL) {
+    return $this->byFieldConditions(array('field_num_tel_tuteur' => array($field_num_tel_tuteur, $operator)));
+  }
+
+  /**
+   * Order by field_num_tel_tuteur
+   *
+   * @param string $direction
+   *
+   * @return $this
+   */
+  public function orderByNumTelTuteur($direction = 'ASC') {
+    return $this->orderByField('field_num_tel_tuteur.value', $direction);
+  }
+
 }
