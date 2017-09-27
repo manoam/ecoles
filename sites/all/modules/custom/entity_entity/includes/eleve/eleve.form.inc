@@ -136,6 +136,14 @@ function _ecoles_eleve_form($form, &$form_state, $eleve_id) {
                     '#attributes' => array('readonly' => 'readonly'),
                 );
 
+                $form['eleve_parent']['parent_adress'] = array(
+                    '#type' => 'textfield',
+                    '#title' => t('Adresse de parent :'),
+                    '#size' => '18',
+                    '#value' => $eleve->getParentAdress(),
+                    '#attributes' => array('readonly' => 'readonly'),
+                );
+
                 $form['eleve_parent']['nom_tuteur'] = array(
                     '#type' => 'textfield',
                     '#title' => t('Nom du Tuteur :'),
@@ -390,6 +398,13 @@ function _ecoles_create_eleve_form($form, &$form_state) {
         '#attributes' => array('placeholder' => array('Asan\'ny reny')),
     );
 
+    $form['eleve_parent']['parent_adress'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Adresse de parent :'),
+        '#size' => '18',
+        '#attributes' => array('placeholder' => array('Lot :')),
+    );
+
     $form['eleve_parent']['nom_tuteur'] = array(
         '#type' => 'textfield',
         '#title' => t('Nom du Tuteur :'),
@@ -437,9 +452,8 @@ function _ecoles_create_eleve_form($form, &$form_state) {
         '#required' => TRUE,
     );
 
-    
-    $options        = _get_taxonomy_term('redoublement');
-    $options[NULL]  = t('- Select -');
+
+    $options = _get_taxonomy_term('redoublement');
 
     $form['eleve_class']['eleve_redouble'] = array(
         '#type' => 'select',
@@ -481,16 +495,17 @@ function _ecoles_create_eleve_form_submit($form, &$form_state) {
         $function_pere = $values['function_pere'];
         $nom_mere = $values['nom_mere'];
         $function_mere = $values['function_mere'];
+        $parent_adress = $values['parent_adress'];
         $nom_tuteur = $values['nom_tuteur'];
         $function_tuteur = $values['function_tuteur'];
         $num_tel_tuteur = $values['num_tel_tuteur'];
         $adrres_tuteur = $values['adrres_tuteur'];
         $tel = $values['tel'];
         $niveau_tid = $values['eleve_niveau'];
-        $eleve_redouble = $values['eleve_redouble'];
+        $eleve_redouble = $values['eleve_redouble'] != NULL ? $values['eleve_redouble'] : NULL;
         $error_message = array();
 
-        $eleve_id = EleveEleveWrapper::addEleve($num_mat, $nom, $prenom, $sexe, $date, $lieu, $adress, $tel, $nom_pere, $function_pere, $nom_mere, $function_mere, $nom_tuteur, $function_tuteur, $num_tel_tuteur, $adrres_tuteur, $error_message);
+        $eleve_id = EleveEleveWrapper::addEleve($num_mat, $nom, $prenom, $sexe, $date, $lieu, $adress, $tel, $nom_pere, $function_pere, $nom_mere, $function_mere, $parent_adress, $nom_tuteur, $function_tuteur, $num_tel_tuteur, $adrres_tuteur, $error_message);
 
         if ($eleve_id != NULL) {
 
@@ -515,7 +530,7 @@ function _ecoles_create_eleve_form_submit($form, &$form_state) {
 
             $taompianarana_tid = variable_get('TAOMPIANARANA');
 
-            $saved = _insertIntoEleveTaompianarana($eleve_id, $taompianarana_tid, $niveau_tid,$eleve_redouble);
+            $saved = _insertIntoEleveTaompianarana($eleve_id, $taompianarana_tid, $niveau_tid, $eleve_redouble);
 
             if ($saved != NULL) {
                 drupal_set_message(t('Enregistrement reussi'));
@@ -670,6 +685,14 @@ function _ecoles_reinscription_eleve_form($form, &$form_state) {
         '#attributes' => array('readonly' => 'readonly'),
     );
 
+    $form['eleve_parent']['parent_adress'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Adresse de parent :'),
+        '#size' => '18',
+        '#value' => $eleve != NULL ? $eleve->getParentAdress() : '',
+        '#attributes' => array('readonly' => 'readonly'),
+    );
+
     $form['eleve_parent']['nom_tuteur'] = array(
         '#type' => 'textfield',
         '#title' => t('Nom du Tuteur :'),
@@ -752,7 +775,7 @@ function _ecoles_reinscription_eleve_form($form, &$form_state) {
             '#required' => TRUE,
             '#options' => $options
         );
-        
+
         $options = _get_taxonomy_term('redoublement');
 
         $form['eleve_class']['eleve_redouble'] = array(
@@ -806,7 +829,7 @@ function _ecoles_reinscription_eleve_form_submit($form, &$form_state) {
 
         if ($eleve != NULL) {
 
-            $saved = _insertIntoEleveTaompianarana($eleve->getId(), $taompianarana_tid, $niveau_tid,$eleve_redouble);
+            $saved = _insertIntoEleveTaompianarana($eleve->getId(), $taompianarana_tid, $niveau_tid, $eleve_redouble);
 
             if ($saved != NULL) {
                 drupal_set_message(t('Enregistrement reussi'));
@@ -957,36 +980,39 @@ function _ecoles_eleve_form_edit($form, &$form_state, $eleve_id) {
                     '#default_value' => $eleve->getProfessionMere(),
                 );
 
+                $form['eleve_parent']['parent_adress'] = array(
+                    '#type' => 'textfield',
+                    '#title' => t('Adresse de parent :'),
+                    '#size' => '18',
+                    '#default_value' => $eleve->getParentAdress(),
+                );
+
                 $form['eleve_parent']['nom_tuteur'] = array(
                     '#type' => 'textfield',
                     '#title' => t('Nom du Tuteur :'),
                     '#size' => '18',
-                    '#value' => $eleve != NULL ? $eleve->getNomTuteur() : '',
-                    '#attributes' => array('readonly' => 'readonly'),
+                    '#default_value' => $eleve != NULL ? $eleve->getNomTuteur() : '',
                 );
 
                 $form['eleve_parent']['function_tuteur'] = array(
                     '#type' => 'textfield',
                     '#title' => t('Fonction du Tuteur :'),
                     '#size' => '18',
-                    '#value' => $eleve != NULL ? $eleve->getProfessionTuteur() : '',
-                    '#attributes' => array('readonly' => 'readonly'),
+                    '#default_value' => $eleve != NULL ? $eleve->getProfessionTuteur() : '',
                 );
 
                 $form['eleve_parent']['num_tel_tuteur'] = array(
                     '#type' => 'textfield',
                     '#title' => t('Numero Telephone du Tuteur :'),
                     '#size' => '18',
-                    '#value' => $eleve != NULL ? $eleve->getNumTelTuteur() : '',
-                    '#attributes' => array('readonly' => 'readonly'),
+                    '#default_value' => $eleve != NULL ? $eleve->getNumTelTuteur() : '',
                 );
 
                 $form['eleve_parent']['adrres_tuteur'] = array(
                     '#type' => 'textfield',
                     '#title' => t('Adresse du Tuteur :'),
                     '#size' => '18',
-                    '#value' => $eleve != NULL ? $eleve->getAdressTuteur() : '',
-                    '#attributes' => array('readonly' => 'readonly'),
+                    '#default_value' => $eleve != NULL ? $eleve->getAdressTuteur() : '',
                 );
 
                 // ----------- ity no ampidirana ny Niveau -------------
@@ -1079,8 +1105,14 @@ function _ecoles_eleve_form_edit_submit($form, &$form_state) {
         $nom_pere = $values['nom_pere'];
         $function_pere = $values['function_pere'];
         $nom_mere = $values['nom_mere'];
+        $parent_adress = $values['parent_adress'];
         $function_mere = $values['function_mere'];
         $tel = $values['tel'];
+        $nom_tuteur = $values['nom_tuteur'];
+        $function_tuteur = $values['function_tuteur'];
+        $num_tel_tuteur = $values['num_tel_tuteur'];
+        $adrres_tuteur = $values['adrres_tuteur'];
+
 
         $eleve = EleveEleveWrapper::getByNumMat($num_mat);
 
@@ -1092,11 +1124,16 @@ function _ecoles_eleve_form_edit_submit($form, &$form_state) {
         $eleve->setDateNaiss(strtotime($date));
         $eleve->setLieu($lieu);
         $eleve->setAdress($adress);
+        $eleve->setTel($tel);
         $eleve->setNomPere($nom_pere);
         $eleve->setProfessionPere($function_pere);
         $eleve->setNomMere($nom_mere);
         $eleve->setProfessionMere($function_mere);
-        $eleve->setTel($tel);
+        $eleve->setParentAdress($parent_adress);
+        $eleve->setNomTuteur($nom_tuteur);
+        $eleve->setProfessionTuteur($function_tuteur);
+        $eleve->setNumTelTuteur($num_tel_tuteur);
+        $eleve->setAdressTuteur($adrres_tuteur);
 
         $source_file = _upload_photo($form, $form_state);
 
@@ -1114,6 +1151,7 @@ function _ecoles_eleve_form_edit_submit($form, &$form_state) {
                 $eleve->setPhoto(array(PUBLIC_FILE . '/' . FILE_PHOTO . '/' . $photo_name . '.' . $ext));
             }
         }
+        
         $eleve->save();
 
         // rehefa vita ny modification an'ilay eleve dia afaka modifier-na koa ny class sy niveau misy azy

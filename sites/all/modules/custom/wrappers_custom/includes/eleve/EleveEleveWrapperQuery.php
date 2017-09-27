@@ -471,4 +471,27 @@ class EleveEleveWrapperQuery extends WdEleveWrapperQuery {
     return $this->orderByField('field_num_tel_tuteur.value', $direction);
   }
 
+  /**
+   * Query by field_parent_adress
+   *
+   * @param mixed $field_parent_adress
+   * @param string $operator
+   *
+   * @return $this
+   */
+  public function byParentAdress($field_parent_adress, $operator = NULL) {
+    return $this->byFieldConditions(array('field_parent_adress' => array($field_parent_adress, $operator)));
+  }
+
+  /**
+   * Order by field_parent_adress
+   *
+   * @param string $direction
+   *
+   * @return $this
+   */
+  public function orderByParentAdress($direction = 'ASC') {
+    return $this->orderByField('field_parent_adress.value', $direction);
+  }
+
 }

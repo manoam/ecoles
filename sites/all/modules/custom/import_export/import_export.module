@@ -54,13 +54,15 @@ function import_export_form($form, &$form_state) {
     
     
     $markup = '<div class="message_inscrit_no">';
-    $markup .= t("<p>Cet élève n'est pas encore inscrit dans notre écoles pour cet année scolaire</p>");
+    $markup .= t("<p></p>");
     $markup .= '</div>';
 
     $form['import_export']['import'] = array(
         '#type' => 'markup',
         '#markup' => $markup,
     );
+    
+    return $form;
 }
 
 
@@ -89,7 +91,7 @@ function import_from_xlsx_form() {
     
     $markup  = t('<p>Pour importer un fichier excel veullez assurer que les colones suivant sont existe et ordre :</p>');
     $markup .= t('<p> Numero matricule, Nom, Prénom, Sexe, Date de naissance, Lieu de Naissance,'
-            . 'Adresse, Numero Telephone, Nom du père, Fonction Père, Nom Mère, Fonction Mère, Nom Tuteur, Fonction Tuteur, Num Tel Tuteur, Adresse Tuteur, Niveau, Classe, Redoublement');
+            . 'Adresse, Numero Telephone, Nom du père, Fonction Père, Nom Mère, Fonction Mère, Adrees de parent, Nom Tuteur, Fonction Tuteur, Num Tel Tuteur, Adresse Tuteur, Niveau, Classe, Redoublement');
     $markup .= t('<p>Pour le <b> sexe </b>: <ul> <li> 1 => Homme </li> <li> 2 => Femme </li></ul></p>');
     $markup .= t('<p>Pour le <b> niveau </b> veuillez voir dans la '. l('list niveau','ecoles/utile/list/niveau'). ' et utilisez le code pour l\'import excel ou csv </p>');
     $markup .= t('<p>Pour la <b> Classe </b> veuillez voir dans la '. l('list classe','ecoles/utile/list/classe'). ' et utilisez le code pour l\'import excel ou csv </p>');
@@ -144,8 +146,8 @@ function import_from_xlsx_form_validate(&$form, &$form_state) {
 
         foreach( $xlsx->rowsEleve() as $line ) {
 
-            if (count($line) != 19) {
-                form_set_error('xlsxfile', t('This file has the incorrect number of columns. Expecting 19'));
+            if (count($line) != 20) {
+                form_set_error('xlsxfile', t('This file has the incorrect number of columns. Expecting 20'));
             }
             break;
         }
@@ -189,21 +191,22 @@ function import_from_xlsx_import_line($line, &$context) {
     $nom        = trim($line[1]);
     $prenom     = trim($line[2]);
     $sex        = trim($line[3]);
-    $date_naiss = strtoupper(trim($line[4]));
-    $lieu       = strtoupper(trim($line[5]));
-    $adress     = strtoupper(trim($line[6]));
+    $date_naiss = trim($line[4]);
+    $lieu       = trim($line[5]);
+    $adress     = trim($line[6]);
     $num_tel    = trim($line[7]);
     $nom_pere   = trim($line[8]);
     $func_pere  = trim($line[9]);
     $nom_mere   = trim($line[10]);
     $funct_mere = trim($line[11]);
-    $nom_tuteur     = trim($line[12]);
-    $funct_tuteur   = trim($line[13]);
-    $num_tel_tuteur = trim($line[14]);
-    $adress_tuteur  = trim($line[15]);
-    $niveau         = trim($line[16]);
-    $classe         = trim($line[17]);
-    $redoublement   = trim($line[18]);
+    $parent_adress  = trim($line[12]);
+    $nom_tuteur     = trim($line[13]);
+    $funct_tuteur   = trim($line[14]);
+    $num_tel_tuteur = trim($line[15]);
+    $adress_tuteur  = trim($line[16]);
+    $niveau         = trim($line[17]);
+    $classe         = trim($line[18]);
+    $redoublement   = trim($line[19]);
 
     
     $niveau_tid = NiveauTaxonomyTermWrapper::getNiveauByCode($niveau);
@@ -218,7 +221,7 @@ function import_from_xlsx_import_line($line, &$context) {
             
             $error_message = array();
 
-            $eleve_id = EleveEleveWrapper::addEleve($num_mat, $nom, $prenom, $sex, $date_naiss, $lieu, $adress, $num_tel, $nom_pere, $func_pere, $nom_mere, $funct_mere, $nom_tuteur ,$funct_tuteur,$num_tel_tuteur,$adress_tuteur,$error_message);
+            $eleve_id = EleveEleveWrapper::addEleve($num_mat, $nom, $prenom, $sex, $date_naiss, $lieu, $adress, $num_tel, $nom_pere, $func_pere, $nom_mere,$parent_adress, $funct_mere, $nom_tuteur ,$funct_tuteur,$num_tel_tuteur,$adress_tuteur,$error_message);
 
             if ($eleve_id != NULL && $niveau_tid != NULL) {
 

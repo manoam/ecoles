@@ -332,7 +332,7 @@ class EleveEleveWrapper extends WdEleveWrapper {
      * @param type $nom_mere
      * @param type $function_mere
      */
-    public static function addEleve($num_mat, $nom, $prenom = NULL, $sexe, $date_naiss, $lieu, $adress, $tel, $nom_pere = NULL, $function_pere = NULL, $nom_mere = NULL, $function_mere = NULL, $nom_tuteur = NULL, $fonction_tutuer = NULL,$numtel_tutuer = NULL,$adress_tuteur = NULL, &$error_message = array()) {
+    public static function addEleve($num_mat, $nom, $prenom = NULL, $sexe, $date_naiss, $lieu, $adress, $tel, $nom_pere = NULL, $function_pere = NULL, $nom_mere = NULL, $function_mere = NULL, $parent_adress = NULL, $nom_tuteur = NULL, $fonction_tutuer = NULL, $numtel_tutuer = NULL, $adress_tuteur = NULL, &$error_message = array()) {
 
         $return = 0;
 
@@ -364,6 +364,7 @@ class EleveEleveWrapper extends WdEleveWrapper {
                         $eleve->setProfessionPere($function_pere);
                         $eleve->setNomMere($nom_mere);
                         $eleve->setProfessionMere($function_mere);
+                        $eleve->setParentAdress($parent_adress);
                         $eleve->setTel($tel);
                         $eleve->setNomTuteur($nom_tuteur);
                         $eleve->setProfessionTuteur($fonction_tutuer);
@@ -648,6 +649,27 @@ class EleveEleveWrapper extends WdEleveWrapper {
      */
     public function getNumTelTuteur($format = WdEntityWrapper::FORMAT_DEFAULT, $markup_format = NULL) {
         return $this->getText('field_num_tel_tuteur', $format, $markup_format);
+    }
+
+    /**
+     * Sets field_parent_adress
+     *
+     * @param $value
+     *
+     * @return $this
+     */
+    public function setParentAdress($value, $format = NULL) {
+        $this->setText('field_parent_adress', $value, $format);
+        return $this;
+    }
+
+    /**
+     * Retrieves field_parent_adress
+     *
+     * @return mixed
+     */
+    public function getParentAdress($format = WdEntityWrapper::FORMAT_DEFAULT, $markup_format = NULL) {
+        return $this->getText('field_parent_adress', $format, $markup_format);
     }
 
 }
