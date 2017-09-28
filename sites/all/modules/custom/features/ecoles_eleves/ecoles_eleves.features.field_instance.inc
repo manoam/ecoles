@@ -52,6 +52,48 @@ function ecoles_eleves_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'eleve-eleve-field_adress_tuteur'.
+  $field_instances['eleve-eleve-field_adress_tuteur'] = array(
+    'bundle' => 'eleve',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 17,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'eleve',
+    'field_name' => 'field_adress_tuteur',
+    'label' => 'Adress Tuteur',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'maxlength_js' => 0,
+        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 17,
+    ),
+  );
+
   // Exported field_instance: 'eleve-eleve-field_date_naiss'.
   $field_instances['eleve-eleve-field_date_naiss'] = array(
     'bundle' => 'eleve',
@@ -316,6 +358,48 @@ function ecoles_eleves_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'eleve-eleve-field_nom_tuteur'.
+  $field_instances['eleve-eleve-field_nom_tuteur'] = array(
+    'bundle' => 'eleve',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 15,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'eleve',
+    'field_name' => 'field_nom_tuteur',
+    'label' => 'Nom Tuteur',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'maxlength_js' => 0,
+        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 15,
+    ),
+  );
+
   // Exported field_instance: 'eleve-eleve-field_num_mat'.
   $field_instances['eleve-eleve-field_num_mat'] = array(
     'bundle' => 'eleve',
@@ -355,6 +439,90 @@ function ecoles_eleves_field_default_field_instances() {
       ),
       'type' => 'text_textfield',
       'weight' => 5,
+    ),
+  );
+
+  // Exported field_instance: 'eleve-eleve-field_num_tel_tuteur'.
+  $field_instances['eleve-eleve-field_num_tel_tuteur'] = array(
+    'bundle' => 'eleve',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 18,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'eleve',
+    'field_name' => 'field_num_tel_tuteur',
+    'label' => 'Num tel Tuteur',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'maxlength_js' => 0,
+        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 18,
+    ),
+  );
+
+  // Exported field_instance: 'eleve-eleve-field_parent_adress'.
+  $field_instances['eleve-eleve-field_parent_adress'] = array(
+    'bundle' => 'eleve',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 19,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'eleve',
+    'field_name' => 'field_parent_adress',
+    'label' => 'parent_adress',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'maxlength_js' => 0,
+        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 11,
     ),
   );
 
@@ -526,6 +694,48 @@ function ecoles_eleves_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'eleve-eleve-field_profession_tuteur'.
+  $field_instances['eleve-eleve-field_profession_tuteur'] = array(
+    'bundle' => 'eleve',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 16,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'eleve',
+    'field_name' => 'field_profession_tuteur',
+    'label' => 'Profession tuteur',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'maxlength_js' => 0,
+        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 16,
+    ),
+  );
+
   // Exported field_instance: 'eleve-eleve-field_sex'.
   $field_instances['eleve-eleve-field_sex'] = array(
     'bundle' => 'eleve',
@@ -621,18 +831,23 @@ function ecoles_eleves_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Adress');
+  t('Adress Tuteur');
   t('Date Naiss');
   t('Lieu');
   t('Mpiraitampoho');
   t('Nom');
   t('Nom Mère');
   t('Nom Père');
+  t('Nom Tuteur');
   t('Num Mat');
+  t('Num tel Tuteur');
   t('Photo');
   t('Profession Mère');
   t('Profession Père');
+  t('Profession tuteur');
   t('Prénom');
   t('Tel');
+  t('parent_adress');
   t('sex');
 
   return $field_instances;

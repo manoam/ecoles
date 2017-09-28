@@ -90,11 +90,30 @@ function configuration_form($form,&$form_state){
     
             
     $form['taxonomy']['VIEWS_TAXONOMY'] = array(
-        '#title'        => t('Type d\'utilisateur qui peut <b> <i> Modifier et Voire la liste des taxonomy </b> </i>'),
+        '#title'        => t('Type d\'utilisateur qui peut <b> <i> Modifier et Voire la liste des utiles </b> </i>'),
         '#type'         => 'select',
         '#multiple'     => TRUE,
         '#options'      => $roles_options,
         '#default_value'=> variable_get('VIEWS_TAXONOMY'),
+    ) ;
+    
+    $form['sisco_dren'] = array(
+        '#title'    => t('Sisco et Dren'),
+        '#type'     => 'fieldset',
+        '#prefix' => '<div class="">',// atao an'ity rehefa misy vaovao eleve_main_view
+        '#suffix' => '</div>',
+    );
+    
+    $form['sisco_dren']['SISCO'] = array(
+        '#title'        => t('Sisco : '),
+        '#type'         => 'textfield',
+        '#default_value'=> variable_get('SISCO'),
+    ) ;
+            
+    $form['sisco_dren']['DREN'] = array(
+        '#title'        => t('Dren : '),
+        '#type'         => 'textfield',
+        '#default_value'=> variable_get('DREN'),
     ) ;
     
     return system_settings_form($form);

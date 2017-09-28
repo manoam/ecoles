@@ -237,17 +237,19 @@ function _taxonomy_create_form($form, &$form_state, $vocabulary) {
 
     if ($vocabulary != NULL) {
 
-        $form['taxonomy'] = array(
-            '#type' => 'fieldset',
-            '#title' => t('Taxonomy : ' . $vocabulary),
-            '#attributes' => array('class' => array('eleve_main_view')),
-        );
+        $form_state['vocabulary'] = $vocabulary;
 
-        if ($vocabulary == 'Année scolaire') {
-            $vocabulary = 'taompianarana';
+        $vocabularyname = $vocabulary;
+        
+        if ($vocabulary == 'taompianarana') {
+            $vocabularyname = t('Année scolaire');
         }
 
-        $form_state['vocabulary'] = $vocabulary;
+        $form['taxonomy'] = array(
+            '#type' => 'fieldset',
+            '#title' => t('Taxonomy : ' . $vocabularyname),
+            '#attributes' => array('class' => array('eleve_main_view')),
+        );
 
         $form['taxonomy']['name'] = array(
             '#type' => 'textfield',

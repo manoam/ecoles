@@ -7,8 +7,8 @@ Accueil {"url":"<front>","weight":"-50"}
 -Liste de tous les élèves {"url":"liste\/eleves","weight":"-46"}
 Configuration {"url":"ecoles\/configuration","weight":"-46"}
 Export/import {"url":"ecoles\/eleve\/import-export","weight":"-48"}
--import csv {"url":"ecoles\/eleve\/import-csv","weight":"-50"}
 -Export vers excel {"url":"ecoles\/eleve\/export","weight":"-49"}
+-Import Excel {"url":"ecoles\/eleve\/import-xlsx","weight":"-50"}
 Utile {"url":"ecoles\/utile\/list","weight":"-47"}
 -Année scolaire {"url":"ecoles\/utile\/list\/taompianarana","weight":"-50"}
 -Niveau {"url":"ecoles\/utile\/list\/niveau","weight":"-48"}

@@ -40,6 +40,12 @@ function schema_schema(){
                 'not null' => FALSE,
             ),
             
+            'redoublement_tid' => array(
+                'description' => 'passant ou redoublant',
+                'type' => 'int',
+                'not null' => FALSE,
+            ),
+            
         ),
         
         'primary key' => array('id'), 

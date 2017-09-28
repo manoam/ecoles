@@ -50,3 +50,71 @@ function ecoles_deploy_update_7005(){
  cache_clear_all();
  features_revert();
 }
+
+
+/**
+ * Manampy filed code ao amin'ny classe
+ */
+function ecoles_deploy_update_7006(){
+    cache_clear_all();
+    features_revert();
+    cache_clear_all();
+}
+
+
+/**
+ * Manampy filed momba ny tuteur ao amin'ny eleve sy mi-setter ilay redoublement
+ */
+function ecoles_deploy_update_7007(){
+    
+    cache_clear_all();
+    features_revert();
+    cache_clear_all();
+    features_revert();
+    cache_clear_all();
+    
+}
+
+
+/**
+ * Manampy filed redoublement_tid ao amin'ny relation eleveTaompianarana
+ */
+function ecoles_deploy_update_7008(){
+    
+    $field = array(
+        'description' => 'passant ou redoublant',
+        'type' => 'int',
+        'not null' => FALSE,
+    );
+    db_add_field('eleveTaompianarana', 'redoublement_tid', $field);
+}
+
+
+/**
+ * Manampy filed momba ny tuteur ao amin'ny eleve sy mi-setter ilay redoublement
+ */
+function ecoles_deploy_update_7009(){
+    
+    cache_clear_all();
+    features_revert();
+    cache_clear_all();
+    features_revert();
+    cache_clear_all();
+    
+    module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/RedoublementTaxonomyTermWrapper');
+    
+    $redoublement = RedoublementTaxonomyTermWrapper::create();
+    $redoublement->setName('Passant');
+    $redoublement->setCode('P');
+    $redoublement->save();
+    
+    $redoublement = RedoublementTaxonomyTermWrapper::create();
+    $redoublement->setName('Redoublant');
+    $redoublement->setCode('R');
+    $redoublement->save();
+    
+    $redoublement = RedoublementTaxonomyTermWrapper::create();
+    $redoublement->setName('Triplant');
+    $redoublement->setCode('T');
+    $redoublement->save();
+}
