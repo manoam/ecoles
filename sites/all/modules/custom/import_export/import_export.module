@@ -24,7 +24,6 @@ function import_export_menu() {
     $items['ecoles/eleve/import-xlsx'] =array(
         'access callback' => 'import_export_access',
         'page callback' => 'import_from_xlsx',
-        'type' => MENU_NORMAL_ITEM,
     );
     
     $items['ecoles/eleve/export'] =array(
