@@ -1,1 +1,21 @@
 <?php
+
+/**
+ * hook_menu
+ */
+function note_menu() {
+    
+    $items['ecoles/eleve/note-test'] =array(
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('note_form_test'),
+        'access callback' => 'import_export_access',
+    );
+    
+    return $items;
+}
+
+
+function note_form_test($form , &$form_state) {
+    
+    return $form;
+}
