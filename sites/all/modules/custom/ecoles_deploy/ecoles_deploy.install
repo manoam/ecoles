@@ -63,7 +63,7 @@ function ecoles_deploy_update_7006(){
 
 
 /**
- * Manampy filed momba ny tuteur ao amin'ny eleve sy mi-setter ilay redoublement
+ * 
  */
 function ecoles_deploy_update_7007(){
     
@@ -72,9 +72,29 @@ function ecoles_deploy_update_7007(){
     cache_clear_all();
     features_revert();
     cache_clear_all();
-    features_revert();
-    cache_clear_all();
-    features_revert();
+    
+}
+
+
+/**
+ * Manampy filed redoublement_tid ao amin'ny relation eleveTaompianarana
+ */
+function ecoles_deploy_update_7008(){
+    
+    $field = array(
+        'description' => 'passant ou redoublant',
+        'type' => 'int',
+        'not null' => FALSE,
+    );
+    db_add_field('eleveTaompianarana', 'redoublement_tid', $field);
+}
+
+
+/**
+ * Manampy filed momba ny tuteur ao amin'ny eleve sy mi-setter ilay redoublement
+ */
+function ecoles_deploy_update_7009(){
+    
     cache_clear_all();
     features_revert();
     cache_clear_all();
@@ -97,18 +117,4 @@ function ecoles_deploy_update_7007(){
     $redoublement->setName('Triplant');
     $redoublement->setCode('T');
     $redoublement->save();
-}
-
-
-/**
- * Manampy filed redoublement_tid ao amin'ny relation eleveTaompianarana
- */
-function ecoles_deploy_update_7008(){
-    
-    $field = array(
-        'description' => 'passant ou redoublant',
-        'type' => 'int',
-        'not null' => FALSE,
-    );
-    db_add_field('eleveTaompianarana', 'redoublement_tid', $field);
 }
