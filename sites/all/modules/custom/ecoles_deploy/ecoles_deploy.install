@@ -118,3 +118,10 @@ function ecoles_deploy_update_7009(){
     $redoublement->setCode('T');
     $redoublement->save();
 }
+
+/**
+ * Mi-activer ny field_type int float sns
+ */
+function ecoles_deploy_update_7010(){
+    module_enable(array('number'));
+}
