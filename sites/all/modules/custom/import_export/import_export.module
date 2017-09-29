@@ -24,13 +24,20 @@ function import_export_menu() {
     $items['ecoles/eleve/import-xlsx'] =array(
         'access callback' => 'import_export_access',
         'page callback' => 'import_from_xlsx',
-        'type' => MENU_NORMAL_ITEM,
     );
     
     $items['ecoles/eleve/export'] =array(
         'page callback' => 'drupal_get_form',
         'page arguments' => array('export_to_excel'),
         'access callback' => 'import_export_access',
+    );
+    
+    $items['ecoles/export/fiche-note'] =array(
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('export_fiche_note_form'),
+        'access callback' => 'import_export_access',
+        'file' => 'includes/export_note.inc',
+        'file path' => drupal_get_path('module', 'import_export'),
     );
     
     return $items;
@@ -89,13 +96,14 @@ function import_from_xlsx_form() {
         '#title' => t('Import fichier excel (xlsx)'),
     );
     
-    $markup  = t('<p>Pour importer un fichier excel veullez assurer que les colones suivant sont existe et ordre :</p>');
+    $markup  = t('<p>Pour importer un fichier excel veullez assurer que les colones suivant sont existe et en ordre :</p>');
     $markup .= t('<p> Numero matricule, Nom, Prénom, Sexe, Date de naissance, Lieu de Naissance,'
             . 'Adresse, Numero Telephone, Nom du père, Fonction Père, Nom Mère, Fonction Mère, Adrees de parent, Nom Tuteur, Fonction Tuteur, Num Tel Tuteur, Adresse Tuteur, Niveau, Classe, Redoublement');
     $markup .= t('<p>Pour le <b> sexe </b>: <ul> <li> 1 => Homme </li> <li> 2 => Femme </li></ul></p>');
     $markup .= t('<p>Pour le <b> niveau </b> veuillez voir dans la '. l('list niveau','ecoles/utile/list/niveau'). ' et utilisez le code pour l\'import excel ou csv </p>');
     $markup .= t('<p>Pour la <b> Classe </b> veuillez voir dans la '. l('list classe','ecoles/utile/list/classe'). ' et utilisez le code pour l\'import excel ou csv </p>');
     $markup .= t('<p>Pour le <b> Redoublement </b>: <ul> <li> P => Passant </li> <li> R => Redoublant </li> <li> T => Triplant </li></ul></p>');
+    $markup .= t('<p>Si le colone redoublement est vide alors l\'eleve est automatiquement <b><u>Passant</u></b></p>');
 
 
     $form['import']['description'] = array(
@@ -139,7 +147,7 @@ function import_from_xlsx_form_validate(&$form, &$form_state) {
 
     if (isset($form_state['values']['xlsxfile']) && $form_state['values']['xlsxfile'] != NULL) {
 
-        module_load_include('class.php', 'import_export', 'simplexlsx');
+        module_load_include('class.php', 'import_export', 'includes/simplexlsx');
 
         $xlsx = new SimpleXLSX( $form_state['values']['xlsxfile'] );
 
@@ -169,7 +177,7 @@ function import_from_xlsx_form_submit($form, &$form_state) {
 
         $filename = $form_state['values']['xlsxfile'];
 
-        module_load_include('class.php', 'import_export', 'simplexlsx');
+        module_load_include('class.php', 'import_export', 'includes/simplexlsx');
 
         $xlsx = new SimpleXLSX( $filename );
 
@@ -208,17 +216,20 @@ function import_from_xlsx_import_line($line, &$context) {
     $classe         = trim($line[18]);
     $redoublement   = trim($line[19]);
 
-    
     $niveau_tid = NiveauTaxonomyTermWrapper::getNiveauByCode($niveau);
     $classe_tid = ClasseTaxonomyTermWrapper::getClasseByCode($classe);
     $redouble_tid = RedoublementTaxonomyTermWrapper::getByCode($redoublement);
-    
+    // raha null ity dia ato par defaut passant
+    if($redouble_tid == NULL){
+        $redouble_tid = RedoublementTaxonomyTermWrapper::getByCode('P');
+    }
+
     if (is_numeric($num_mat) && strtotime($date_naiss) > 0 && in_array($sex, array(1, 2)) ) {
 
         $sex = $sex == 1 ? 8 : 9;
 
         try{
-            
+
             $error_message = array();
 
             $eleve_id = EleveEleveWrapper::addEleve($num_mat, $nom, $prenom, $sex, $date_naiss, $lieu, $adress, $num_tel, $nom_pere, $func_pere, $nom_mere,$parent_adress, $funct_mere, $nom_tuteur ,$funct_tuteur,$num_tel_tuteur,$adress_tuteur,$error_message);
@@ -264,6 +275,13 @@ function export_to_excel($form, &$form_state) {
         '#title'=> t('Export vers un fichier excel'),
     );
     
+    $markup = t('Cette page permet d\'exporter la liste des élèves par classe ou par niveau selon vos filtre ci-desous');
+    $form['export']['markup'] = array(
+        '#type' => 'markup',
+        '#markup'=> $markup,
+        '#prefix'   =>'<div class = "eleve_list">',
+        '#suffix'   => '</div>',
+    );
     
     $options_niveau = _get_taxonomy_term('niveau');
     
