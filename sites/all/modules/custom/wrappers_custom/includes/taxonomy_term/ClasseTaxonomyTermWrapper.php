@@ -98,15 +98,16 @@ class ClasseTaxonomyTermWrapper extends WdTaxonomyTermWrapper {
         return $this->getText('field_used', $format, $markup_format);
     }
 
-    public static function add($name, $niveau, $description = NULL) {
+    public static function add($name, $niveau, $code,$description = NULL) {
 
-        if ($name != NULL && $niveau != NULL) {
+        if ($name != NULL && $niveau != NULL && $code != NULL) {
 
             try {
                 $period = ClasseTaxonomyTermWrapper::create();
                 $period->setName($name);
                 $period->setDescription($description);
                 $period->setNiveau($niveau);
+                $period->setCode($code);
                 $period->setUsed(0);
                 $period->save();
 

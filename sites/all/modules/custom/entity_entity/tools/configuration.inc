@@ -97,20 +97,20 @@ function configuration_form($form,&$form_state){
         '#default_value'=> variable_get('VIEWS_TAXONOMY'),
     ) ;
     
-    $form['sisco_dren'] = array(
-        '#title'    => t('Sisco et Dren'),
+    $form['cisco_dren'] = array(
+        '#title'    => t('Cisco et Dren'),
         '#type'     => 'fieldset',
         '#prefix' => '<div class="">',// atao an'ity rehefa misy vaovao eleve_main_view
         '#suffix' => '</div>',
     );
     
-    $form['sisco_dren']['SISCO'] = array(
-        '#title'        => t('Sisco : '),
+    $form['cisco_dren']['CISCO'] = array(
+        '#title'        => t('Cisco : '),
         '#type'         => 'textfield',
-        '#default_value'=> variable_get('SISCO'),
+        '#default_value'=> variable_get('CISCO'),
     ) ;
             
-    $form['sisco_dren']['DREN'] = array(
+    $form['cisco_dren']['DREN'] = array(
         '#title'        => t('Dren : '),
         '#type'         => 'textfield',
         '#default_value'=> variable_get('DREN'),

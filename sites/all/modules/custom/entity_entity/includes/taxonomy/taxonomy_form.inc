@@ -279,6 +279,12 @@ function _taxonomy_create_form($form, &$form_state, $vocabulary) {
                     '#required' => TRUE,
                     '#attributes' => array('class' => array('sexe_select')),
                 );
+
+                $form['taxonomy']['code'] = array(
+                    '#type' => 'textfield',
+                    '#title' => t('Code pour l\'import excel ou csv : '),
+                    '#required' => TRUE,
+                );
                 break;
 
             case 'taompianarana':
@@ -372,8 +378,9 @@ function _taxonomy_create_form_submit($form, &$form_state) {
 
         case 'classe':
 
+            $code = $form_state['values']['code'];
             $niveau = $form_state['values']['niveau'];
-            $saved = ClasseTaxonomyTermWrapper::add($name, $niveau, $description);
+            $saved = ClasseTaxonomyTermWrapper::add($name, $niveau,$code, $description);
 
             break;
 

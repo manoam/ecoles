@@ -7,7 +7,7 @@
  * @param type $class_tid
  * @param type $taompianarana_tid
  */
-function _eleve_sql_list_eleve($niveau_tid = NULL, $class_tid = NULL,$taompianarana_tid) {
+function _eleve_sql_list_eleve($niveau_tid = NULL, $class_tid = NULL,$taompianarana_tid,$nom_prenom = NULL,$num_mat = NULL ,$sex = NULL) {
     
     $sql = "";
     
@@ -77,6 +77,15 @@ function _eleve_sql_list_eleve($niveau_tid = NULL, $class_tid = NULL,$taompianar
         }
         if($class_tid != NULL){
             $sql .= " AND e.class_tid IN (".$class_tid.")";
+        }
+        if($nom_prenom != NULL){
+            $sql .= " AND (nom.field_nom_value LIKE '%".$nom_prenom."%' OR prenom.field_prenom_value LIKE '%".$nom_prenom."%')";
+        }
+        if($num_mat != NULL){
+            $sql .= " AND num_mat.field_num_mat_value LIKE '".$num_mat."%'";
+        }
+        if($sex != NULL){
+            $sql .= " AND sex.field_sex_tid IN (".$sex.")";
         }
     }
     

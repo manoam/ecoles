@@ -11,7 +11,7 @@ module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/NiveauTaxo
  * @param type $class_tid
  * @return type
  */
-function _eleve_list_get_list($niveau_tid = NULL,$class_tid = NULL,$taompianarana_tid = NULL) {
+function _eleve_list_get_list($niveau_tid = NULL,$class_tid = NULL,$taompianarana_tid = NULL,$nom_prenom = NULL,$num_mat = NULL,$sex = NULL) {
     
     $list = array();
     
@@ -21,7 +21,7 @@ function _eleve_list_get_list($niveau_tid = NULL,$class_tid = NULL,$taompianaran
     }
     
     // ity no maka ny list ny eleve
-    $sql = _eleve_sql_list_eleve($niveau_tid, $class_tid,$taompianarana_tid);
+    $sql = _eleve_sql_list_eleve($niveau_tid, $class_tid,$taompianarana_tid,$nom_prenom ,$num_mat ,$sex );
     
     $result = db_query($sql);
     
@@ -50,6 +50,33 @@ function _eleve_list_list($form, &$form_state) {
         '#title'=> t('Filtre'),
     );
             
+    $form['filter']['nom_prenom'] = array(
+        '#type'     => 'textfield',
+        '#title'    => t('Non ou Prenom'),
+        '#size'    => 30,
+        '#prefix'   =>'<div class = "copyright">',
+        '#suffix'   => '</div>',
+    );
+    
+    $form['filter']['num_mat'] = array(
+        '#type'     => 'textfield',
+        '#title'    => t('Numero Mat.'),
+        '#size'    => 30,
+        '#prefix'   =>'<div class = "copyright">',
+        '#suffix'   => '</div>',
+    );
+            
+    $options        = _get_taxonomy_term('sexe');
+    $options['']    = '-- tous --';
+    
+    $form['filter']['sex'] = array(
+        '#type'     => 'select',
+        '#title'    => t('Sexe '),
+        '#options'  => $options,
+        '#prefix'   =>'<div class = "copyright">',
+        '#suffix'   => '</div>',
+    );
+    
     $options        = _get_taxonomy_term('niveau');
     $options['']    = '-- tous --';
     
@@ -92,11 +119,12 @@ function _eleve_list_list($form, &$form_state) {
     );
     
     $niveau_tid = isset($form_state['niveau_tid'])? $form_state['niveau_tid'] : NULL;
-
-    $class_tid = isset($form_state['class_tid'])? $form_state['class_tid'] : NULL;
-
+    $class_tid  = isset($form_state['class_tid'])? $form_state['class_tid'] : NULL;
+    $nom_prenom     = isset($form_state['nom_prenom']) ? $form_state['nom_prenom'] : NULL;
+    $num_mat        = isset($form_state['num_mat']) ? $form_state['num_mat'] : NULL;
+    $sex            = isset($form_state['sex']) ? $form_state['sex'] : NULL;
     
-    $list = _eleve_list_get_list($niveau_tid,$class_tid);
+    $list = _eleve_list_get_list($niveau_tid, $class_tid, $taompianarana_tid = NULL, $nom_prenom, $num_mat, $sex);
     
     $i    = count($list);
     $rows = array();
@@ -154,6 +182,9 @@ function _eleve_list_list_submit($form , &$form_state) {
     
     $form_state['niveau_tid']     = $form_state['values']['niveau'];
     $form_state['class_tid']      = $form_state['values']['class'];
+    $form_state['nom_prenom']     = $form_state['values']['nom_prenom'];
+    $form_state['num_mat']        =  $form_state['values']['num_mat'];
+    $form_state['sex']            = $form_state['values']['sex'];
     
     $form_state['rebuild']        = 1;
 }
