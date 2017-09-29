@@ -143,6 +143,24 @@ function entity_entity_entity_view($entity, $type, $view_mode, $langcode){
                     '#markup' => $body,
             );
         }
+    }elseif($type == 'user'){
+            
+        foreach ($entity->content as $key => $element){
+            if ($key[0] == '#') continue;
+            $entity->content[$key]['#access'] = FALSE;
+        }
+        module_load_include('inc','entity_entity','includes/user/user_form');
+        $output = drupal_get_form('_user_form_form',$entity->uid);
+        $body = drupal_render($output);
+        $entity->content['created'] = array(
+                '#prefix' => '<div>',
+                '#suffix' => '</div>',
+                '#markup' => $body,
+        );
+    }
+    
+    if(isset($_GET['pdf']) && $_GET['pdf'] == 1){
+        drupal_add_css(drupal_get_path('module', 'entity_entity').'/tools/css_to_pdf.css');
     }
 }
 
