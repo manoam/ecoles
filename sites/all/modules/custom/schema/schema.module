@@ -4,7 +4,7 @@
  * hook_schema relation eleve taompianarana niveau class 
  */
 function schema_schema(){
-    
+    /*
     $schema['eleveTaompianarana'] = array(
         
         'description' => 'relation eleve taompianarana',
@@ -51,6 +51,117 @@ function schema_schema(){
         'primary key' => array('id'), 
         
     );
+     * 
+     */
     
+    $schema['classMatieres'] = array(
+        
+        'description' => 'classe matiere proff coeff',
+        
+        'fields' => array(
+            
+            'id' => array(
+                'description' => 'Table id',
+                'type' => 'serial',
+                'not null' => TRUE,
+            ),
+            
+            'taompianarana_tid' => array(
+                'description' => 'taompianarana_tid',
+                'type' => 'int',
+                'not null' => TRUE,
+            ),
+            
+            'classe_tid' => array(
+                'description' => 'classe_tid',
+                'type' => 'int',
+                'not null' => TRUE,
+            ),
+            
+            'matiere_tid' => array(
+                'description' => 'matiere_tid',
+                'type' => 'int',
+                'not null' => TRUE,
+            ),
+            
+            'prof_uid' => array(
+                'description' => 'prof_uid',
+                'type' => 'int',
+                'not null' => TRUE,
+            ),
+            
+            'coeff' => array(
+                'description' => 'coeff',
+                'type' => 'float',
+                'not null' => TRUE,
+            ),
+            
+        ),
+        
+        'primary key' => array('id'), 
+        
+    );
+    
+    
+    $schema['eleveNote'] = array(
+        
+        'description' => 'Eleve classe Matiere Type de note Periode Note',
+        
+        'fields' => array(
+            
+            'id' => array(
+                'description' => 'Table id',
+                'type' => 'serial',
+                'not null' => TRUE,
+            ),
+            
+            'taompianarana_tid' => array(
+                'description' => 'taompianarana_tid',
+                'type' => 'int',
+                'not null' => TRUE,
+            ),
+            
+            'classe_tid' => array(
+                'description' => 'classe_tid',
+                'type' => 'int',
+                'not null' => TRUE,
+            ),
+            
+            'matiere_tid' => array(
+                'description' => 'matiere_tid',
+                'type' => 'int',
+                'not null' => TRUE,
+            ),
+            
+            'eleve_tid' => array(
+                'description' => 'eleve_tid',
+                'type' => 'int',
+                'not null' => TRUE,
+            ),
+            
+            'type_note_tid' => array(
+                'description' => 'type de note tid',
+                'type' => 'int',
+                'not null' => TRUE,
+            ),
+            
+            'periode_tid' => array(
+                'description' => 'periode tid',
+                'type' => 'int',
+                'not null' => TRUE,
+            ),
+            
+            'note' => array(
+                'description' => 'note',
+                'type'      => 'numeric',
+                'precision' => 4,
+                'scale'     => 2,
+            ),
+            
+        ),
+        
+        'primary key' => array('id'), 
+        
+    );
     return $schema;
 }

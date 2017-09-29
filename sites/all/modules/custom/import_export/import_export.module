@@ -216,8 +216,8 @@ function import_from_xlsx_import_line($line, &$context) {
     $classe         = trim($line[18]);
     $redoublement   = trim($line[19]);
 
-    $niveau_tid = NiveauTaxonomyTermWrapper::getNiveauByCode($niveau);
-    $classe_tid = ClasseTaxonomyTermWrapper::getClasseByCode($classe);
+    $niveau_tid   = NiveauTaxonomyTermWrapper::getNiveauByCode($niveau);
+    $classe_tid   = ClasseTaxonomyTermWrapper::getClasseByCode($classe);
     $redouble_tid = RedoublementTaxonomyTermWrapper::getByCode($redoublement);
     // raha null ity dia ato par defaut passant
     if($redouble_tid == NULL){

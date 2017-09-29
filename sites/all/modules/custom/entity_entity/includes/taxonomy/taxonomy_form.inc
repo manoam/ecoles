@@ -33,12 +33,18 @@ function _taxonomy_load_form($form, &$form_state, $tid) {
                         $class = new ClasseTaxonomyTermWrapper($tid);
                         $form['taxonomy']['niveau'] = array(
                             '#type' => 'select',
-                            '#title' => t('Niveau consernant : '),
+                            '#title' => t('Niveau concernant : '),
                             '#options' => $option,
                             '#default_value' => $class->getNiveau()->tid,
                             '#attributes' => array('class' => array('sexe_select')),
                         );
-
+                        
+                        $form['taxonomy']['code'] = array(
+                            '#type' => 'textfield',
+                            '#title' => t('Code pour l\'import excel ou csv : '),
+                            '#default_value' => $class->getCode(),
+                        );
+                        
                         if ($class->getUsed() == '0' || $class->getUsed() == 0) {
                             $form['taxonomy']['submit'] = array(
                                 '#type' => 'submit',
@@ -52,7 +58,7 @@ function _taxonomy_load_form($form, &$form_state, $tid) {
 
                         // ampiana ity indray raha niveau
                         $niveau = new NiveauTaxonomyTermWrapper($tid);
-                        $form['taxonomy']['niveau'] = array(
+                        $form['taxonomy']['code'] = array(
                             '#type' => 'textfield',
                             '#title' => t('Code pour l\'import excel ou csv : '),
                             '#default_value' => $niveau->getCode(),
@@ -172,10 +178,13 @@ function _taxonomy_load_form_submit($form, &$form_state) {
 
                 $niveau = $form_state['values']['niveau'];
 
+                $code = $form_state['values']['code'];
+                
                 $classe = new ClasseTaxonomyTermWrapper($tid);
                 $classe->setName($name);
                 $classe->setDescription($description);
                 $classe->setNiveau($niveau);
+                $classe->setCode($code);
                 $classe->save();
 
                 break;
@@ -265,7 +274,7 @@ function _taxonomy_create_form($form, &$form_state, $vocabulary) {
                 $option = _get_taxonomy_term('niveau');
                 $form['taxonomy']['niveau'] = array(
                     '#type' => 'select',
-                    '#title' => t('Niveau consernant : '),
+                    '#title' => t('Niveau concernant : '),
                     '#options' => $option,
                     '#required' => TRUE,
                     '#attributes' => array('class' => array('sexe_select')),
