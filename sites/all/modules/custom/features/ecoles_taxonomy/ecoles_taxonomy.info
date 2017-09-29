@@ -17,6 +17,7 @@ features[field_instance][] = taxonomy_term-period-field_end_date
 features[field_instance][] = taxonomy_term-period-field_start_date
 features[field_instance][] = taxonomy_term-period-field_taompianarana
 features[field_instance][] = taxonomy_term-period-field_used
+features[field_instance][] = taxonomy_term-redoublement-field_code
 features[field_instance][] = taxonomy_term-taompianarana-field_end_date
 features[field_instance][] = taxonomy_term-taompianarana-field_start_date
 features[field_instance][] = taxonomy_term-taompianarana-field_used

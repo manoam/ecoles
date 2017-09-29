@@ -26,6 +26,7 @@ features[field_instance][] = eleve-eleve-field_nom_pere
 features[field_instance][] = eleve-eleve-field_nom_tuteur
 features[field_instance][] = eleve-eleve-field_num_mat
 features[field_instance][] = eleve-eleve-field_num_tel_tuteur
+features[field_instance][] = eleve-eleve-field_parent_adress
 features[field_instance][] = eleve-eleve-field_photo
 features[field_instance][] = eleve-eleve-field_prenom
 features[field_instance][] = eleve-eleve-field_profession_mere

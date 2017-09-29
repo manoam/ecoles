@@ -41,7 +41,7 @@ function ecoles_eleves_views_default_views() {
   $handler->display->display_options['fields']['field_num_mat']['field'] = 'field_num_mat';
   $handler->display->display_options['fields']['field_num_mat']['label'] = 'Num Matricule';
   $handler->display->display_options['fields']['field_num_mat']['type'] = 'text_plain';
-  /* Field: eleve: Nom */
+  /* Field: Field: Nom */
   $handler->display->display_options['fields']['field_nom']['id'] = 'field_nom';
   $handler->display->display_options['fields']['field_nom']['table'] = 'field_data_field_nom';
   $handler->display->display_options['fields']['field_nom']['field'] = 'field_nom';
@@ -49,7 +49,7 @@ function ecoles_eleves_views_default_views() {
   $handler->display->display_options['fields']['field_prenom']['id'] = 'field_prenom';
   $handler->display->display_options['fields']['field_prenom']['table'] = 'field_data_field_prenom';
   $handler->display->display_options['fields']['field_prenom']['field'] = 'field_prenom';
-  /* Field: eleve: Date Naiss */
+  /* Field: Field: Date Naiss */
   $handler->display->display_options['fields']['field_date_naiss']['id'] = 'field_date_naiss';
   $handler->display->display_options['fields']['field_date_naiss']['table'] = 'field_data_field_date_naiss';
   $handler->display->display_options['fields']['field_date_naiss']['field'] = 'field_date_naiss';
@@ -61,7 +61,7 @@ function ecoles_eleves_views_default_views() {
     'multiple_from' => '',
     'multiple_to' => '',
   );
-  /* Field: eleve: Tel */
+  /* Field: Field: Tel */
   $handler->display->display_options['fields']['field_tel']['id'] = 'field_tel';
   $handler->display->display_options['fields']['field_tel']['table'] = 'field_data_field_tel';
   $handler->display->display_options['fields']['field_tel']['field'] = 'field_tel';
@@ -94,7 +94,7 @@ function ecoles_eleves_views_default_views() {
     1 => 0,
     3 => 0,
   );
-  /* Filter criterion: eleve: Nom (field_nom) */
+  /* Filter criterion: Field: Nom (field_nom) */
   $handler->display->display_options['filters']['field_nom_value']['id'] = 'field_nom_value';
   $handler->display->display_options['filters']['field_nom_value']['table'] = 'field_data_field_nom';
   $handler->display->display_options['filters']['field_nom_value']['field'] = 'field_nom_value';

@@ -1,0 +1,15 @@
+#header_wrapper {
+    display: none !important;
+}
+
+.menu-wrap {
+    display: none !important;
+}
+
+.tabs-wrapper{
+    display: none !important;
+}
+
+#footer{
+    display: none !important;
+}
