@@ -63,7 +63,7 @@ function ecoles_deploy_update_7006(){
 
 
 /**
- * Manampy filed momba ny tuteur ao amin'ny eleve sy mi-setter ilay redoublement
+ * 
  */
 function ecoles_deploy_update_7007(){
     
