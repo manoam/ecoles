@@ -95,12 +95,28 @@ function configuration_form($form,&$form_state){
         '#multiple'     => TRUE,
         '#options'      => $roles_options,
         '#default_value'=> variable_get('VIEWS_TAXONOMY'),
+    );
+    
+    $form['note'] = array(
+        '#title'    => t('NOTE'),
+        '#type'     => 'fieldset',
+        '#prefix' => '<div class="eleve_main_view">',
+        '#suffix' => '</div>',
+    );
+    
+            
+    $form['note']['VIEW_NOTE_PERMISSION'] = array(
+        '#title'        => t('Type d\'utilisateur qui peut <b> <i> Modifier et inserer les notes des eleves </b> </i>'),
+        '#type'         => 'select',
+        '#multiple'     => TRUE,
+        '#options'      => $roles_options,
+        '#default_value'=> variable_get('VIEW_NOTE_PERMISSION'),
     ) ;
     
     $form['cisco_dren'] = array(
         '#title'    => t('Cisco et Dren'),
         '#type'     => 'fieldset',
-        '#prefix' => '<div class="">',// atao an'ity rehefa misy vaovao eleve_main_view
+        '#prefix' => '<div class="view_left">',// Natao an'ity rehefa misy vaovao eleve_main_view
         '#suffix' => '</div>',
     );
     
@@ -116,6 +132,19 @@ function configuration_form($form,&$form_state){
         '#default_value'=> variable_get('DREN'),
     ) ;
     
+    $form['faneva_mascar'] = array(
+        '#title'    => t('Faneva'),
+        '#type'     => 'fieldset',
+        '#prefix' => '<div class="">',// Natao an'ity rehefa misy vaovao eleve_main_view
+        '#suffix' => '</div>',
+    );
+    
+    $form['faneva_mascar']['FANEVA_MASCAR'] = array(
+        '#title'        => t('Faneva : '),
+        '#type'         => 'textfield',
+        '#default_value'=> variable_get('FANEVA_MASCAR'),
+    ) ;
+           
     return system_settings_form($form);
 }
 

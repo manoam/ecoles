@@ -1,5 +1,0 @@
-name = note
-description = note des eleves
-core = 7.x
-package = ModuleEcoles
-

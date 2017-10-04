@@ -46,12 +46,45 @@
     display: none;
 }
 
-.export_note h1{
+.entete_title {
+    float: left;
+    margin-top: 15px !important;
+    width: 100%;
+}
+.entete_title h1{
     text-align: center;
     font-family: "Apple Chancery";
     border: 1px solid #cccccc;
     border-radius: 4px;
-    width: 350px;
+    width: 550px;
     height: 25px;
     margin: auto auto;
+}
+
+.entete_center {
+    position: relative;
+    text-align: center ;
+}
+
+.entete_left {
+    width: 390px;
+    text-align: center ;
+    float: left;
+}
+
+.entete_right {
+    float: right;
+    text-align: center ;
+    width: 250px;
+    font-family: "Arial Black";
+}
+
+.entete_name{
+    font-size: 40px;
+    text-align: center ;
+    font-family: "American Typewriter";
+    color: #0066ff;
+    float: left;
+    margin-top: 25px !important;
+    width: 100%;
 }

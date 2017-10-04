@@ -125,3 +125,10 @@ function ecoles_deploy_update_7009(){
 function ecoles_deploy_update_7010(){
     module_enable(array('number'));
 }
+
+/**
+ * Mi-activer ny schema fa misy relation vaovao ao
+ */
+function ecoles_deploy_update_7011(){
+    module_enable(array('schema'));
+}

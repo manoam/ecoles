@@ -89,9 +89,23 @@ function entity_entity_menu() {
         'page arguments' => array('_taxonomy_create_form',3),
         'access callback' => 'admin_taxonomy_acces',
     );
+    /**
+     *  Note
+     */
+    $items['ecoles/note/fiche-note'] =array(
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('fiche_note_form'),
+        'access callback' => 'note_access',
+        'file' => 'includes/note/note_form.inc',
+        'file path' => drupal_get_path('module', 'entity_entity'),
+    );
+    
     return $items;
 }
 
+/**
+ *  Permission ity
+ */
 function admin_taxonomy_acces() {
     
     global $user;
@@ -101,9 +115,26 @@ function admin_taxonomy_acces() {
             return TRUE;
         }
     }
+    if(user_has_role(variable_get('ADMINISTRATOR_USER',2),$user)){
+        return TRUE;
+    }
     return FALSE;
 }
 
+function note_access() {
+    
+    global $user;
+    
+    foreach (variable_get('VIEW_NOTE_PERMISSION') as $role => $value) {
+        if(user_has_role($role,$user)){
+            return TRUE;
+        }
+    }
+    if(user_has_role(variable_get('ADMINISTRATOR_USER',2),$user)){
+        return TRUE;
+    }
+    return FALSE;
+}
 /**
  * hook_entity_view
  * @param unknown $node
@@ -239,6 +270,9 @@ function create_eleve_permission() {
             return TRUE;
         }
     }
+    if(user_has_role(variable_get('ADMINISTRATOR_USER',2),$user)){
+        return TRUE;
+    }
     return FALSE;
 }
 
@@ -252,6 +286,9 @@ function list_eleve_permission() {
             return TRUE;
         }
     }
+    if(user_has_role(variable_get('ADMINISTRATOR_USER',2),$user)){
+        return TRUE;
+    }
     return FALSE;
 }
 
@@ -259,7 +296,7 @@ function edit_configuration_permission() {
     
     global $user;
     
-    if(user_has_role(variable_get('CONFIGURATION'),$user) || user_has_role(2,$user)){
+    if(user_has_role(variable_get('CONFIGURATION'),$user) || user_has_role(variable_get('ADMINISTRATOR_USER',2),$user)){
         return TRUE;
     }
     return FALSE;

@@ -32,12 +32,10 @@ function import_export_menu() {
         'access callback' => 'import_export_access',
     );
     
-    $items['ecoles/export/fiche-note'] =array(
+    $items['ecoles/note/export-template'] =array(
         'page callback' => 'drupal_get_form',
-        'page arguments' => array('export_fiche_note_form'),
-        'access callback' => 'import_export_access',
-        'file' => 'includes/export_note.inc',
-        'file path' => drupal_get_path('module', 'import_export'),
+        'page arguments' => array('export_to_excel_template_note'),
+        'access callback' => 'note_access',
     );
     
     return $items;
@@ -53,6 +51,11 @@ function import_export_access() {
             return TRUE;
         }
     }
+    
+    if(user_has_role(variable_get('ADMINISTRATOR_USER',2),$user)){
+        return TRUE;
+    }
+    
     return FALSE;
 }
 
@@ -486,4 +489,79 @@ function import_export_unlink_file($file , &$context) {
     if (file_exists($destination_file)) {
         unlink($destination_file);
     }
+}
+
+function export_to_excel_template_note($form, &$form_state) {
+    
+    $form['export'] = array(
+        '#type' => 'fieldset',
+        '#title'=> t('Export un template de note'),
+    );
+    
+    $markup = t('Cette page permet d\'exporter la liste des élèves par classe pour faire l\'import de note par matière');
+    $form['export']['markup'] = array(
+        '#type' => 'markup',
+        '#markup'=> $markup,
+        '#prefix'   =>'<div class = "eleve_list">',
+        '#suffix'   => '</div>',
+    );
+    
+    $options_class = _get_taxonomy_term('classe');
+    
+    $options_class[NULL] = t('--- none ---');
+    
+    $form['export']['eleve_class'] = array(
+        '#type' => 'select',
+        '#title' => t('Classe'),
+        '#options' => $options_class,
+        '#prefix'   =>'<div class = "copyright">',
+        '#suffix'   => '</div>',
+        '#attributes' => array('class' => array('sexe_select')),
+    );
+    
+    $form['export']['submit'] = array(
+        '#type'     => 'submit',
+        '#value'    => t('Exporter vers un fichier excel'),
+        '#prefix'   =>'<div class = "submit-filter">',
+        '#suffix'   => '</div>',
+    );
+    
+    if(isset($form_state['excel']) && $form_state['excel'] != NULL){
+        
+        $link = l(t('Telecharger ici votre excel') , $form_state['excel']);
+        
+        $form['export']['link'] = array(
+            '#type'     => 'markup',
+            '#markup'   => $link,
+            '#prefix'   =>'<div class = "submit-filter">',
+            '#suffix'   => '</div>',
+        );
+    }
+    
+    return $form;
+}
+
+
+function export_to_excel_template_note_submit($form, &$form_state) {
+    
+    $eleve_class    = $form_state['values']['eleve_class'];
+    
+    if($eleve_class == NULL){
+        drupal_set_message(t('Veullier choisisser un seulement entre niveau et classe'), 'error');
+        return ;
+    }
+    
+    if($eleve_class != NULL){
+        
+        $header             = array(t('NUM_MAT') ,t('NOM') ,t('PRENOM') ,t('SEXE') ,t('DATE DE NAISSANCE') ,t('NOTE'));
+        $classe             = new ClasseTaxonomyTermWrapper($eleve_class);
+        $excel_name         = t('Liste_eleves_'.$classe->getName().'_'.date('d_M_Y'));
+        $key_not_to_excel   = array('ID','TAOMPIANARANA_TID','SEXE_TID','NIVEAU_TID','TAOMPIANARANA_NAME','CLASS_TID','NIVEAU_NAME','CLASS_NAME');
+        $rows               = _eleve_list_get_list($niveau_tid = NULL, $eleve_class);
+        
+        $form_state['excel']= _export_list_eleve_to_excel_rows($excel_name ,$header ,$rows,$key_not_to_excel);
+        
+    }
+    
+    $form_state['rebuild'] = 1;
 }
