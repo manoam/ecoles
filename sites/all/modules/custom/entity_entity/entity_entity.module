@@ -90,13 +90,29 @@ function entity_entity_menu() {
         'access callback' => 'admin_taxonomy_acces',
     );
     /**
-     *  Note
+     *  Note 
      */
     $items['ecoles/note/fiche-note'] =array(
         'page callback' => 'drupal_get_form',
         'page arguments' => array('fiche_note_form'),
         'access callback' => 'note_access',
         'file' => 'includes/note/note_form.inc',
+        'file path' => drupal_get_path('module', 'entity_entity'),
+    );
+    
+    $items['ecoles/note/class-matiere'] =array(
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('_note_set_matiere_class_form'),
+        'access callback' => 'note_access',
+        'file' => 'includes/note/note_form.inc',
+        'file path' => drupal_get_path('module', 'entity_entity'),
+    );
+    
+    $items['ecoles/note/note-list'] =array(
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('_note_list_list_form'),
+        'access callback' => 'note_access',
+        'file' => 'includes/note/note_list.inc',
         'file path' => drupal_get_path('module', 'entity_entity'),
     );
     

@@ -5,6 +5,7 @@ define('TEMPLET_EXCEL', 'template_excel.xlsx');
 
 module_load_include('list.inc', 'entity_entity', 'includes/eleve/eleve');
 module_load_include('php', 'wrappers_custom', 'includes/eleve/EleveEleveWrapper');
+module_load_include('inc', 'entity_entity', 'includes/relation/classMatieres');
 module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/RedoublementTaxonomyTermWrapper');
 module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/ClasseTaxonomyTermWrapper');
 module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/NiveauTaxonomyTermWrapper');
@@ -38,6 +39,10 @@ function import_export_menu() {
         'access callback' => 'note_access',
     );
     
+    $items['ecoles/note/import-xlsx'] =array(
+        'access callback' => 'note_access',
+        'page callback' => 'import_note_from_xlsx',
+    );
     return $items;
 }
 
@@ -553,7 +558,7 @@ function export_to_excel_template_note_submit($form, &$form_state) {
     
     if($eleve_class != NULL){
         
-        $header             = array(t('NUM_MAT') ,t('NOM') ,t('PRENOM') ,t('SEXE') ,t('DATE DE NAISSANCE') ,t('NOTE'));
+        $header             = array(t('NUM_MAT') ,t('NOM') ,t('PRENOM') ,t('SEXE') ,t('DATE DE NAISSANCE') ,t('NOTE/20'));
         $classe             = new ClasseTaxonomyTermWrapper($eleve_class);
         $excel_name         = t('Liste_eleves_'.$classe->getName().'_'.date('d_M_Y'));
         $key_not_to_excel   = array('ID','TAOMPIANARANA_TID','SEXE_TID','NIVEAU_TID','TAOMPIANARANA_NAME','CLASS_TID','NIVEAU_NAME','CLASS_NAME');
@@ -564,4 +569,290 @@ function export_to_excel_template_note_submit($form, &$form_state) {
     }
     
     $form_state['rebuild'] = 1;
+}
+
+/**
+ *  Manomboka eto no manao import note
+ */
+function import_note_from_xlsx() {
+    
+    $form   = drupal_get_form('import_note_from_xlsx_form');
+    $output = drupal_render($form);
+
+    return $output;
+}
+
+
+/**
+ * The form
+ * @return multitype:string multitype:string  multitype:string NULL
+ */
+function import_note_from_xlsx_form($form, &$form_state) {
+    
+    global $user;
+    $form['#attributes'] = array(
+        'enctype' => 'multipart/form-data'
+    );
+
+    $form['import'] = array(
+        '#type' => 'fieldset',
+        '#title' => t('Importer les notes des élèves via un fichier excel (xlsx)'),
+    );
+    
+    $options_classe = array();
+    $option_matiere = array();
+    
+    $conditions = array(
+        array(
+            'field_name' => 'taompianarana_tid',
+            'operator' => '=',
+            'value' => variable_get('TAOMPIANARANA'),
+        ),
+        array(
+            'field_name' => 'prof_uid',
+            'operator' => '=',
+            'value' => $user->uid,
+        ),
+    );
+    if (_selectFromClassMatieres($conditions) != NULL) {
+
+        $rows = array();
+
+        $result = _selectFromClassMatieres($conditions);
+        while ($record = $result->fetchAssoc()) {
+
+            $class = new ClasseTaxonomyTermWrapper($record['classe_tid']);
+            $matiere = new MatieresTaxonomyTermWrapper($record['matiere_tid']);
+
+            $options_classe[$record['classe_tid']]  = $class->getName();
+            $option_matiere[$record['matiere_tid']] = $matiere->getName();
+        }
+    }
+    
+    $form['import']['classe'] = array(
+        '#type' => 'select',
+        '#title' => t('Classe'),
+        '#options' => $options_classe,
+        '#required' => TRUE,
+    );
+    
+    $form['import']['matiere'] = array(
+        '#type' => 'select',
+        '#title' => t('Matière'),
+        '#options' => $option_matiere,
+        '#required' => TRUE,
+    );
+    
+    $option = _get_taxonomy_term('type_de_note');
+    $form['import']['type_note_tid'] = array(
+        '#type' => 'select',
+        '#title' => t('Type de note à importer'),
+        '#options' => $option,
+        '#required' => TRUE,
+    );
+    
+    $form['import']['xlsxfile'] = array(
+        '#title' => t('Fichier excel'),
+        '#type' => 'file',
+        '#description' => ($max_size = parse_size(ini_get('upload_max_filesize'))) ? t('Due to server restrictions, the <strong>maximum upload file size is !max_size</strong>. Files that exceed this size will be disregarded.', array('!max_size' => format_size($max_size))) : '',
+    );
+
+    $form['import']['submit'] = array(
+        '#type' => 'submit',
+        '#value' => t('Importer ce fichier'),
+    );
+
+    $form['#validate'] = array(
+        'import_note_from_xlsx_validate_fileupload',
+        'import_note_from_xlsx_form_validate',
+    );
+    
+    return $form;
+}
+
+function import_note_from_xlsx_validate_fileupload($form, &$form_state) {
+
+    $validators = array(
+        'file_validate_extensions' => array('xlsx'),
+    );
+
+    if ($file = file_save_upload('xlsxfile', $validators, "public://", FILE_EXISTS_REPLACE)) {
+        $form_state['values']['xlsxfile'] = $file->destination;
+    } else {
+        form_set_error('xlsxImporter', t('Unable to copy upload file'));
+    }
+}
+
+function import_note_from_xlsx_form_validate(&$form, &$form_state) {
+
+    if (isset($form_state['values']['xlsxfile']) && $form_state['values']['xlsxfile'] != NULL) {
+
+        module_load_include('class.php', 'import_export', 'includes/simplexlsx');
+
+        $xlsx = new SimpleXLSX( $form_state['values']['xlsxfile'] );
+
+
+        foreach( $xlsx->rowsEleve() as $line ) {
+
+            if (count($line) != 6) {
+                form_set_error('xlsxfile', t('This file has the incorrect number of columns. Expecting 6'));
+            }
+            break;
+        }
+    }
+}
+
+function import_note_from_xlsx_form_submit($form, &$form_state) {
+
+    $matiere        = $form_state['values']['matiere'];
+    $classe         = $form_state['values']['classe'];
+    $type_note_tid  = $form_state['values']['type_note_tid'];
+    $batch   = array(
+        'title' => t('Importing CSV ...'),
+        'operations' => array(),
+        'init_message' => t('Commencing'),
+        'progress_message' => t('Processed @current out of @total.'),
+        'error_message' => t('An error occurred during processing'),
+        'finished' => 'import_from_xlsx_import_finished',
+    );
+
+    if (isset($form_state['values']['xlsxfile']) && $form_state['values']['xlsxfile'] != NULL) {
+
+        $filename = $form_state['values']['xlsxfile'];
+
+        module_load_include('class.php', 'import_export', 'includes/simplexlsx');
+
+        $xlsx = new SimpleXLSX( $filename );
+
+        $i = 1;
+        foreach( $xlsx->rowsEleve() as $line ) {
+
+            if($i==1){
+                $i++;
+                continue;
+            }
+            $line[]                = $matiere;
+            $line[]                = $classe;
+            $line[]                = $type_note_tid;
+            $batch['operations'][] = array('import_note_from_xlsx_import_line', array($line));
+        }
+        
+        $batch['operations'][] = array('import_export_unlink_file', array($filename));
+
+    }
+
+    batch_set($batch);
+}
+
+
+function import_note_from_xlsx_import_line($line , &$context = NULL) {
+
+    global $user;
+    $num_mat    = trim($line[0]);
+    $nom        = trim($line[1]);
+    $prenom     = trim($line[2]);
+    $sex        = trim($line[3]);
+    $date_naiss = trim($line[4]);
+    $note       = trim($line[5]);
+    $matiere    = trim($line[6]);
+    $classe     = trim($line[7]);
+    $type_note_tid = trim($line[8]);
+
+    try{
+        module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/SexeTaxonomyTermWrapper');
+        module_load_include('inc', 'entity_entity', 'includes/relation/eleveNote');
+        $sex_tid     = SexeTaxonomyTermWrapper::getClasseByName($sex);
+        $lookUpEleve = EleveEleveWrapper::lookUpEleve($nom, $prenom, $sex_tid, $date_naiss);
+        $eleve       = EleveEleveWrapper::getByNumMat($num_mat);
+
+        if( ! is_numeric($note) || $note > 20){
+            
+            drupal_set_message('Note invalide. NUM_MAT : '.$num_mat, 'error');
+            return;
+        }
+        
+        if($lookUpEleve != NULL && $eleve != NULL && $lookUpEleve == $eleve->getId()){
+
+            $taompianarana_tid = variable_get('TAOMPIANARANA');
+            $periode_tid       = variable_get('PERIODE');
+            
+            // tadiavina ao anaty eleveTaompianarana aloha ilay eleve
+            $conditions = array(
+                array(
+                    'field_name' => 'taompianarana_tid',
+                    'operator' => '=',
+                    'value' => $taompianarana_tid,
+                ),
+                array(
+                    'field_name' => 'eleve_id',
+                    'operator' => '=',
+                    'value' => $eleve->getId(),
+                ),
+                array(
+                    'field_name' => 'class_tid',
+                    'operator' => '=',
+                    'value' => $classe,
+                ),
+            );
+            
+            $find = _selectFromEleveTaompianarana($conditions);
+            
+            if($find->rowCount() == 1){
+                
+                $conditions_note = array(
+                    array(
+                        'field_name' => 'taompianarana_tid',
+                        'operator' => '=',
+                        'value' => $taompianarana_tid,
+                    ),
+                    array(
+                        'field_name' => 'classe_tid',
+                        'operator' => '=',
+                        'value' => $classe,
+                    ),
+                    array(
+                        'field_name' => 'matiere_tid',
+                        'operator' => '=',
+                        'value' => $matiere,
+                    ),
+                    array(
+                        'field_name' => 'eleve_tid',
+                        'operator' => '=',
+                        'value' => $eleve->getId(),
+                    ),
+                    array(
+                        'field_name' => 'type_note_tid',
+                        'operator' => '=',
+                        'value' => $type_note_tid,
+                    ),
+                );
+                // tadiavina aloha ilay note sao dia efa misy ato amin'ny base
+                $findResult = _selectFromEleveNote($conditions_note);
+                if($findResult != NULL && $findResult->rowCount() > 0){
+                    
+                    drupal_set_message(t('L\'élève Num mat : '.$num_mat.' déjà eu ce note'), 'error');
+                    return;
+                }
+                $saved = _insertIntoEleveNote($taompianarana_tid, $classe, $matiere, $eleve->getId(), $type_note_tid, $periode_tid, $note, $user->uid);
+            
+                if($saved == NULL || $saved == 0){
+
+                    drupal_set_message(t('Enregistrement echoé. Num mat : '.$num_mat), 'error');
+                }
+            }else {
+                
+                drupal_set_message('Elève non trouvable dans la classe que vous avez sélectionée. NUM_MAT : '.$num_mat, 'error');
+            }
+            
+            
+        }else{
+
+            drupal_set_message('Erreur de correspondance de NUM Matricule et les informations concernant l\'élève. NUM_MAT : '.$num_mat, 'error');
+        }
+        
+    }catch (Exception $e){
+        $db_transaction->rollback();
+        drupal_set_message(t('Enregistrement echoé. Num mat : '.$num_mat), 'error');
+    }
+    
 }

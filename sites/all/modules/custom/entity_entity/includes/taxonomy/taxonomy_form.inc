@@ -38,13 +38,13 @@ function _taxonomy_load_form($form, &$form_state, $tid) {
                             '#default_value' => $class->getNiveau()->tid,
                             '#attributes' => array('class' => array('sexe_select')),
                         );
-                        
+
                         $form['taxonomy']['code'] = array(
                             '#type' => 'textfield',
                             '#title' => t('Code pour l\'import excel ou csv : '),
                             '#default_value' => $class->getCode(),
                         );
-                        
+
                         if ($class->getUsed() == '0' || $class->getUsed() == 0) {
                             $form['taxonomy']['submit'] = array(
                                 '#type' => 'submit',
@@ -105,7 +105,7 @@ function _taxonomy_load_form($form, &$form_state, $tid) {
                     case 'period':
 
                         module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/PeriodTaxonomyTermWrapper');
-                        
+
                         // ampiana ity indray raha niveau
                         $period = new PeriodTaxonomyTermWrapper($tid);
 
@@ -113,7 +113,7 @@ function _taxonomy_load_form($form, &$form_state, $tid) {
                         $form['taxonomy']['taompianarana'] = array(
                             '#type' => 'select',
                             '#title' => t('Année scolaire : '),
-                            '#options'=>$options,
+                            '#options' => $options,
                             '#default_value' => $period->getTaompianarana()->tid,
                             '#attributes' => array('class' => array('sexe_select')),
                         );
@@ -131,6 +131,38 @@ function _taxonomy_load_form($form, &$form_state, $tid) {
                         );
 
                         if ($period->getUsed() == '0' || $period->getUsed() == 0) {
+                            $form['taxonomy']['submit'] = array(
+                                '#type' => 'submit',
+                                '#value' => t('Enregistrer les modification'),
+                                '#weight' => 200,
+                            );
+                        }
+
+                        break;
+
+                    case 'matieres':
+
+                        module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/MatieresTaxonomyTermWrapper');
+
+                        $matieres = new MatieresTaxonomyTermWrapper($tid);
+
+                        if ($matieres->getUsed() == '0' || $matieres->getUsed() == 0) {
+                            $form['taxonomy']['submit'] = array(
+                                '#type' => 'submit',
+                                '#value' => t('Enregistrer les modification'),
+                                '#weight' => 200,
+                            );
+                        }
+
+                        break;
+
+                    case 'type_de_note':
+
+                        module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/MatieresTaxonomyTermWrapper');
+
+                        $typeDeNote = new TypeDeNoteTaxonomyTermWrapper($tid);
+
+                        if ($typeDeNote->getUsed() == '0' || $typeDeNote->getUsed() == 0) {
                             $form['taxonomy']['submit'] = array(
                                 '#type' => 'submit',
                                 '#value' => t('Enregistrer les modification'),
@@ -179,7 +211,7 @@ function _taxonomy_load_form_submit($form, &$form_state) {
                 $niveau = $form_state['values']['niveau'];
 
                 $code = $form_state['values']['code'];
-                
+
                 $classe = new ClasseTaxonomyTermWrapper($tid);
                 $classe->setName($name);
                 $classe->setDescription($description);
@@ -231,10 +263,28 @@ function _taxonomy_load_form_submit($form, &$form_state) {
 
                 break;
 
+            case 'matieres':
+
+                $matiere = new MatieresTaxonomyTermWrapper($tid);
+                $matiere->setName($name);
+                $matiere->setDescription($description);
+                $matiere->save();
+
+                break;
+
+            case 'type_de_note':
+
+                module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/TypeDeNoteTaxonomyTermWrapper');
+
+                $typeDeNote = new TypeDeNoteTaxonomyTermWrapper($tid);
+                $typeDeNote->setName($name);
+                $typeDeNote->setDescription($description);
+                $typeDeNote->save();
+
             default:
                 break;
         }
-        
+
         drupal_set_message(t('Enregistrement reussi'));
     } catch (Exception $ex) {
 
@@ -249,7 +299,7 @@ function _taxonomy_create_form($form, &$form_state, $vocabulary) {
         $form_state['vocabulary'] = $vocabulary;
 
         $vocabularyname = $vocabulary;
-        
+
         if ($vocabulary == 'taompianarana') {
             $vocabularyname = t('Année scolaire');
         }
@@ -380,7 +430,7 @@ function _taxonomy_create_form_submit($form, &$form_state) {
 
             $code = $form_state['values']['code'];
             $niveau = $form_state['values']['niveau'];
-            $saved = ClasseTaxonomyTermWrapper::add($name, $niveau,$code, $description);
+            $saved = ClasseTaxonomyTermWrapper::add($name, $niveau, $code, $description);
 
             break;
 
@@ -408,6 +458,18 @@ function _taxonomy_create_form_submit($form, &$form_state) {
 
             break;
 
+        case 'matieres':
+            module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/MatieresTaxonomyTermWrapper');
+            $saved = MatieresTaxonomyTermWrapper::add($name, $description);
+
+            break;
+
+        case 'type_de_note':
+
+            module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/TypeDeNoteTaxonomyTermWrapper');
+            $saved = TypeDeNoteTaxonomyTermWrapper::add($name, $description);
+
+            break;
         default:
             break;
     }

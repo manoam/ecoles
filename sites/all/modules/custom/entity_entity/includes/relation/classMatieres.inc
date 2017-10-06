@@ -108,3 +108,36 @@ function _updateClassMatieres($fieldAndValue, $conditions) {
         }
     }
 }
+
+
+
+function _selectFromClassMatieres($conditions = array()) {
+    
+    try{
+
+        $query = db_select('classMatieres', 't')
+            ->fields('t',array(
+                'id',
+                'taompianarana_tid',
+                'classe_tid',
+                'matiere_tid',
+                'prof_uid',
+                'coeff',
+                )       
+            );
+
+        foreach($conditions as $predicate){
+            $query->condition('t.'.$predicate['field_name'], $predicate['value'],$predicate['operator']);
+        }
+
+        $result = $query->execute();
+
+        return $result;
+
+    }catch (Exception $ex){
+        $message = t('[classMatieres::_selectFromClassMatieres()] Erreur: @mess', array('@mess' => $ex->getMessage())); 
+        drupal_set_message($message, 'error');
+    }
+    return NULL;
+    
+}

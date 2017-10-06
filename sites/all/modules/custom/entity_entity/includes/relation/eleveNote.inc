@@ -4,15 +4,16 @@ module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/ClasseTaxo
 module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/MatieresTaxonomyTermWrapper');
 module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/TaompianaranaTaxonomyTermWrapper');
 
-function _insertIntoEleveNote($taompianarana_tid, $classe_tid, $matiere_tid, $eleve_id, $type_note_tid, $periode_tid, $note) {
+function _insertIntoEleveNote($taompianarana_tid, $classe_tid, $matiere_tid, $eleve_id, $type_note_tid, $periode_tid, $note, $created_user) {
 
     if ($taompianarana_tid != NULL &&
-        $classe_tid != NULL &&
-        $matiere_tid != NULL &&
-        $eleve_id != NULL &&
-        $type_note_tid != NULL &&
-        $periode_tid != NULL &&
-        $note != NULL) {
+            $classe_tid != NULL &&
+            $matiere_tid != NULL &&
+            $eleve_id != NULL &&
+            $type_note_tid != NULL &&
+            $periode_tid != NULL &&
+            $note != NULL &&
+            $created_user != NULL) {
 
         try {
 
@@ -20,10 +21,12 @@ function _insertIntoEleveNote($taompianarana_tid, $classe_tid, $matiere_tid, $el
                         'taompianarana_tid' => $taompianarana_tid,
                         'classe_tid' => $classe_tid,
                         'matiere_tid' => $matiere_tid,
-                        'eleve_id' => $eleve_id,
+                        'eleve_tid' => $eleve_id,
                         'type_note_tid' => $type_note_tid,
                         'periode_tid' => $periode_tid,
                         'note' => $note,
+                        'created_date' => strtotime('now'),
+                        'created_user' => $created_user,
                             )
                     )
                     ->execute();
@@ -48,8 +51,12 @@ function _updateEleveNote($fieldAndValue, $conditions) {
                 'taompianarana_tid',
                 'classe_tid',
                 'matiere_tid',
-                'prof_uid',
-                'coeff',
+                'eleve_tid',
+                'type_note_tid',
+                'periode_tid',
+                'note',
+                'created_date',
+                'created_user',
             );
 
             //-- Tadiavina ao anatin'ny liste field aloha ilay $field ao @ condition sao tsy ao akory
@@ -72,11 +79,41 @@ function _updateEleveNote($fieldAndValue, $conditions) {
                 }
 
                 return $query->execute();
-
             }
         } catch (Exception $ex) {
             drupal_set_message(t($ex->getMessage()), 'error');
             return NULL;
         }
     }
+}
+
+function _selectFromEleveNote($conditions = array()) {
+
+    try {
+
+        $query = db_select('eleveNote', 't')
+                ->fields('t', array(
+            'id',
+            'taompianarana_tid',
+            'classe_tid',
+            'matiere_tid',
+            'eleve_tid',
+            'type_note_tid',
+            'periode_tid',
+            'note',
+                )
+        );
+
+        foreach ($conditions as $predicate) {
+            $query->condition('t.' . $predicate['field_name'], $predicate['value'], $predicate['operator']);
+        }
+
+        $result = $query->execute();
+
+        return $result;
+    } catch (Exception $ex) {
+        $message = t('[eleveNote::_selectFromEleveNote()] Erreur: @mess', array('@mess' => $ex->getMessage()));
+        drupal_set_message($message, 'error');
+    }
+    return NULL;
 }

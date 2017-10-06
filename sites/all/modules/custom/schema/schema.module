@@ -158,6 +158,18 @@ function schema_schema(){
                 'scale'     => 2,
             ),
             
+            'created_date' => array(
+                'description' => 'created date',
+                'type' => 'int',
+                'not null' => TRUE,
+            ),
+            
+            'created_user' => array(
+                'description' => 'created user',
+                'type' => 'int',
+                'not null' => TRUE,
+            ),
+            
         ),
         
         'primary key' => array('id'), 

@@ -131,4 +131,39 @@ class PeriodTaxonomyTermWrapper extends WdTaxonomyTermWrapper {
         }
         return NULL;
     }
+    
+    
+    /**
+     * 
+     * @param type $taompianarana_tid
+     */
+    public static function getPeriodByTaompianarana($taompianarana_tid) {
+
+        $records = array();
+
+        if ($taompianarana_tid != NULL) {
+
+            $query = new EntityFieldQuery();
+
+            $query->entityCondition('entity_type', 'taxonomy_term')
+                    ->entityCondition('bundle', 'period')
+                    ->fieldCondition('field_taompianarana', 'tid', $taompianarana_tid, '=');
+
+            $tids = $query->execute();
+
+            if (isset($tids['taxonomy_term'])) {
+
+                $tids = array_keys($tids['taxonomy_term']);
+
+                foreach ($tids as $tid) {
+
+                    $newterm = new PeriodTaxonomyTermWrapper($tid);
+
+                    $records[intval($newterm->getTid())] = $newterm->getName();
+                }
+            }
+        }
+
+        return $records;
+    }
 }

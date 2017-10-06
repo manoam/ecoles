@@ -98,23 +98,36 @@ class ClasseTaxonomyTermWrapper extends WdTaxonomyTermWrapper {
         return $this->getText('field_used', $format, $markup_format);
     }
 
-    public static function add($name, $niveau, $code,$description = NULL) {
+    public static function add($name, $niveau, $code, $description = NULL) {
 
         if ($name != NULL && $niveau != NULL && $code != NULL) {
 
             try {
-                $period = ClasseTaxonomyTermWrapper::create();
-                $period->setName($name);
-                $period->setDescription($description);
-                $period->setNiveau($niveau);
-                $period->setCode($code);
-                $period->setUsed(0);
-                $period->save();
+                
+                if(ClasseTaxonomyTermWrapper::getClasseByName($name) != NULL){
+                    
+                    drupal_set_message('Ce Nom est déjà existe dans la classe');
+                    return NULL;
+                }
+                
+                if(ClasseTaxonomyTermWrapper::getClasseByCode($code) != NULL){
+                    
+                    drupal_set_message('Ce code excel est déjà existe dans la classe');
+                    return NULL;
+                }
+                
+                $classe = ClasseTaxonomyTermWrapper::create();
+                $classe->setName($name);
+                $classe->setDescription($description);
+                $classe->setNiveau($niveau);
+                $classe->setCode($code);
+                $classe->setUsed(0);
+                $classe->save();
 
-                return $period;
+                return $classe;
             } catch (Exception $ex) {
 
-                drupal_set_message(t('Erreur de creation de taxonomy Period :' . $ex->getMessage()));
+                drupal_set_message(t('Erreur de creation de taxonomy Classe :' . $ex->getMessage()));
                 return NULL;
             }
         }
@@ -129,6 +142,26 @@ class ClasseTaxonomyTermWrapper extends WdTaxonomyTermWrapper {
             $query->entityCondition('entity_type', 'taxonomy_term')
                     ->entityCondition('bundle', 'classe')
                     ->fieldCondition('field_code', 'value', $code, '=');
+
+            $tids = $query->execute();
+            if (isset($tids['taxonomy_term'])) {
+                $tids = array_keys($tids['taxonomy_term']);
+                foreach ($tids as $tid) {
+                    return $tid;
+                }
+            }
+        }
+        return NULL;
+    }
+
+    public static function getClasseByName($name) {
+
+        if ($name != NULL) {
+
+            $query = new EntityFieldQuery();
+            $query->entityCondition('entity_type', 'taxonomy_term')
+                    ->entityCondition('bundle', 'classe')
+                    ->propertyCondition('name', $name, '=');
 
             $tids = $query->execute();
             if (isset($tids['taxonomy_term'])) {

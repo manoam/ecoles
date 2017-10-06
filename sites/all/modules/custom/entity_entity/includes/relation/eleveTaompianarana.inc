@@ -114,3 +114,35 @@ function _updateEleveTaompianarana($fieldAndValue, $conditions) {
         }
     }
 }
+
+
+function _selectFromEleveTaompianarana($conditions = array()) {
+    
+    try{
+
+        $query = db_select('eleveTaompianarana', 't')
+            ->fields('t',array(
+                'id',
+                'eleve_id',
+                'taompianarana_tid',
+                'niveau_tid',
+                'class_tid',
+                'redoublement_tid',
+                )       
+            );
+
+        foreach($conditions as $predicate){
+            $query->condition('t.'.$predicate['field_name'], $predicate['value'],$predicate['operator']);
+        }
+
+        $result = $query->execute();
+
+        return $result;
+
+    }catch (Exception $ex){
+        $message = t('[eleveTaompianarana::_selectFromEleveTaompianarana()] Erreur: @mess', array('@mess' => $ex->getMessage())); 
+        drupal_set_message($message, 'error');
+    }
+    return NULL;
+    
+}

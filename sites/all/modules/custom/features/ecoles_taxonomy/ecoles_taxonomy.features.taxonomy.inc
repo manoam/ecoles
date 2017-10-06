@@ -17,6 +17,14 @@ function ecoles_taxonomy_taxonomy_default_vocabularies() {
       'module' => 'taxonomy',
       'weight' => 0,
     ),
+    'matieres' => array(
+      'name' => 'Matieres',
+      'machine_name' => 'matieres',
+      'description' => '',
+      'hierarchy' => 0,
+      'module' => 'taxonomy',
+      'weight' => 0,
+    ),
     'niveau' => array(
       'name' => 'Niveau',
       'machine_name' => 'niveau',
@@ -60,6 +68,14 @@ function ecoles_taxonomy_taxonomy_default_vocabularies() {
     'taompianarana' => array(
       'name' => 'Taompianarana',
       'machine_name' => 'taompianarana',
+      'description' => '',
+      'hierarchy' => 0,
+      'module' => 'taxonomy',
+      'weight' => 0,
+    ),
+    'type_de_note' => array(
+      'name' => 'Type de note',
+      'machine_name' => 'type_de_note',
       'description' => '',
       'hierarchy' => 0,
       'module' => 'taxonomy',

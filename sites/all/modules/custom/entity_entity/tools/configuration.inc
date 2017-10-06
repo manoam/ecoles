@@ -3,7 +3,7 @@
 /*
  * mi-setter ny variable get rehetra ilaina
  */
-
+module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/PeriodTaxonomyTermWrapper');
 module_load_include('php', 'wrappers_custom', 'includes/user/UserUserWrapper');
 
 function configuration_form($form,&$form_state){
@@ -25,19 +25,41 @@ function configuration_form($form,&$form_state){
     ) ;
     
     $form['taompianarana'] = array(
-        '#title'    => t('ANNEE SCOLAIRE'),
-        '#type'     => 'fieldset',
-        '#prefix' => '<div class="view_left">',
+        '#title'  => t('ANNEE SCOLAIRE'),
+        '#type'   => 'fieldset',
+        '#prefix' => '<div id="period_view" class="view_left">',
         '#suffix' => '</div>',
     );
     
     $options = _get_taxonomy_term('taompianarana');
             
     $form['taompianarana']['TAOMPIANARANA'] = array(
-        '#title'        => t('Année Scolaire : '),
+        '#title'        => t('Année Scolaire Courant: '),
         '#type'         => 'select',
         '#options'      => $options,
         '#default_value'=> variable_get('TAOMPIANARANA'),
+        '#prefix'       =>'<div class = "copyright">',
+        '#suffix'       => '</div>',
+        '#ajax' => array(
+            'callback' => '_ajax_get_period_by_taompianarana_callback',
+        )
+    ) ;
+     
+    $taompianarana_tid = variable_get('TAOMPIANARANA');
+    
+    if(isset($form_state['values']['TAOMPIANARANA'])){
+        $taompianarana_tid = $form_state['values']['TAOMPIANARANA'];
+    }
+    
+    $options = PeriodTaxonomyTermWrapper::getClassByTaompianarana($taompianarana_tid);
+    
+    $form['taompianarana']['PERIODE'] = array(
+        '#title'        => t('Periode Courant: '),
+        '#type'         => 'select',
+        '#options'      => $options,
+        '#prefix'       =>'<div class = "copyright">',
+        '#suffix'       => '</div>',
+        '#default_value'=> variable_get('PERIODE'),
     ) ;
     
     
@@ -148,3 +170,13 @@ function configuration_form($form,&$form_state){
     return system_settings_form($form);
 }
 
+
+function _ajax_get_period_by_taompianarana_callback($form, &$form_state) {
+    
+    $commands = array();
+
+    $taompianarana = $form['taompianarana'];
+
+    $commands[] = ajax_command_replace('#period_view', drupal_render($taompianarana));
+    return array('#type' => 'ajax', '#commands' => $commands);
+}

@@ -100,29 +100,18 @@ function ecoles_deploy_update_7009(){
     cache_clear_all();
     features_revert();
     cache_clear_all();
-    
-    module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/RedoublementTaxonomyTermWrapper');
-    
-    $redoublement = RedoublementTaxonomyTermWrapper::create();
-    $redoublement->setName('Passant');
-    $redoublement->setCode('P');
-    $redoublement->save();
-    
-    $redoublement = RedoublementTaxonomyTermWrapper::create();
-    $redoublement->setName('Redoublant');
-    $redoublement->setCode('R');
-    $redoublement->save();
-    
-    $redoublement = RedoublementTaxonomyTermWrapper::create();
-    $redoublement->setName('Triplant');
-    $redoublement->setCode('T');
-    $redoublement->save();
 }
 
 /**
  * Mi-activer ny field_type int float sns
  */
 function ecoles_deploy_update_7010(){
+    
+    cache_clear_all();
+    features_revert();
+    cache_clear_all();
+    features_revert();
+    cache_clear_all();
     module_enable(array('number'));
 }
 
