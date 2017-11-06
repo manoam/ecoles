@@ -245,4 +245,105 @@ function _note_set_matiere_class_form_submit($form, &$form_state) {
     }
 }
 
+function _note_form_mode_calcul($form, &$form_state) {
+    
+    
+    $form['note'] = array(
+        '#type' => 'fieldset',
+        '#prefix' => '<div class="eleve_main_view">',
+        '#suffix' => '</div>',
+    );
+    
+    $header  = array(t('Id') , t('Nom'));
+    $rows    = array();
+    $options = _get_taxonomy_term('type_de_note');
+    
+    foreach ($options as $key => $value) {
+        
+        if( ! in_array($key, array(variable_get('NOTE_SUR_20'),variable_get('NOTE_DEFINITIF')))){
+            $rows[] = array($key, $value);
+        }
+    }
+    
+    $output = theme('table', array('header' => $header, 'rows' => $rows));
+    $form['note']['table'] = array(
+        '#type' => 'markup',
+        '#markup' => $output,
+        '#prefix' => '<div id="">',
+        '#suffix' => '</div>'
+    );
+    
+    $form['mode'] = array(
+        '#type' => 'fieldset',
+        '#prefix' => '<div class="view_left">',
+        '#suffix' => '</div>',
+    );
+    
+    $form['mode']['operetion'] = array(
+        '#type' => 'textarea',
+        '#title'=> t('Mode de calcule de la note /20 : '),
+        '#default_value'=>variable_get('OPERATION_'. variable_get('PERIODE')),
+    );
+    
+    $form['mode']['submit'] = array(
+        '#type' => 'submit',
+        '#value'=> t('Enregistrer'),
+    );
+    
+    return $form;
+}
 
+
+function _note_form_mode_calcul_validate($form , &$form_state) {
+    
+    $operetion      = $form_state['values']['operetion'];
+    $search         = array('(',')','*','+','-','/',' ');
+    $replace        = array('' , '', '', '', '', '', '');
+    $operetionClean = str_replace($search, $replace, $operetion);
+    $operetionArray = explode("@", $operetionClean);
+    $type_de_note   = _get_taxonomy_term('type_de_note');
+    $type_note_array= array_keys($type_de_note);
+    
+    foreach ($operetionArray as $value) {
+        
+        if( $value != NULL && ! in_array($value, $type_note_array)){
+
+            $arrayValue = explode("#", $value);
+            $countValue = count($arrayValue);
+            
+            if($arrayValue[$countValue -1] != NULL && ! in_array($arrayValue[$countValue -1], $type_note_array)){
+            
+                form_set_error('operetion', t('Erreur de type d\'operation'));
+            }
+        }
+    }
+    
+    foreach ($type_note_array as $type_note) {
+        
+        $operetion = str_replace($type_note.'@', 20, $operetion);
+    }
+    
+    $total = 0;
+    if($operetion != NULL){
+        
+        $operetion = str_replace('#', '', $operetion);
+        eval('$total = '.$operetion. ';');
+    }
+    
+    if($total != 20){
+        
+        form_set_error('operetion', t('Erreur de type d\'operation : votre operation ne donnee la note 20/20'));
+    }
+    
+}
+
+
+function _note_form_mode_calcul_submit($form , &$form_state) {
+    
+    if(variable_get('PERIODE') != NULL){
+        $operetion      = $form_state['values']['operetion'];
+        variable_set('OPERATION_'. variable_get('PERIODE'), $operetion);
+    }else{
+        drupal_set_message(t('Avant d\'enregistrer l\'operation il faut électionnée la periode courante'));
+    }
+}

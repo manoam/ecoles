@@ -1,0 +1,11 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[remote "manoam_ecoles"]
+	url = https://github.com/manoam/ecoles.git
+	fetch = +refs/heads/*:refs/remotes/manoam_ecoles/*
+[remote "manoam_ecoles_ssh"]
+	url = git@github.com:manoam/ecoles.git
+	fetch = +refs/heads/*:refs/remotes/manoam_ecoles_ssh/*

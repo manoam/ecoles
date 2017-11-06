@@ -51,7 +51,7 @@ function configuration_form($form,&$form_state){
         $taompianarana_tid = $form_state['values']['TAOMPIANARANA'];
     }
     
-    $options = PeriodTaxonomyTermWrapper::getClassByTaompianarana($taompianarana_tid);
+    $options = PeriodTaxonomyTermWrapper::getPeriodByTaompianarana($taompianarana_tid);
     
     $form['taompianarana']['PERIODE'] = array(
         '#title'        => t('Periode Courant: '),

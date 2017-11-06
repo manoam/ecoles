@@ -100,6 +100,14 @@ function entity_entity_menu() {
         'file path' => drupal_get_path('module', 'entity_entity'),
     );
     
+    $items['ecoles/note/mode-calcul'] =array(
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('_note_form_mode_calcul'),
+        'access callback' => 'note_access',
+        'file' => 'includes/note/note_form.inc',
+        'file path' => drupal_get_path('module', 'entity_entity'),
+    );
+    
     $items['ecoles/note/class-matiere'] =array(
         'page callback' => 'drupal_get_form',
         'page arguments' => array('_note_set_matiere_class_form'),

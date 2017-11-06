@@ -121,3 +121,25 @@ function ecoles_deploy_update_7010(){
 function ecoles_deploy_update_7011(){
     module_enable(array('schema'));
 }
+
+/**
+ * Mametraka ny note definitif sy note sur 20
+ */
+function ecoles_deploy_update_7012(){
+    
+    module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/TypeDeNoteTaxonomyTermWrapper');
+    $note_sur_20 = TypeDeNoteTaxonomyTermWrapper::create();
+    $note_sur_20->setName('Note / 20');
+    $note_sur_20->setUsed('1');
+    $note_sur_20->save();
+    
+    variable_set('NOTE_SUR_20', $note_sur_20->getId());
+    
+    $note_def = TypeDeNoteTaxonomyTermWrapper::create();
+    $note_def->setName('Note définitif');
+    $note_def->setUsed('1');
+    $note_def->save();
+    
+    variable_set('NOTE_DEFINITIF', $note_def->getId());
+    
+}

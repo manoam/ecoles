@@ -158,7 +158,7 @@ function _taxonomy_load_form($form, &$form_state, $tid) {
 
                     case 'type_de_note':
 
-                        module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/MatieresTaxonomyTermWrapper');
+                        module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/TypeDeNoteTaxonomyTermWrapper');
 
                         $typeDeNote = new TypeDeNoteTaxonomyTermWrapper($tid);
 

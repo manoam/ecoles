@@ -644,6 +644,8 @@ function import_note_from_xlsx_form($form, &$form_state) {
     );
     
     $option = _get_taxonomy_term('type_de_note');
+    unset($option[variable_get('NOTE_SUR_20')]);
+    unset($option[variable_get('NOTE_DEFINITIF')]);
     $form['import']['type_note_tid'] = array(
         '#type' => 'select',
         '#title' => t('Type de note à importer'),
