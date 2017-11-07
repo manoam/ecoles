@@ -5,12 +5,21 @@ Accueil {"url":"<front>","weight":"-50"}
 -élève no classé {"url":"ecoles\/eleve-no-class\/list","weight":"-48"}
 -Liste des élèves actuel {"url":"ecoles\/eleve\/list","weight":"-47"}
 -Liste de tous les élèves {"url":"liste\/eleves","weight":"-46"}
-Configuration {"url":"ecoles\/configuration","weight":"-46"}
+Configuration {"url":"ecoles\/configuration","weight":"-45"}
 Export/import {"url":"ecoles\/eleve\/import-export","weight":"-48"}
--Export vers excel {"url":"ecoles\/eleve\/export","weight":"-49"}
--Import Excel {"url":"ecoles\/eleve\/import-xlsx","weight":"-50"}
-Utile {"url":"ecoles\/utile\/list","weight":"-47"}
+-Export List élèves {"url":"ecoles\/eleve\/export","weight":"-49"}
+-Import Excel Elève {"url":"ecoles\/eleve\/import-xlsx","weight":"-50"}
+-Template Note {"url":"ecoles\/note\/export-template","weight":"-48"}
+-Import Note {"url":"ecoles\/note\/import-xlsx","weight":"-47"}
+Utile {"url":"ecoles\/utile\/list","weight":"-46"}
 -Année scolaire {"url":"ecoles\/utile\/list\/taompianarana","weight":"-50"}
 -Niveau {"url":"ecoles\/utile\/list\/niveau","weight":"-48"}
 -Classe {"url":"ecoles\/utile\/list\/classe","weight":"-47"}
 -Periode {"url":"ecoles\/utile\/list\/period","weight":"-49"}
+-Matieres {"url":"ecoles\/utile\/list\/matieres","weight":"-46"}
+-Type de note {"url":"ecoles\/utile\/list\/type_de_note","weight":"-45"}
+Note {"url":"ecoles\/note\/class-matiere","weight":"-47"}
+-Liste des notes {"url":"ecoles\/note\/note-list","weight":"-50"}
+-Mode de Calcule {"url":"ecoles\/note\/mode-calcul","weight":"-49"}
+-Matiere par Classe {"url":"ecoles\/note\/class-matiere","weight":"-47"}
+-Calcule moyenne génerale {"url":"ecoles\/note\/calcul-moyenne","weight":"-48"}
