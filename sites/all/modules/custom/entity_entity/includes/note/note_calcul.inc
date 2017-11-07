@@ -54,6 +54,11 @@ function _note_calcul_note_sur_vingt($eleve_id, $mode_calcul, $classe_tid, $mati
                             'operator' => '=',
                             'value' => $type_note,
                         ),
+                        array(
+                            'field_name' => 'eleve_tid',
+                            'operator' => '=',
+                            'value' => $eleve_id,
+                        ),
                     );
 
                     $note = 0;
@@ -91,15 +96,13 @@ function _note_calcul_note_sur_vingt($eleve_id, $mode_calcul, $classe_tid, $mati
  * @param type $input
  * manao ny calcule ny note rehetra ampidirina ao anaty bulletin ity
  */
-function note_calcul_generate_bulletin($input) {
+function note_calcul_generate_bulletin($input, &$total_note = 0, &$total_coeff = 0) {
 
     if (isset($input['ID']) && isset($input['CLASS_TID'])) {
 
         global $user;
         $eleve_id    = $input['ID'];
         $classe_tid  = $input['CLASS_TID'];
-        $total_note  = 0;
-        $total_coeff = 0;
 
         // alaina amin'izay ny note rehetra isaky ny matiere an'ilay ankizy
         $conditions = array(

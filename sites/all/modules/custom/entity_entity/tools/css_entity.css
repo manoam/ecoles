@@ -88,3 +88,22 @@
     margin-top: 25px !important;
     width: 100%;
 }
+
+.bulletin-no-border{
+    border: 1px solid #ffffff;
+}
+
+.bulletin-right{
+    border: 1px solid #ffffff;
+    border-right: 1px solid #000;
+}
+
+.bulletin-note{
+    border: 1px solid #000;
+}
+
+.header-bulletin{
+    border: 1px solid #000;
+    background: #ffffff;
+    color: #000;
+}

@@ -2,94 +2,259 @@
 
 module_load_include('php', 'wrappers_custom', 'includes/user/UserUserWrapper');
 module_load_include('inc', 'entity_entity', 'includes/relation/classMatieres');
+module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/PeriodTaxonomyTermWrapper');
+module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/TypeDeNoteTaxonomyTermWrapper');
 module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/ClasseTaxonomyTermWrapper');
-module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/ClasseTaxonomyTermWrapper');
 
-function fiche_note_form($form, &$form_state) {
+function fiche_note_form($form, &$form_state, $eleve_id) {
 
-    // ity no eo amin'ny voalohany apovoany
-    $markup = t('<div class="entete_center"><H3>REPOBLIKAN\'I MADAGASIKARA</H3><div class="">');
-    $markup.= variable_get('FANEVA_MASCAR');
-    $markup.= t('</br>**************************</div></div>');
+    try {
 
-    // ity no eo amin'ny sisiny ankavia
-    $markup.= t('<div class="entete_left">');
-    $markup.= t('<H3>DIRECTION REGIONAL DES ENSEIGNEMENT </H3>');
-    $markup.= variable_get('DREN');
-    $markup.= t('<H3>CIRCONSCRIPTION SCOLAIRE </H3>');
-    $markup.= variable_get('CISCO');
-    $markup.= t('</div>');
+        if ($eleve_id != NULL) {
+
+            $eleve = new EleveEleveWrapper($eleve_id);
+
+            // ity no eo amin'ny voalohany apovoany
+            $markup = t('<div class="entete_center"><H3>REPOBLIKAN\'I MADAGASIKARA</H3><div class="">');
+            $markup.= variable_get('FANEVA_MASCAR');
+            $markup.= t('</br>**************************</div></div>');
+
+            // ity no eo amin'ny sisiny ankavia
+            $markup.= t('<div class="entete_left">');
+            $markup.= t('<H3>DIRECTION REGIONAL DES ENSEIGNEMENT </H3>');
+            $markup.= variable_get('DREN');
+            $markup.= t('<H3>CIRCONSCRIPTION SCOLAIRE </H3>');
+            $markup.= variable_get('CISCO');
+            $markup.= t('</div>');
 
 
-    $markup.= t('<div class="entete_right"><H3>ANNEE SCOLAIRE : </H3>');
-    $markup.= variable_get('CISCO');
-    $markup.= t('</div>');
+            $markup.= t('<div class="entete_right"><H3>ANNEE SCOLAIRE : </H3>');
+            $markup.= variable_get('CISCO');
+            $markup.= t('</div>');
 
-    $markup.= t('<div class="entete_name">BULLETIN DE NOTES</div>');
+            $markup.= t('<div class="entete_name">BULLETIN DE NOTES</div>');
 
-    $markup.= t('<div class="entete_title"><H1> FICHE DE NOTE </H1></div>');
+            $period = new PeriodTaxonomyTermWrapper(variable_get('PERIODE'));
+            $markup.= t('<div class="entete_title"><H1> ' . $period->getName() . '</H1></div>');
 
-    $form['note'] = array(
-        '#type' => 'markup',
-        '#markup' => $markup,
-    );
+            $form['note'] = array(
+                '#type' => 'markup',
+                '#markup' => $markup,
+            );
 
-    $form['note_2'] = array(
-        '#type' => 'container',
-        '#prefix' => '<div class="list_eleve" >',
-        '#suffix' => '</div>',
-    );
+            $form['note_2'] = array(
+                '#type' => 'container',
+                '#prefix' => '<div class="list_eleve" >',
+                '#suffix' => '</div>',
+            );
 
-    $form['note_2']['nom_prenom'] = array(
-        '#type' => 'markup',
-        '#markup' => t("<b>Nom et prénom :</b>"),
-        '#prefix' => '<div class="" >',
-    );
+            $nom = $eleve->getNom() . ' ' . $eleve->getPrenom();
+            $form['note_2']['nom_prenom'] = array(
+                '#type' => 'markup',
+                '#markup' => t("<b>Nom et prénom : ") . $nom,
+                '#prefix' => '<div class="" >',
+            );
 
-    $form['note_2']['date_naiss'] = array(
-        '#type' => 'markup',
-        '#markup' => t("<b>Date de naissance :</b>"),
-        '#prefix' => '</br>',
-    );
+            $date = date('d - M - Y', $eleve->getDateNaiss());
+            $form['note_2']['date_naiss'] = array(
+                '#type' => 'markup',
+                '#markup' => t("<b>Date de naissance : ") . $date,
+                '#prefix' => '</br>',
+            );
 
-    $form['note_2']['num_mat'] = array(
-        '#type' => 'markup',
-        '#markup' => t("<b>Matricule :</b>"),
-        '#prefix' => '</br>',
-        '#suffix' => '</div>',
-    );
+            $num_mat = $eleve->getNumMat();
+            $form['note_2']['num_mat'] = array(
+                '#type' => 'markup',
+                '#markup' => t("<b>Matricule : ") . $num_mat,
+                '#prefix' => '</br>',
+                '#suffix' => '</div>',
+            );
 
-    $form['note_2']['sex'] = array(
-        '#type' => 'markup',
-        '#markup' => t("<b>Sexe :</b>"),
-        '#prefix' => '<div class="entete_title" >',
-    );
+            $sex = $eleve->getSex()->name;
+            $form['note_2']['sex'] = array(
+                '#type' => 'markup',
+                '#markup' => t("<b>Sexe : ") . $sex,
+                '#prefix' => '<div class="entete_title" >',
+            );
 
-    $form['note_2']['class'] = array(
-        '#type' => 'markup',
-        '#markup' => t("<b>Classe :</b>"),
-        '#prefix' => '</br>',
-        '#suffix' => '</div>',
-    );
+            $form['note_2']['class'] = array(
+                '#type' => 'markup',
+                '#markup' => t("<b>Classe :</b>"),
+                '#prefix' => '</br>',
+                '#suffix' => '</div>',
+            );
 
-    $form['note_2']['numero'] = array(
-        '#type' => 'markup',
-        '#markup' => t("<b>Numero :</b>"),
-        '#prefix' => '<div class="entete_right" >',
-    );
+            $form['note_2']['numero'] = array(
+                '#type' => 'markup',
+                '#markup' => t("<b>Numero :</b>"),
+                '#prefix' => '<div class="entete_right" >',
+            );
 
-    $form['note_2']['effectif'] = array(
-        '#type' => 'markup',
-        '#markup' => t("<b>Effectif :</b>"),
-        '#prefix' => '</br>',
-        '#suffix' => '</div>',
-    );
+            $form['note_2']['effectif'] = array(
+                '#type' => 'markup',
+                '#markup' => t("<b>Effectif :</b>"),
+                '#prefix' => '</br>',
+                '#suffix' => '</div>',
+            );
+
+
+            // manomboka eto ny note
+            $header = array();
+            $rows = array();
+            $getHeader  = TRUE;
+            $totalNote  = 0;
+            $totalCoeff = 0;
+            // alaina izany aloha eto oe firy em ity ankizy ity
+            $find_info = _look_up_eleve_in_eleve_taompianarana($eleve_id);
+            if ($find_info != NULL && isset($find_info['CLASS_TID'])) {
+
+                // manao ny calcule eto sao dia nisy tsy vita ny ankizy sasany
+                $input = array('ID' => $eleve_id, 'CLASS_TID' => $find_info['CLASS_TID']);
+
+                note_calcul_generate_bulletin($input,$totalNote,$totalCoeff);
+
+                if ($getHeader) {
+
+                    $header[] = array('data' => 'Matiére', 'class' => array('header-bulletin'));
+                }
+                // alina indray ny matiere ataon'ilay class
+                $conditions = array(
+                    array(
+                        'field_name' => 'taompianarana_tid',
+                        'value' => variable_get('TAOMPIANARANA'),
+                        'operator' => '=',
+                    ),
+                    array(
+                        'field_name' => 'classe_tid',
+                        'value' => $find_info['CLASS_TID'],
+                        'operator' => '=',
+                    )
+                );
+
+                $result = _selectFromClassMatieres($conditions);
+                while ($record = $result->fetchAssoc()) {
+
+                    $row = array();
+
+                    $matiereTerm = new MatieresTaxonomyTermWrapper($record['matiere_tid']);
+
+                    $row[] = array('data' => $matiereTerm->getName(), 'class' => array('bulletin-note'));
+                    // alina indray avy eo ny note an'ilay ankizy par rapport amin'ilay matiere
+
+                    $type_de_note = _get_taxonomy_term('type_de_note');
+                    $note_general = array(variable_get('NOTE_SUR_20'), variable_get('NOTE_DEFINITIF'));
+
+                    foreach ($type_de_note as $type_note => $note_name) {
+
+                        if (in_array($type_note, $note_general)) {
+                            continue;
+                        }
+
+                        $note = note_form_get_note_in_matiere($find_info['CLASS_TID'], $record['matiere_tid'], $type_note, $eleve_id);
+
+                        if ($note != NULL) {
+
+                            if ($getHeader) {
+
+                                $header[] = array('data' => $note_name, 'class' => array('header-bulletin'));
+                            }
+                            $row[] = array('data' => $note, 'class' => array('bulletin-note'));
+                        }
+                    }
+
+                    // rehefa azo daholo ny type de note izay vao apetraka ilay note sur 20 
+                    $noteTerm = new TypeDeNoteTaxonomyTermWrapper(variable_get('NOTE_SUR_20'));
+
+                    $note = note_form_get_note_in_matiere($find_info['CLASS_TID'], $record['matiere_tid'], variable_get('NOTE_SUR_20'), $eleve_id);
+
+                    if ($note != NULL) {
+
+                        if ($getHeader) {
+
+                            $header[] = array('data' => $noteTerm->getName().' (*)', 'class' => array('header-bulletin'));
+                        }
+                        $row[] = array('data' => $note, 'class' => array('bulletin-note'));
+                    }
+
+                    // appetraka avy eo ny coeff
+                    if ($getHeader) {
+
+                        $header[] = array('data' => 'Coeff', 'class' => array('header-bulletin'));
+                    }
+
+                    $row[] = array('data' => $record['coeff'], 'class' => array('bulletin-note'));
+
+                    // izay vao ny note definitif
+                    $noteTerm = new TypeDeNoteTaxonomyTermWrapper(variable_get('NOTE_DEFINITIF'));
+
+
+                    $note = note_form_get_note_in_matiere($find_info['CLASS_TID'], $record['matiere_tid'], variable_get('NOTE_DEFINITIF'), $eleve_id);
+
+                    if ($note != NULL) {
+
+                        if ($getHeader) {
+
+                            $header[] = array('data' => $noteTerm->getName(), 'class' => array('header-bulletin'));
+                        }
+                        $row[] = array('data' => $note, 'class' => array('bulletin-note'));
+                    }
+                    
+                    // asiana ilay oe tres bien sns
+                    if ($getHeader) {
+
+                        $header[] = array('data' => 'Mention', 'class' => array('header-bulletin'));
+                        $header[] = array('data' => 'Signature', 'class' => array('header-bulletin'));
+                    }
+                    
+                    $row[] = array('data' => '', 'class' => array('bulletin-note'));
+                    $row[] = array('data' => '', 'class' => array('bulletin-note'));
+
+                    $rows[] = $row;
+                    $getHeader = FALSE;
+                }
+                
+                $rowCount = count($row);
+                $row = array();
+                
+                for($i = 0; $i < $rowCount; $i++){
+                    
+                    if($i == $rowCount - 6){
+                        
+                        $row[] = array('data' => '', 'class' => array('bulletin-right'));
+                    }elseif($i == $rowCount - 5){
+                        
+                        $row[] = array('data' => 'Total', 'class' => array('bulletin-note'));
+                    }elseif($i == $rowCount - 4){
+                        
+                        $row[] = array('data' => $totalCoeff, 'class' => array('bulletin-note'));
+                    }elseif($i == $rowCount - 3){
+                        
+                        $row[] = array('data' => $totalNote, 'class' => array('bulletin-note'));
+                    }else{
+                        
+                        $row[] = array('data' => '', 'class' => array('bulletin-no-border'));
+                    }
+                }
+                
+                $rows[] = $row;
+            }
+
+            $markup = theme('table', array('header' => $header, 'rows' => $rows));
+            $form['table'] = array(
+                '#type' => 'markup',
+                '#markup' => $markup,
+            );
+        }
+    } catch (Exception $ex) {
+        
+    }
 
     $form['#attached']['css'][] = array('data' => drupal_get_path('module', 'entity_entity') . '/tools/css_entity.css', 'type' => 'file');
 
     if (isset($_GET['pdf']) && $_GET['pdf'] == 1) {
         drupal_add_css(drupal_get_path('module', 'entity_entity') . '/tools/css_to_pdf.css');
     }
+
     return $form;
 }
 
@@ -167,7 +332,7 @@ function _note_set_matiere_class_form($form, &$form_state) {
             $rows[] = $row;
         }
 
-        $header = array(t("Classe") , t("Matière") , t("Prof") , t("Coeff"));
+        $header = array(t("Classe"), t("Matière"), t("Prof"), t("Coeff"));
         $output = theme('table', array('header' => $header, 'rows' => $rows));
         $form['table'] = array(
             '#type' => 'markup',
@@ -246,25 +411,25 @@ function _note_set_matiere_class_form_submit($form, &$form_state) {
 }
 
 function _note_form_mode_calcul($form, &$form_state) {
-    
-    
+
+
     $form['note'] = array(
         '#type' => 'fieldset',
         '#prefix' => '<div class="eleve_main_view">',
         '#suffix' => '</div>',
     );
-    
-    $header  = array(t('Id') , t('Nom'));
-    $rows    = array();
+
+    $header = array(t('Id'), t('Nom'));
+    $rows = array();
     $options = _get_taxonomy_term('type_de_note');
-    
+
     foreach ($options as $key => $value) {
-        
-        if( ! in_array($key, array(variable_get('NOTE_SUR_20'),variable_get('NOTE_DEFINITIF')))){
+
+        if (!in_array($key, array(variable_get('NOTE_SUR_20'), variable_get('NOTE_DEFINITIF')))) {
             $rows[] = array($key, $value);
         }
     }
-    
+
     $output = theme('table', array('header' => $header, 'rows' => $rows));
     $form['note']['table'] = array(
         '#type' => 'markup',
@@ -272,78 +437,123 @@ function _note_form_mode_calcul($form, &$form_state) {
         '#prefix' => '<div id="">',
         '#suffix' => '</div>'
     );
-    
+
     $form['mode'] = array(
         '#type' => 'fieldset',
         '#prefix' => '<div class="view_left">',
         '#suffix' => '</div>',
     );
-    
+
     $form['mode']['operetion'] = array(
         '#type' => 'textarea',
-        '#title'=> t('Mode de calcule de la note /20 : '),
-        '#default_value'=>variable_get('OPERATION_'. variable_get('PERIODE')),
+        '#title' => t('Mode de calcule de la note /20 : '),
+        '#default_value' => variable_get('OPERATION_' . variable_get('PERIODE')),
     );
-    
+
     $form['mode']['submit'] = array(
         '#type' => 'submit',
-        '#value'=> t('Enregistrer'),
+        '#value' => t('Enregistrer'),
     );
-    
+
     return $form;
 }
 
+function _note_form_mode_calcul_validate($form, &$form_state) {
 
-function _note_form_mode_calcul_validate($form , &$form_state) {
-    
-    $operetion      = $form_state['values']['operetion'];
-    $search         = array('(',')','*','+','-','/',' ');
-    $replace        = array('' , '', '', '', '', '', '');
+    $operetion = $form_state['values']['operetion'];
+    $search = array('(', ')', '*', '+', '-', '/', ' ');
+    $replace = array('', '', '', '', '', '', '');
     $operetionClean = str_replace($search, $replace, $operetion);
     $operetionArray = explode("@", $operetionClean);
-    $type_de_note   = _get_taxonomy_term('type_de_note');
-    $type_note_array= array_keys($type_de_note);
-    
+    $type_de_note = _get_taxonomy_term('type_de_note');
+    $type_note_array = array_keys($type_de_note);
+
     foreach ($operetionArray as $value) {
-        
-        if( $value != NULL && ! in_array($value, $type_note_array)){
+
+        if ($value != NULL && !in_array($value, $type_note_array)) {
 
             $arrayValue = explode("#", $value);
             $countValue = count($arrayValue);
-            
-            if($arrayValue[$countValue -1] != NULL && ! in_array($arrayValue[$countValue -1], $type_note_array)){
-            
+
+            if ($arrayValue[$countValue - 1] != NULL && !in_array($arrayValue[$countValue - 1], $type_note_array)) {
+
                 form_set_error('operetion', t('Erreur de type d\'operation'));
             }
         }
     }
-    
+
     foreach ($type_note_array as $type_note) {
-        
-        $operetion = str_replace($type_note.'@', 20, $operetion);
+
+        $operetion = str_replace($type_note . '@', 20, $operetion);
     }
-    
+
     $total = 0;
-    if($operetion != NULL){
-        
+    if ($operetion != NULL) {
+
         $operetion = str_replace('#', '', $operetion);
-        eval('$total = '.$operetion. ';');
+        eval('$total = ' . $operetion . ';');
     }
-    
-    if($total != 20){
-        
+
+    if ($total != 20) {
+
         form_set_error('operetion', t('Erreur de type d\'operation : votre operation ne donnee la note 20/20'));
     }
-    
 }
 
+function _note_form_mode_calcul_submit($form, &$form_state) {
 
-function _note_form_mode_calcul_submit($form , &$form_state) {
-    
-    if(variable_get('PERIODE') != NULL){
-        $operetion      = $form_state['values']['operetion'];
-        variable_set('OPERATION_'. variable_get('PERIODE'), $operetion);
-    }else{
+    if (variable_get('PERIODE') != NULL) {
+        $operetion = $form_state['values']['operetion'];
+        variable_set('OPERATION_' . variable_get('PERIODE'), $operetion);
+    } else {
         drupal_set_message(t('Avant d\'enregistrer l\'operation il faut électionnée la periode courante'));
     }
+}
+
+function note_form_get_note_in_matiere($classe_tid, $matiere_tid, $type_note, $eleve_tid) {
+
+    $conditions = array(
+        array(
+            'field_name' => 'taompianarana_tid',
+            'operator' => '=',
+            'value' => variable_get('TAOMPIANARANA'),
+        ),
+        array(
+            'field_name' => 'periode_tid',
+            'operator' => '=',
+            'value' => variable_get('PERIODE'),
+        ),
+        array(
+            'field_name' => 'classe_tid',
+            'operator' => '=',
+            'value' => $classe_tid,
+        ),
+        array(
+            'field_name' => 'matiere_tid',
+            'operator' => '=',
+            'value' => $matiere_tid,
+        ),
+        array(
+            'field_name' => 'type_note_tid',
+            'operator' => '=',
+            'value' => $type_note,
+        ),
+        array(
+            'field_name' => 'eleve_tid',
+            'operator' => '=',
+            'value' => $eleve_tid,
+        ),
+    );
+
+    $result = _selectFromEleveNote($conditions);
+
+    if ($result != NULL) {
+
+        while ($record = $result->fetchAssoc()) {
+
+            return $record['note'];
+        }
+    }
+
+    return NULL;
 }

@@ -92,9 +92,9 @@ function entity_entity_menu() {
     /**
      *  Note 
      */
-    $items['ecoles/note/fiche-note'] =array(
+    $items['ecoles/note/fiche-note/%'] =array(
         'page callback' => 'drupal_get_form',
-        'page arguments' => array('fiche_note_form'),
+        'page arguments' => array('fiche_note_form',3),
         'access callback' => 'note_access',
         'file' => 'includes/note/note_form.inc',
         'file path' => drupal_get_path('module', 'entity_entity'),
