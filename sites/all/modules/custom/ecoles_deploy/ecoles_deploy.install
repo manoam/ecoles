@@ -129,7 +129,7 @@ function ecoles_deploy_update_7012(){
     
     module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/TypeDeNoteTaxonomyTermWrapper');
     $note_sur_20 = TypeDeNoteTaxonomyTermWrapper::create();
-    $note_sur_20->setName('Note / 20');
+    $note_sur_20->setName('Note generale');
     $note_sur_20->setUsed('1');
     $note_sur_20->save();
     
@@ -141,5 +141,5 @@ function ecoles_deploy_update_7012(){
     $note_def->save();
     
     variable_set('NOTE_DEFINITIF', $note_def->getId());
-    
+
 }

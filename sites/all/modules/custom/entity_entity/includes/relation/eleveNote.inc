@@ -7,31 +7,74 @@ module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/Taompianar
 function _insertIntoEleveNote($taompianarana_tid, $classe_tid, $matiere_tid, $eleve_id, $type_note_tid, $periode_tid, $note, $created_user) {
 
     if ($taompianarana_tid != NULL &&
-            $classe_tid != NULL &&
-            $matiere_tid != NULL &&
-            $eleve_id != NULL &&
-            $type_note_tid != NULL &&
-            $periode_tid != NULL &&
-            $note != NULL &&
-            $created_user != NULL) {
+        $classe_tid != NULL &&
+        $matiere_tid != NULL &&
+        $eleve_id != NULL &&
+        $type_note_tid != NULL &&
+        $periode_tid != NULL &&
+        $created_user != NULL) {
 
         try {
 
-            $id = db_insert('eleveNote')->fields(array(
-                        'taompianarana_tid' => $taompianarana_tid,
-                        'classe_tid' => $classe_tid,
-                        'matiere_tid' => $matiere_tid,
-                        'eleve_tid' => $eleve_id,
-                        'type_note_tid' => $type_note_tid,
-                        'periode_tid' => $periode_tid,
-                        'note' => $note,
-                        'created_date' => strtotime('now'),
-                        'created_user' => $created_user,
-                            )
-                    )
-                    ->execute();
-
-            return $id;
+            $conditions = array(
+                array(
+                    'field_name' => 'taompianarana_tid',
+                    'operator' => '=',
+                    'value' => $taompianarana_tid,
+                ),
+                array(
+                    'field_name' => 'periode_tid',
+                    'operator' => '=',
+                    'value' => $periode_tid,
+                ),
+                array(
+                    'field_name' => 'classe_tid',
+                    'operator' => '=',
+                    'value' => $classe_tid,
+                ),
+                array(
+                    'field_name' => 'matiere_tid',
+                    'operator' => '=',
+                    'value' => $matiere_tid,
+                ),
+                array(
+                    'field_name' => 'type_note_tid',
+                    'operator' => '=',
+                    'value' => $type_note_tid,
+                ),
+                array(
+                    'field_name' => 'eleve_tid',
+                    'operator' => '=',
+                    'value' => $eleve_id,
+                ),
+            );
+            $find = _selectFromEleveNote($conditions);
+            
+            if($find->rowCount() != 0){
+                
+                _updateEleveNote(array('note'=>is_numeric($note) ? $note : 0), $conditions);
+                
+                return 1;
+                
+            }else{
+                
+                $id = db_insert('eleveNote')->fields(array(
+                            'taompianarana_tid' => $taompianarana_tid,
+                            'classe_tid' => $classe_tid,
+                            'matiere_tid' => $matiere_tid,
+                            'eleve_tid' => $eleve_id,
+                            'type_note_tid' => $type_note_tid,
+                            'periode_tid' => $periode_tid,
+                            'note' => is_numeric($note) ? $note : 0,
+                            'created_date' => strtotime('now'),
+                            'created_user' => $created_user,
+                                )
+                        )
+                        ->execute();
+                
+                return $id;
+            }
+            
         } catch (Exception $ex) {
             drupal_set_message(t('[eleveNote::_insertIntoEleveNote()] Erreur: @mess', array('@mess' => $ex->getMessage())), 'error');
         }

@@ -878,6 +878,7 @@ class SimpleXLSX {
             
             foreach ($sheet as $key => $value) {
                 $worksheet_id = $key;
+                break;
             }
             if (( $ws = $this->worksheet($worksheet_id) ) === false) {
                 return array();

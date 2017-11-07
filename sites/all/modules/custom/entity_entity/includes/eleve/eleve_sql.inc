@@ -7,10 +7,14 @@
  * @param type $class_tid
  * @param type $taompianarana_tid
  */
-function _eleve_sql_list_eleve($niveau_tid = NULL, $class_tid = NULL,$taompianarana_tid,$nom_prenom = NULL,$num_mat = NULL ,$sex = NULL) {
+function _eleve_sql_list_eleve($niveau_tid = NULL, $class_tid = NULL,$taompianarana_tid = NULL,$nom_prenom = NULL,$num_mat = NULL ,$sex = NULL) {
     
     $sql = "";
     
+    if($taompianarana_tid == NULL){
+        
+        $taompianarana_tid = variable_get('TAOMPIANARANA');
+    }
     if($taompianarana_tid != NULL){
         
         $sql .= "SELECT ";

@@ -21,6 +21,7 @@ function _note_list_list_form($form, &$form_state) {
     );
 
     $options = _get_taxonomy_term('type_de_note');
+    unset($options[variable_get('NOTE_DEFINITIF')]);
 
     $form['filter']['type_note_tid'] = array(
         '#type' => 'select',
