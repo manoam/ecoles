@@ -103,6 +103,8 @@ function note_calcul_generate_bulletin($input, &$total_note = 0, &$total_coeff =
         global $user;
         $eleve_id    = $input['ID'];
         $classe_tid  = $input['CLASS_TID'];
+        $total_note  = 0;
+        $total_coeff = 0;
 
         // alaina amin'izay ny note rehetra isaky ny matiere an'ilay ankizy
         $conditions = array(
@@ -172,5 +174,47 @@ function note_calcul_generate_bulletin($input, &$total_note = 0, &$total_coeff =
         $moyen = $total_note / $total_coeff;
         // ilay '0' dia milaza oe moyenne generale sy toutes matiere
         _insertIntoEleveNote(variable_get('TAOMPIANARANA'), $classe_tid, '0', $eleve_id, '0', variable_get('PERIODE'), $moyen, $user->uid);
+        
+        // eto no anaovana ny rang an'ilay ankizy
+        $rangConditions = array(
+            array(
+                'field_name' => 'taompianarana_tid',
+                'operator' => '=',
+                'value' => variable_get('TAOMPIANARANA'),
+            ),
+            array(
+                'field_name' => 'periode_tid',
+                'operator' => '=',
+                'value' => variable_get('PERIODE'),
+            ),
+            array(
+                'field_name' => 'classe_tid',
+                'operator' => '=',
+                'value' => $classe_tid,
+            ),
+            array(
+                'field_name' => 'matiere_tid',
+                'operator' => '=',
+                'value' => '0',
+            ),
+            array(
+                'field_name' => 'type_note_tid',
+                'operator' => '=',
+                'value' => '0',
+            ),
+        );
+        
+        $result_rang  = _selectFromEleveNote($rangConditions);
+        $rang         = array();
+        $i            = 1;
+        while ($record_rang = $result_rang->fetchAssoc()) {
+
+            $rang[$record_rang['eleve_tid'].'_'] = $i++;
+        }
+        
+        $name = variable_get('TAOMPIANARANA').'_'.variable_get('PERIODE').'_'.$classe_tid;
+        variable_set($name, $rang);
+        
+        return $moyen;
     }
 }

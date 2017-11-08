@@ -150,6 +150,8 @@ function _selectFromEleveNote($conditions = array()) {
         foreach ($conditions as $predicate) {
             $query->condition('t.' . $predicate['field_name'], $predicate['value'], $predicate['operator']);
         }
+        
+        $query->orderBy('note', 'DESC');
 
         $result = $query->execute();
 

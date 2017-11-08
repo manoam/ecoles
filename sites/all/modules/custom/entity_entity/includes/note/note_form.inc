@@ -90,28 +90,23 @@ function fiche_note_form($form, &$form_state, $eleve_id) {
                 '#prefix' => '<div class="entete_right" >',
             );
 
-            $form['note_2']['effectif'] = array(
-                '#type' => 'markup',
-                '#markup' => t("<b>Effectif :</b>"),
-                '#prefix' => '</br>',
-                '#suffix' => '</div>',
-            );
-
-
             // manomboka eto ny note
             $header = array();
             $rows = array();
             $getHeader  = TRUE;
             $totalNote  = 0;
             $totalCoeff = 0;
+            $moyenne    = 0;
+            $classe_tid = 0;
             // alaina izany aloha eto oe firy em ity ankizy ity
             $find_info = _look_up_eleve_in_eleve_taompianarana($eleve_id);
             if ($find_info != NULL && isset($find_info['CLASS_TID'])) {
 
+                $classe_tid = $find_info['CLASS_TID'];
                 // manao ny calcule eto sao dia nisy tsy vita ny ankizy sasany
-                $input = array('ID' => $eleve_id, 'CLASS_TID' => $find_info['CLASS_TID']);
+                $input = array('ID' => $eleve_id, 'CLASS_TID' => $classe_tid);
 
-                note_calcul_generate_bulletin($input,$totalNote,$totalCoeff);
+                $moyenne = note_calcul_generate_bulletin($input,$totalNote,$totalCoeff);
 
                 if ($getHeader) {
 
@@ -126,7 +121,7 @@ function fiche_note_form($form, &$form_state, $eleve_id) {
                     ),
                     array(
                         'field_name' => 'classe_tid',
-                        'value' => $find_info['CLASS_TID'],
+                        'value' => $classe_tid,
                         'operator' => '=',
                     )
                 );
@@ -150,7 +145,7 @@ function fiche_note_form($form, &$form_state, $eleve_id) {
                             continue;
                         }
 
-                        $note = note_form_get_note_in_matiere($find_info['CLASS_TID'], $record['matiere_tid'], $type_note, $eleve_id);
+                        $note = note_form_get_note_in_matiere($classe_tid, $record['matiere_tid'], $type_note, $eleve_id);
 
                         if ($note != NULL) {
 
@@ -165,7 +160,7 @@ function fiche_note_form($form, &$form_state, $eleve_id) {
                     // rehefa azo daholo ny type de note izay vao apetraka ilay note sur 20 
                     $noteTerm = new TypeDeNoteTaxonomyTermWrapper(variable_get('NOTE_SUR_20'));
 
-                    $note = note_form_get_note_in_matiere($find_info['CLASS_TID'], $record['matiere_tid'], variable_get('NOTE_SUR_20'), $eleve_id);
+                    $note = note_form_get_note_in_matiere($classe_tid, $record['matiere_tid'], variable_get('NOTE_SUR_20'), $eleve_id);
 
                     if ($note != NULL) {
 
@@ -188,7 +183,7 @@ function fiche_note_form($form, &$form_state, $eleve_id) {
                     $noteTerm = new TypeDeNoteTaxonomyTermWrapper(variable_get('NOTE_DEFINITIF'));
 
 
-                    $note = note_form_get_note_in_matiere($find_info['CLASS_TID'], $record['matiere_tid'], variable_get('NOTE_DEFINITIF'), $eleve_id);
+                    $note = note_form_get_note_in_matiere($classe_tid, $record['matiere_tid'], variable_get('NOTE_DEFINITIF'), $eleve_id);
 
                     if ($note != NULL) {
 
@@ -244,6 +239,32 @@ function fiche_note_form($form, &$form_state, $eleve_id) {
                 '#type' => 'markup',
                 '#markup' => $markup,
             );
+            
+            
+            $form['footer']['moyenne'] = array(
+                '#type' => 'markup',
+                '#markup' => '<b>MOYENNE : '.$moyenne.' / 20 ',
+                '#prefix' => '</br>',
+                '#suffix' => '</div>',
+            );
+            
+            $name = variable_get('TAOMPIANARANA').'_'.variable_get('PERIODE').'_'.$classe_tid;
+            $rang = variable_get($name);
+            
+            $form['footer']['rang'] = array(
+                '#type' => 'markup',
+                '#markup' => t("<b>Rang : ").$rang[$eleve_id.'_'] . ' / ' . count($rang),
+                '#prefix' => '</br>',
+                '#suffix' => '</div>',
+            );
+            
+            $form['note_2']['effectif'] = array(
+                '#type' => 'markup',
+                '#markup' => t("<b>Effectif : ".count($rang)),
+                '#prefix' => '</br>',
+                '#suffix' => '</div>',
+            );
+
         }
     } catch (Exception $ex) {
         
@@ -446,7 +467,7 @@ function _note_form_mode_calcul($form, &$form_state) {
 
     $form['mode']['operetion'] = array(
         '#type' => 'textarea',
-        '#title' => t('Mode de calcule de la note /20 : '),
+        '#title' => t('Mode de calcule de la note /20 dans cette periode: '),
         '#default_value' => variable_get('OPERATION_' . variable_get('PERIODE')),
     );
 

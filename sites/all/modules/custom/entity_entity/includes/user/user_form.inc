@@ -14,6 +14,32 @@ function _user_form_form($form, &$form_state,$user_id) {
         
         $form['user']['nom'] = array(
             '#type'=> 'textfield',
+            '#title' => 'Nom',
+            '#value' => $user->getNom(),
+        );
+        
+        $form['user']['sex'] = array(
+            '#type'=> 'textfield',
+            '#title' => 'Sexe',
+            '#value' => $user->getSex() != NULL ? $user->getSex()->name : "",
+        );
+        
+        $form['user']['tel'] = array(
+            '#type'=> 'textfield',
+            '#title' => 'Telephone',
+            '#value' => $user->getTel(),
+        );
+        
+        $form['user']['adress'] = array(
+            '#type'=> 'textfield',
+            '#title' => 'Adresse',
+            '#value' => $user->getAdress(),
+        );
+        
+        $form['user']['bio'] = array(
+            '#type'=> 'textarea',
+            '#title' => 'Biographie',
+            '#value' => $user->getBiographie(),
         );
     }
     $form['#attached']['css'][] = array('data' => drupal_get_path('module', 'entity_entity') . '/tools/css_entity.css', 'type' => 'file');
