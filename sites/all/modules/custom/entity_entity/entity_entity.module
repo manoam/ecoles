@@ -1,6 +1,7 @@
 <?php
 
 define('FILE_PHOTO', 'photo');
+define('FILE_PHOTO_TO_UPLOAD', 'photo_upload');
 define('PUBLIC_FILE','sites/default/files');
 define('_PUBLIC','public://');
 

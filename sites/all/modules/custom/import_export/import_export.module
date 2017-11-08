@@ -6,6 +6,7 @@ define('TEMPLET_EXCEL', 'template_excel.xlsx');
 module_load_include('list.inc', 'entity_entity', 'includes/eleve/eleve');
 module_load_include('php', 'wrappers_custom', 'includes/eleve/EleveEleveWrapper');
 module_load_include('inc', 'entity_entity', 'includes/relation/classMatieres');
+module_load_include('inc', 'entity_entity', 'tools/upload_photo');
 module_load_include('inc', 'entity_entity', 'includes/note/note_calcul');
 module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/RedoublementTaxonomyTermWrapper');
 module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/ClasseTaxonomyTermWrapper');
@@ -107,7 +108,7 @@ function import_from_xlsx_form() {
     
     $markup  = t('<p>Pour importer un fichier excel veullez assurer que les colones suivant sont existe et en ordre :</p>');
     $markup .= t('<p> Numero matricule, Nom, Prénom, Sexe, Date de naissance, Lieu de Naissance,'
-            . 'Adresse, Numero Telephone, Nom du père, Fonction Père, Nom Mère, Fonction Mère, Adrees de parent, Nom Tuteur, Fonction Tuteur, Num Tel Tuteur, Adresse Tuteur, Niveau, Classe, Redoublement');
+            . 'Adresse, Numero Telephone, Nom du père, Fonction Père, Nom Mère, Fonction Mère, Adrees de parent, Nom Tuteur, Fonction Tuteur, Num Tel Tuteur, Adresse Tuteur, Niveau, Classe, Redoublement, Référence photo');
     $markup .= t('<p>Pour le <b> sexe </b>: <ul> <li> 1 => Homme </li> <li> 2 => Femme </li></ul></p>');
     $markup .= t('<p>Pour le <b> niveau </b> veuillez voir dans la '. l('list niveau','ecoles/utile/list/niveau'). ' et utilisez le code pour l\'import excel ou csv </p>');
     $markup .= t('<p>Pour la <b> Classe </b> veuillez voir dans la '. l('list classe','ecoles/utile/list/classe'). ' et utilisez le code pour l\'import excel ou csv </p>');
@@ -163,7 +164,7 @@ function import_from_xlsx_form_validate(&$form, &$form_state) {
 
         foreach( $xlsx->rowsEleve() as $line ) {
 
-            if (count($line) != 20) {
+            if (count($line) != 21) {
                 form_set_error('xlsxfile', t('This file has the incorrect number of columns. Expecting 20'));
             }
             break;
@@ -174,10 +175,10 @@ function import_from_xlsx_form_validate(&$form, &$form_state) {
 function import_from_xlsx_form_submit($form, &$form_state) {
 
     $batch = array(
-        'title' => t('Importing CSV ...'),
+        'title' => t('Import excel ...'),
         'operations' => array(),
-        'init_message' => t('Commencing'),
-        'progress_message' => t('Processed @current out of @total.'),
+        'init_message' => t('Commencer'),
+        'progress_message' => t('Prossession @current sur @total.'),
         'error_message' => t('An error occurred during processing'),
         'finished' => 'bathc_finish',
     );
@@ -190,8 +191,14 @@ function import_from_xlsx_form_submit($form, &$form_state) {
 
         $xlsx = new SimpleXLSX( $filename );
 
+        $i = 1;
         foreach( $xlsx->rowsEleve() as $line ) {
 
+            if($i == 1){
+                $i++;
+                continue;
+            }
+            
             $batch['operations'][] = array('import_from_xlsx_import_line', array($line));
         }
         
@@ -224,6 +231,7 @@ function import_from_xlsx_import_line($line, &$context) {
     $niveau         = trim($line[17]);
     $classe         = trim($line[18]);
     $redoublement   = trim($line[19]);
+    $photo          = trim($line[20]);
 
     $niveau_tid   = NiveauTaxonomyTermWrapper::getNiveauByCode($niveau);
     $classe_tid   = ClasseTaxonomyTermWrapper::getClasseByCode($classe);
@@ -242,6 +250,28 @@ function import_from_xlsx_import_line($line, &$context) {
             $error_message = array();
 
             $eleve_id = EleveEleveWrapper::addEleve($num_mat, $nom, $prenom, $sex, $date_naiss, $lieu, $adress, $num_tel, $nom_pere, $func_pere, $nom_mere,$parent_adress, $funct_mere, $nom_tuteur ,$funct_tuteur,$num_tel_tuteur,$adress_tuteur,$error_message);
+            
+            // enregistrer-na eto indray ilay image raha misy 
+            if ($photo != NULL) {
+                $filePath = variable_get('PUBLIC_FILE', 'public://') . FILE_PHOTO;
+                
+                $source_file= variable_get('PUBLIC_FILE', 'public://') . FILE_PHOTO_TO_UPLOAD.$photo;
+                
+                $photo_name = $eleve->getId() . '_' . $eleve->getNumMat();
+                
+                $dir = file_stream_wrapper_get_instance_by_uri($filePath)->realpath();
+                $destination_file = $dir . '/' . $photo_name;
+                $ext = NULL;
+                // miditra eto vao hazo ilay extension an'ilay sary
+                _upload_photo_compress_and_copy_image($source_file, $destination_file, $ext);
+
+                if ($ext != NULL) {
+                    
+                    $eleve = new EleveEleveWrapper($eleve_id);
+                    $eleve->setPhoto(array(PUBLIC_FILE . '/' . FILE_PHOTO . '/' . $photo_name . '.' . $ext));
+                    $eleve->save();
+                }
+            }
 
             if ($eleve_id != NULL && $niveau_tid != NULL) {
 
@@ -255,19 +285,24 @@ function import_from_xlsx_import_line($line, &$context) {
                     $db_transaction->rollback();
                     drupal_set_message(t('Enregistrement echoé. Num mat : '.$num_mat), 'error');
                 }
+                
             }elseif($niveau_tid == NULL) {
+                
                 drupal_set_message(t('Enregistrement reussi mais pas de niveau. Num mat : '.$num_mat), 'error');
             }
 
             foreach ($error_message as $value) {
+                
                 drupal_set_message($value, 'error');
             }
             
         }catch (Exception $e){
+            
             $db_transaction->rollback();
             drupal_set_message(t('Enregistrement echoé. Num mat : '.$num_mat), 'error');
         }
     } else {
+        
         drupal_set_message(t('Ligne erroné.Num Mat : '.$num_mat), 'error');
     }
 }
