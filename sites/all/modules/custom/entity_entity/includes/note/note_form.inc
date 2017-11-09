@@ -37,59 +37,6 @@ function fiche_note_form($form, &$form_state, $eleve_id) {
             $period = new PeriodTaxonomyTermWrapper(variable_get('PERIODE'));
             $markup.= t('<div class="entete_title"><H1> ' . $period->getName() . '</H1></div>');
 
-            $form['note'] = array(
-                '#type' => 'markup',
-                '#markup' => $markup,
-            );
-
-            $form['note_2'] = array(
-                '#type' => 'container',
-                '#prefix' => '<div class="list_eleve" >',
-                '#suffix' => '</div>',
-            );
-
-            $nom = $eleve->getNom() . ' ' . $eleve->getPrenom();
-            $form['note_2']['nom_prenom'] = array(
-                '#type' => 'markup',
-                '#markup' => t("<b>Nom et prénom : ") . $nom,
-                '#prefix' => '<div class="" >',
-            );
-
-            $date = date('d - M - Y', $eleve->getDateNaiss());
-            $form['note_2']['date_naiss'] = array(
-                '#type' => 'markup',
-                '#markup' => t("<b>Date de naissance : ") . $date,
-                '#prefix' => '</br>',
-            );
-
-            $num_mat = $eleve->getNumMat();
-            $form['note_2']['num_mat'] = array(
-                '#type' => 'markup',
-                '#markup' => t("<b>Matricule : ") . $num_mat,
-                '#prefix' => '</br>',
-                '#suffix' => '</div>',
-            );
-
-            $sex = $eleve->getSex()->name;
-            $form['note_2']['sex'] = array(
-                '#type' => 'markup',
-                '#markup' => t("<b>Sexe : ") . $sex,
-                '#prefix' => '<div class="entete_title" >',
-            );
-
-            $form['note_2']['class'] = array(
-                '#type' => 'markup',
-                '#markup' => t("<b>Classe :</b>"),
-                '#prefix' => '</br>',
-                '#suffix' => '</div>',
-            );
-
-            $form['note_2']['numero'] = array(
-                '#type' => 'markup',
-                '#markup' => t("<b>Numero :</b>"),
-                '#prefix' => '<div class="entete_right" >',
-            );
-
             // manomboka eto ny note
             $header = array();
             $rows = array();
@@ -101,6 +48,59 @@ function fiche_note_form($form, &$form_state, $eleve_id) {
             // alaina izany aloha eto oe firy em ity ankizy ity
             $find_info = _look_up_eleve_in_eleve_taompianarana($eleve_id);
             if ($find_info != NULL && isset($find_info['CLASS_TID'])) {
+
+                $form['note'] = array(
+                    '#type' => 'markup',
+                    '#markup' => $markup,
+                );
+
+                $form['note_2'] = array(
+                    '#type' => 'container',
+                    '#prefix' => '<div class="list_eleve" >',
+                    '#suffix' => '</div>',
+                );
+
+                $nom = $eleve->getNom() . ' ' . $eleve->getPrenom();
+                $form['note_2']['nom_prenom'] = array(
+                    '#type' => 'markup',
+                    '#markup' => t("<b>Nom et prénom : ") . $nom,
+                    '#prefix' => '<div class="" >',
+                );
+
+                $date = date('d - M - Y', $eleve->getDateNaiss());
+                $form['note_2']['date_naiss'] = array(
+                    '#type' => 'markup',
+                    '#markup' => t("<b>Date de naissance : ") . $date,
+                    '#prefix' => '</br>',
+                );
+
+                $num_mat = $eleve->getNumMat();
+                $form['note_2']['num_mat'] = array(
+                    '#type' => 'markup',
+                    '#markup' => t("<b>Matricule : ") . $num_mat,
+                    '#prefix' => '</br>',
+                    '#suffix' => '</div>',
+                );
+
+                $sex = $eleve->getSex()->name;
+                $form['note_2']['sex'] = array(
+                    '#type' => 'markup',
+                    '#markup' => t("<b>Sexe : ") . $sex,
+                    '#prefix' => '<div class="entete_title" >',
+                );
+
+                $form['note_2']['class'] = array(
+                    '#type' => 'markup',
+                    '#markup' => t("<b>Classe : ".$find_info['CLASS_NAME']),
+                    '#prefix' => '</br>',
+                    '#suffix' => '</div>',
+                );
+
+                $form['note_2']['numero'] = array(
+                    '#type' => 'markup',
+                    '#markup' => t("<b>Numero :</b>"),
+                    '#prefix' => '<div class="entete_right" >',
+                );
 
                 $classe_tid = $find_info['CLASS_TID'];
                 // manao ny calcule eto sao dia nisy tsy vita ny ankizy sasany

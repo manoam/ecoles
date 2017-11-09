@@ -35,11 +35,20 @@ function entity_entity_menu() {
         'type'=> MENU_LOCAL_TASK,
         'weight' => 4,
     );
+    
     $items['ecoles/eleve/list'] =array(
         'page callback' => 'drupal_get_form',
         'file' => 'includes/eleve/eleve.list.inc',
         'file path' => drupal_get_path('module', 'entity_entity'),
         'page arguments' => array('_eleve_list_list'),
+        'access callback' => 'list_eleve_permission',
+    );
+    
+    $items['ecoles/eleve/certificat'] =array(
+        'page callback' => 'drupal_get_form',
+        'file' => 'includes/tools/certificat.inc',
+        'file path' => drupal_get_path('module', 'entity_entity'),
+        'page arguments' => array('certificat_de_scolarite'),
         'access callback' => 'list_eleve_permission',
     );
     

@@ -482,7 +482,7 @@ function _export_list_eleve_to_excel_rows($excel_name, $header, $rows,$key_not_t
 
             //***** Mametraka ny Header ***//
             $colIndex = 0;
-            $rowIndex = 1;
+            $rowIndex = 10;
             foreach ($header as $colValue) {
                 
                 $objPHPExcel->setActiveSheetIndex($activeSheetIndex)->setCellValueByColumnAndRow($colIndex, $rowIndex, $colValue);
@@ -491,7 +491,7 @@ function _export_list_eleve_to_excel_rows($excel_name, $header, $rows,$key_not_t
                 $colIndex++;
             }
 
-            ++$rowIndex;
+            $rowIndex++;
 
             foreach ($rows as $row) {
                 
