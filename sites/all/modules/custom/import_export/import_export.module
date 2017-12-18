@@ -243,6 +243,8 @@ function import_from_xlsx_import_line($line, &$context) {
 
     if (is_numeric($num_mat) && strtotime($date_naiss) > 0 && in_array($sex, array(1, 2)) ) {
 
+        $db_transaction = db_transaction();
+        
         $sex = $sex == 1 ? 8 : 9;
 
         try{
@@ -255,21 +257,24 @@ function import_from_xlsx_import_line($line, &$context) {
             if ($photo != NULL) {
                 $filePath = variable_get('PUBLIC_FILE', 'public://') . FILE_PHOTO;
                 
-                $source_file= variable_get('PUBLIC_FILE', 'public://') . FILE_PHOTO_TO_UPLOAD.$photo;
+                $source_file= variable_get('PUBLIC_FILE', 'public://') . FILE_PHOTO_TO_UPLOAD.'/'.$photo;
                 
-                $photo_name = $eleve->getId() . '_' . $eleve->getNumMat();
-                
-                $dir = file_stream_wrapper_get_instance_by_uri($filePath)->realpath();
-                $destination_file = $dir . '/' . $photo_name;
-                $ext = NULL;
-                // miditra eto vao hazo ilay extension an'ilay sary
-                _upload_photo_compress_and_copy_image($source_file, $destination_file, $ext);
+                if(is_file($source_file)){
 
-                if ($ext != NULL) {
-                    
                     $eleve = new EleveEleveWrapper($eleve_id);
-                    $eleve->setPhoto(array(PUBLIC_FILE . '/' . FILE_PHOTO . '/' . $photo_name . '.' . $ext));
-                    $eleve->save();
+                    $photo_name = $eleve->getId() . '_' . $eleve->getNumMat();
+
+                    $dir = file_stream_wrapper_get_instance_by_uri($filePath)->realpath();
+                    $destination_file = $dir . '/' . $photo_name;
+                    $ext = NULL;
+                    // miditra eto vao hazo ilay extension an'ilay sary
+                    _upload_photo_compress_and_copy_image($source_file, $destination_file, $ext);
+
+                    if ($ext != NULL) {
+
+                        $eleve->setPhoto(array(PUBLIC_FILE . '/' . FILE_PHOTO . '/' . $photo_name . '.' . $ext));
+                        $eleve->save();
+                    }
                 }
             }
 
@@ -303,7 +308,7 @@ function import_from_xlsx_import_line($line, &$context) {
         }
     } else {
         
-        drupal_set_message(t('Ligne erroné.Num Mat : '.$num_mat), 'error');
+        drupal_set_message(t('Ligne erroné. Num Mat : '.$num_mat), 'error');
     }
 }
 
