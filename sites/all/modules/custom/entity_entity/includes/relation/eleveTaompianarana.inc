@@ -62,6 +62,7 @@ function _updateEleveTaompianarana($fieldAndValue, $conditions) {
                 'niveau_tid',
                 'class_tid',
                 'redoublement_tid',
+                'num_class',
             );
 
             //-- Tadiavina ao anatin'ny liste field aloha ilay $field ao @ condition sao tsy ao akory

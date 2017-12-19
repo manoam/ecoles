@@ -143,3 +143,16 @@ function ecoles_deploy_update_7012(){
     variable_set('NOTE_DEFINITIF', $note_def->getId());
 
 }
+
+/**
+ * Manampy field num en class
+ */
+function ecoles_deploy_update_7013($param) {
+    
+    $field = array(
+        'description' => 'numero en class',
+        'type' => 'int',
+        'not null' => FALSE,
+    );
+    db_add_field('eleveTaompianarana', 'num_class', $field);
+}

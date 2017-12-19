@@ -108,6 +108,7 @@ function _eleve_list_list($form, &$form_state) {
     
     $header = array(
         t('Compteur'),
+        t('Num en Classe'),
         t('Num Mat'),
         t('Nom'),
         t('Prénom'),
@@ -132,6 +133,7 @@ function _eleve_list_list($form, &$form_state) {
     foreach ($list as $eleve) {
         $row = array();
         $row[] = $i--;
+        $row[] = $eleve['NUM_CLASS'];
         $row[] = $eleve['NUM_MAT'];
         $row[] = $eleve['NOM'];
         $row[] = $eleve['PRENOM'];

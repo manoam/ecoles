@@ -7,7 +7,7 @@
  * @param type $class_tid
  * @param type $taompianarana_tid
  */
-function _eleve_sql_list_eleve($niveau_tid = NULL, $class_tid = NULL,$taompianarana_tid = NULL,$nom_prenom = NULL,$num_mat = NULL ,$sex = NULL) {
+function _eleve_sql_list_eleve($niveau_tid = NULL, $class_tid = NULL,$taompianarana_tid = NULL,$nom_prenom = NULL,$num_mat = NULL ,$sex = NULL,$orderBy = array()) {
     
     $sql = "";
     
@@ -18,6 +18,7 @@ function _eleve_sql_list_eleve($niveau_tid = NULL, $class_tid = NULL,$taompianar
     if($taompianarana_tid != NULL){
         
         $sql .= "SELECT ";
+        $sql .= " e.num_class as NUM_CLASS,";     
         $sql .= " num_mat.field_num_mat_value as NUM_MAT,";
         $sql .= " nom.field_nom_value as NOM,";
         $sql .= " prenom.field_prenom_value as PRENOM,";
@@ -32,7 +33,8 @@ function _eleve_sql_list_eleve($niveau_tid = NULL, $class_tid = NULL,$taompianar
         
         $sql .= " e.niveau_tid as NIVEAU_TID,";
         $sql .= " e.class_tid as CLASS_TID,";        
-        $sql .= " e.taompianarana_tid as TAOMPIANARANA_TID";
+        $sql .= " e.taompianarana_tid as TAOMPIANARANA_TID,";
+        $sql .= " e.id as TABLE_ID";
         
         $sql .= " FROM";
         
@@ -90,6 +92,11 @@ function _eleve_sql_list_eleve($niveau_tid = NULL, $class_tid = NULL,$taompianar
         }
         if($sex != NULL){
             $sql .= " AND sex.field_sex_tid IN (".$sex.")";
+        }
+        
+        foreach ($orderBy as $order => $value) {
+            
+            $sql .= " ORDER BY ".$value." ".$order;
         }
     }
     

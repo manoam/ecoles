@@ -1220,3 +1220,79 @@ function _ajax_get_class_by_niveau_callback($form, &$form_state) {
 
     return array('#type' => 'ajax', '#commands' => $commands);
 }
+
+
+
+/**
+ * Eto no manao ny generetion ny numero par classe
+ * @param type $form
+ * @param type $form_state
+ * @return string
+ */
+function _ecoles_generate_num_en_class_eleve_form($form, &$form_state) {
+    
+
+    $form['#attributes'] = array(
+        'enctype' => 'multipart/form-data'
+    );
+
+    $form['eleve'] = array(
+        '#type'     => 'fieldset',
+        '#title'    => t('Géneration de numero en classe de tous les élèves'),
+        '#prefix'   => '<div class="eleve_main_view">',
+        '#suffix'   => '</div>',
+    );
+
+    $options = array('NUM_MAT'=>'Numero Matricule','NOM' => 'Nom','PRENOM' => 'Prenom','DATE_NAISS' => 'Date de naissance');
+    
+    $form['eleve']['orderby'] = array(
+        '#type' => 'select',
+        '#title' => t('Ordre par'),
+        '#options' => $options,
+    );
+    
+    $form['eleve']['order'] = array(
+        '#type' => 'select',
+        '#title' => t('Ordre'),
+        '#options' => array('ASC' => 'Ascendant','DESC' => 'Descendant'),
+    );
+
+    $form['eleve']['submit'] = array(
+        '#type'     => 'submit',
+        '#value'    => 'Génerer le numero'
+    );
+
+    return $form;
+}
+
+
+
+function _ecoles_generate_num_en_class_eleve_form_submit($form, $form_state) {
+    
+    $classes = _get_taxonomy_term('classe');
+    $orderBy = $form_state['values']['orderby'];
+    $order   = $form_state['values']['order'];
+    $orderBy = array($order => $orderBy);
+    
+    foreach ($classes as $class_tid => $name) {
+        
+        $i   = 1;
+        $sql = _eleve_sql_list_eleve($niveau_tid = NULL, $class_tid, variable_get('TAOMPIANARANA'), $nom_prenom = NULL, $num_mat = NULL, $sex = NULL, $orderBy);
+
+        $result = db_query($sql);
+
+        while ($record  = $result->fetchAssoc()) {
+            
+            $fieldAndValue = array('num_class' => $i++);
+            
+            $conditions = array(
+                array(
+                    'field_name' => 'id',
+                    'value' => $record['TABLE_ID'],
+                    'operator' => '=',
+                )
+            );
+            _updateEleveTaompianarana($fieldAndValue, $conditions);
+        }
+    }
+}

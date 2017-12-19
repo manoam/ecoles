@@ -60,6 +60,14 @@ function entity_entity_menu() {
         'access callback' => 'list_eleve_permission',
     );
     
+    $items['ecoles/eleve/generer-num-en-class'] =array(
+        'page callback' => 'drupal_get_form',
+        'file' => 'includes/eleve/eleve.form.inc',
+        'file path' => drupal_get_path('module', 'entity_entity'),
+        'access callback' => 'list_eleve_permission',
+        'page arguments' => array('_ecoles_generate_num_en_class_eleve_form'),
+    );
+    
     $items['ecoles/autocomplete/eleve/by-num-mat'] =array(
         'page callback' => 'eleve_autocomplete_by_num_mat',
         'file' => 'includes/eleve/eleve.list.inc',
