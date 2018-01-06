@@ -218,3 +218,37 @@ function note_calcul_generate_bulletin($input, &$total_note = 0, &$total_coeff =
         return $moyen;
     }
 }
+
+
+function note_calcul_generate_pdf_bulletin($input) {
+    
+    $dir_name = variable_get('PUBLIC_FILE', 'public://') . DIR_PDF_BULLETIN . '/' .DIR_PERIOD_BULLETIN . variable_get('PERIODE');
+    
+    if(!is_dir($dir_name)){
+        
+        mkdir($dir_name);
+    }
+
+    $dir_name .= '/'.DIR_CLASS_BULLETIN . $input['CLASS_TID'];
+
+    if(!is_dir($dir_name)){
+
+        mkdir($dir_name);
+    }
+    
+    if($input != NULL && count($input) != 0 && isset($input['ID'])){
+
+        $url        = "ecoles/note/fiche-note/".$input['ID'].'?pdf=1';
+        $filename   = "Bulletin_".$input['ID'].'_'. variable_get('PERIODE');
+        _export_to_pdf($url,$filename,$dir_name);
+    }
+        
+}
+
+
+function note_calcul_generate_winrar_bulletin() {
+    
+    require_once 'sites/all/modules/custom/entity_entity/tools/compressedFile.inc';
+    $dir_name = variable_get('PUBLIC_FILE', 'public://') . DIR_PDF_BULLETIN . '/' .DIR_PERIOD_BULLETIN . variable_get('PERIODE');
+    _compressDirectoryToTar($dir_name);
+}

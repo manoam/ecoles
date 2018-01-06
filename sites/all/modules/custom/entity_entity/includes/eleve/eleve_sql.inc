@@ -174,7 +174,7 @@ function _look_up_eleve_in_eleve_taompianarana_sql($eleve_id ,$taompianarana = N
         $sql .= "SELECT";
         
         $sql .= " e.eleve_id as ELEVE_ID, e.taompianarana_tid as TAOMPIANARANA_TID,";
-        $sql .= " e.niveau_tid as NIVEAU_TID, e.class_tid as CLASS_TID,";
+        $sql .= " e.niveau_tid as NIVEAU_TID, e.class_tid as CLASS_TID, e.num_class as NUM_CLASS,";
         $sql .= " e.id as ID";
                 
         $sql .= " FROM";

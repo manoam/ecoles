@@ -21,15 +21,18 @@ function fiche_note_form($form, &$form_state, $eleve_id) {
 
             // ity no eo amin'ny sisiny ankavia
             $markup.= t('<div class="entete_left">');
-            $markup.= t('<H3>DIRECTION REGIONAL DES ENSEIGNEMENT </H3>');
+            $markup.= t('<H3>DIRECTION REGIONAL DE L\' EDUCATION NATIONALE </H3>');
             $markup.= variable_get('DREN');
             $markup.= t('<H3>CIRCONSCRIPTION SCOLAIRE </H3>');
-            $markup.= variable_get('CISCO');
+            $markup.= variable_get('CISCO') . '</br>';
+            $markup.= variable_get('ECOLE') . '</br>';
+            $markup.= 'Code : ' . variable_get('CODE_ETAB');
             $markup.= t('</div>');
 
 
             $markup.= t('<div class="entete_right"><H3>ANNEE SCOLAIRE : </H3>');
-            $markup.= variable_get('CISCO');
+            $t      = new TaompianaranaTaxonomyTermWrapper(variable_get('TAOMPIANARANA'));
+            $markup.= $t->getName();
             $markup.= t('</div>');
 
             $markup.= t('<div class="entete_name">BULLETIN DE NOTES</div>');
@@ -70,14 +73,27 @@ function fiche_note_form($form, &$form_state, $eleve_id) {
                 $date = date('d - M - Y', $eleve->getDateNaiss());
                 $form['note_2']['date_naiss'] = array(
                     '#type' => 'markup',
-                    '#markup' => t("<b>Date de naissance : ") . $date,
+                    '#markup' => t("Date de naissance : ") . $date,
                     '#prefix' => '</br>',
                 );
 
                 $num_mat = $eleve->getNumMat();
                 $form['note_2']['num_mat'] = array(
                     '#type' => 'markup',
-                    '#markup' => t("<b>Matricule : ") . $num_mat,
+                    '#markup' => t("Matricule : ") . $num_mat,
+                    '#prefix' => '</br>',
+                    '#suffix' => '</div>',
+                );
+
+                $form['note_2']['numero'] = array(
+                    '#type' => 'markup',
+                    '#markup' => t("Numero : " . $find_info['NUM_CLASS'] . "</b>"),
+                    '#prefix' => '<div class="entete_right up" >',
+                );
+
+                $form['note_2']['class'] = array(
+                    '#type' => 'markup',
+                    '#markup' => t("Classe : ".$find_info['CLASS_NAME']),
                     '#prefix' => '</br>',
                     '#suffix' => '</div>',
                 );
@@ -85,29 +101,16 @@ function fiche_note_form($form, &$form_state, $eleve_id) {
                 $sex = $eleve->getSex()->name;
                 $form['note_2']['sex'] = array(
                     '#type' => 'markup',
-                    '#markup' => t("<b>Sexe : ") . $sex,
-                    '#prefix' => '<div class="entete_title" >',
+                    '#markup' => t("Sexe : ") . $sex,
+                    '#prefix' => '<div class="entete_right up" >',
                 );
-
-                $form['note_2']['class'] = array(
-                    '#type' => 'markup',
-                    '#markup' => t("<b>Classe : ".$find_info['CLASS_NAME']),
-                    '#prefix' => '</br>',
-                    '#suffix' => '</div>',
-                );
-
-                $form['note_2']['numero'] = array(
-                    '#type' => 'markup',
-                    '#markup' => t("<b>Numero :</b>"),
-                    '#prefix' => '<div class="entete_right" >',
-                );
-
+                
                 $classe_tid = $find_info['CLASS_TID'];
                 // manao ny calcule eto sao dia nisy tsy vita ny ankizy sasany
                 $input = array('ID' => $eleve_id, 'CLASS_TID' => $classe_tid);
 
                 $moyenne = note_calcul_generate_bulletin($input,$totalNote,$totalCoeff);
-
+                
                 if ($getHeader) {
 
                     $header[] = array('data' => 'Matiére', 'class' => array('header-bulletin'));
@@ -135,40 +138,40 @@ function fiche_note_form($form, &$form_state, $eleve_id) {
 
                     $row[] = array('data' => $matiereTerm->getName(), 'class' => array('bulletin-note'));
                     // alina indray avy eo ny note an'ilay ankizy par rapport amin'ilay matiere
-
-                    $type_de_note = _get_taxonomy_term('type_de_note');
-                    $note_general = array(variable_get('NOTE_SUR_20'), variable_get('NOTE_DEFINITIF'));
-
-                    foreach ($type_de_note as $type_note => $note_name) {
-
-                        if (in_array($type_note, $note_general)) {
-                            continue;
-                        }
-
-                        $note = note_form_get_note_in_matiere($classe_tid, $record['matiere_tid'], $type_note, $eleve_id);
-
-                        if ($note != NULL) {
-
-                            if ($getHeader) {
-
-                                $header[] = array('data' => $note_name, 'class' => array('header-bulletin'));
-                            }
-                            $row[] = array('data' => $note, 'class' => array('bulletin-note'));
-                        }
-                    }
+//
+//                    $type_de_note = _get_taxonomy_term('type_de_note');
+//                    $note_general = array(variable_get('NOTE_SUR_20'), variable_get('NOTE_DEFINITIF'));
+//
+//                    foreach ($type_de_note as $type_note => $note_name) {
+//
+//                        if (in_array($type_note, $note_general)) {
+//                            continue;
+//                        }
+//
+//                        $note = note_form_get_note_in_matiere($classe_tid, $record['matiere_tid'], $type_note, $eleve_id);
+//
+//                        if ($note != NULL) {
+//
+//                            if ($getHeader) {
+//
+//                                $header[] = array('data' => $note_name, 'class' => array('header-bulletin'));
+//                            }
+//                            $row[] = array('data' => $note, 'class' => array('bulletin-note'));
+//                        }
+//                    }
 
                     // rehefa azo daholo ny type de note izay vao apetraka ilay note sur 20 
                     $noteTerm = new TypeDeNoteTaxonomyTermWrapper(variable_get('NOTE_SUR_20'));
 
-                    $note = note_form_get_note_in_matiere($classe_tid, $record['matiere_tid'], variable_get('NOTE_SUR_20'), $eleve_id);
+                    $_note = note_form_get_note_in_matiere($classe_tid, $record['matiere_tid'], variable_get('NOTE_SUR_20'), $eleve_id);
 
-                    if ($note != NULL) {
+                    if ($_note != NULL) {
 
                         if ($getHeader) {
 
-                            $header[] = array('data' => $noteTerm->getName().' (*)', 'class' => array('header-bulletin'));
+                            $header[] = array('data' => $noteTerm->getName(), 'class' => array('header-bulletin'));
                         }
-                        $row[] = array('data' => $note, 'class' => array('bulletin-note'));
+                        $row[] = array('data' => $_note, 'class' => array('bulletin-note'));
                     }
 
                     // appetraka avy eo ny coeff
@@ -197,11 +200,11 @@ function fiche_note_form($form, &$form_state, $eleve_id) {
                     // asiana ilay oe tres bien sns
                     if ($getHeader) {
 
-                        $header[] = array('data' => 'Mention', 'class' => array('header-bulletin'));
+                        $header[] = array('data' => 'Appreciation', 'class' => array('header-bulletin'));
                         $header[] = array('data' => 'Signature', 'class' => array('header-bulletin'));
                     }
                     
-                    $row[] = array('data' => '', 'class' => array('bulletin-note'));
+                    $row[] = array('data' => _appreciation($_note), 'class' => array('bulletin-note appreciation'));
                     $row[] = array('data' => '', 'class' => array('bulletin-note'));
 
                     $rows[] = $row;
@@ -241,31 +244,52 @@ function fiche_note_form($form, &$form_state, $eleve_id) {
             );
             
             
-            $form['footer']['moyenne'] = array(
-                '#type' => 'markup',
-                '#markup' => '<b>MOYENNE : '.$moyenne.' / 20 ',
-                '#prefix' => '</br>',
-                '#suffix' => '</div>',
-            );
-            
             $name = variable_get('TAOMPIANARANA').'_'.variable_get('PERIODE').'_'.$classe_tid;
             $rang = variable_get($name);
             
-            $form['footer']['rang'] = array(
+            $form['footer']['moyenne'] = array(
                 '#type' => 'markup',
-                '#markup' => t("<b>Rang : ").$rang[$eleve_id.'_'] . ' / ' . count($rang),
-                '#prefix' => '</br>',
+                '#markup' => 'MOYENNE : '. number_format($moyenne, 2, "," ," ").' / 20 ' . " </br>Rang : ".$rang[$eleve_id.'_'] . ' / ' . count($rang) . ' éleves',
+                '#prefix' => '<div class = "moyen">',
                 '#suffix' => '</div>',
             );
             
             $form['note_2']['effectif'] = array(
                 '#type' => 'markup',
-                '#markup' => t("<b>Effectif : ".count($rang)),
+                '#markup' => t("Effectif : ".count($rang) . " </b>"),
                 '#prefix' => '</br>',
-                '#suffix' => '</div>',
+                '#suffix' => '</div></div>',
             );
 
+            $form['footer']['footer'] = array(
+                '#type' => 'markup',
+                '#markup' => t("Decision du conseil de classe : " . _appreciation($note)),
+                '#prefix' => '<div class="decision appreciation">',
+                '#suffix' => '</div>',
+            );
+            
+            $form['footer']['date'] = array(
+                '#type' => 'markup',
+                '#markup' => t("Ankadinondry le : " ),
+                '#prefix' => '<div class="entete_center">',
+                '#suffix' => '</div>',
+            );
+            
+            $form['footer']['responsable'] = array(
+                '#type' => 'markup',
+                '#markup' => t("Le Proffesseur responsable" ),
+                '#prefix' => '<div class="">',
+                '#suffix' => '</div>',
+            );
+            
+            $form['footer']['president'] = array(
+                '#type' => 'markup',
+                '#markup' => t("President du conseil" ),
+                '#prefix' => '<div class="signature-right">',
+                '#suffix' => '</div>',
+            );
         }
+        
     } catch (Exception $ex) {
         
     }
@@ -337,7 +361,7 @@ function _note_set_matiere_class_form($form, &$form_state) {
 
         $rows = array();
 
-        $result = _selectFromClassMatieres($conditions);
+        $result = _selectFromClassMatieres($conditions,$orderBy = 'classe_tid');
         while ($record = $result->fetchAssoc()) {
 
             $row = array();
@@ -577,4 +601,28 @@ function note_form_get_note_in_matiere($classe_tid, $matiere_tid, $type_note, $e
     }
 
     return NULL;
+}
+
+
+function _appreciation($_note) {
+    
+    switch ($_note) {
+        case $_note>=16:
+            return 'Trés Bien';
+        case $_note<16 && $_note>=14:
+            return 'Bien';
+        case $_note<14 && $_note>=12:
+            return 'Assez Bien';
+        case $_note<12 && $_note>=10:
+            return 'Passable';
+        case $_note<10 && $_note>=7:
+            return 'Insuffisant';
+        case $_note<7 && $_note>=5:
+            return 'Faible';
+        case $_note<5:
+            return 'Médiocre';
+
+        default:
+            return '';
+    }
 }

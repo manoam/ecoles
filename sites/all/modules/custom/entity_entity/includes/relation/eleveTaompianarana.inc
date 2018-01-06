@@ -4,7 +4,7 @@ module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/ClasseTaxo
 module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/NiveauTaxonomyTermWrapper');
 module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/TaompianaranaTaxonomyTermWrapper');
 
-function _insertIntoEleveTaompianarana($eleve_id, $taompianarana_tid, $niveau_tid, $redoublement_tid = NULL, $class_tid = NULL) {
+function _insertIntoEleveTaompianarana($eleve_id, $taompianarana_tid, $niveau_tid, $redoublement_tid = NULL, $class_tid = NULL, $num_class = NULL) {
 
     if (
             $eleve_id != NULL &&
@@ -20,6 +20,7 @@ function _insertIntoEleveTaompianarana($eleve_id, $taompianarana_tid, $niveau_ti
                         'niveau_tid' => $niveau_tid,
                         'class_tid' => $class_tid,
                         'redoublement_tid' => $redoublement_tid,
+                        'num_class'=> $num_class,
                         )
                     )
                     ->execute();

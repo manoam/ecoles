@@ -355,20 +355,53 @@ function edit_configuration_permission() {
 
 function _entity_entity_calcule_moyenne_form($form , &$form_state) {
     
+    module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/PeriodTaxonomyTermWrapper');
+
     $form['info'] = array(
         '#type' => 'fieldset',
     );
     
     $form['info']['title'] = array(
         '#type'     => 'markup',
-        '#markup'   => t('Calcule moyenne génerale dans cette periode'),
+        '#markup'   => t('Génération de bulletin de note dans cette periode'),
         '#prefix'   => '<div class ="" >',
         '#suffix'   => '</div>',
     );
     
     $form['info']['submit'] = array(
         '#type'     => 'submit',
-        '#value'    => t('Lançer le calcul'),
+        '#value'    => t('Générer le bulletin'),
+    );
+    
+    $form['bulletin'] = array(
+        '#type' => 'fieldset',
+        '#title'=> t('Bulletin de note par periode')
+    );
+    
+    $markup         = "";
+    $taompianaranas = _get_taxonomy_term('taompianarana');
+    
+    foreach ($taompianaranas as $taompianarana_tid => $taompianarana_name) {
+        
+        $markup  .= '<ul> <ol> Année scolaire : '.$taompianarana_name.'</ol>';
+        $options = PeriodTaxonomyTermWrapper::getPeriodByTaompianarana($taompianarana_tid);
+        
+        foreach ($options as $periode_tid => $periode_name) {
+    
+            $file    = PUBLIC_FILE . '/' . DIR_PDF_BULLETIN . '/' .DIR_PERIOD_BULLETIN . $periode_tid . '.tar';
+            
+            if(is_file($file)){
+                
+                $markup .= '<ul> <li> '.l($periode_name, $file) .'</li>';
+            }
+        }
+        
+        $markup .= '</ul></ul>';
+    }
+    
+    $form['bulletin']['note'] = array(
+        '#type'  => 'markup',
+        '#markup'=> $markup,
     );
     
     return $form;
@@ -378,7 +411,7 @@ function _entity_entity_calcule_moyenne_form_submit($form , &$form_state) {
 
     
     $batch = array(
-        'title' => t('Calcule moyenne génerale dans cette periode ...'),
+        'title' => t('Calcule moyenne génerale et génération bulletin dans cette periode ...'),
         'operations' => array(),
         'init_message' => t('Commencer'),
         'progress_message' => t('Procession @current sur @total.'),
@@ -395,7 +428,18 @@ function _entity_entity_calcule_moyenne_form_submit($form , &$form_state) {
         
         $batch['operations'][] = array('note_calcul_generate_bulletin', array($record));
     }
+    
+    // tsy maintsy setter-na eto indray ilay $result fa efa lasa false teo ambony
+    $result = db_query($sql);
+    
+    while ($record  = $result->fetchAssoc()) {
+        
+        $batch['operations'][] = array('note_calcul_generate_pdf_bulletin', array($record));
+    }
 
+    // tonga dia atao ao anaty winrar par classe eto ilay bulletin rehefa vita
+    $batch['operations'][] = array('note_calcul_generate_winrar_bulletin', array());
+    
     batch_set($batch);
     
 }

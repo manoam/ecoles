@@ -94,16 +94,45 @@
 }
 
 .bulletin-right{
-    border: 1px solid #ffffff;
+    border      : 1px solid #ffffff;
     border-right: 1px solid #000;
 }
 
 .bulletin-note{
-    border: 1px solid #000;
+    border  : 1px solid #000;
+    color   : #000;
+}
+
+.appreciation{
+    font-style: italic;
+    font-family: "Apple Chancery";
+    font-size: 16px
 }
 
 .header-bulletin{
     border: 1px solid #000;
     background: #ffffff;
     color: #000;
+}
+
+.up{
+    margin-top: -38px;
+}
+
+.moyen{
+    font-size: 15px;
+}
+
+.decision{
+    border-bottom: 1px solid #000;
+    border-top:  1px solid #000;
+    margin-top: 12px;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.signature-right{
+    float: right;
+    margin-top: -20px;
+    margin-right: 100px;
 }

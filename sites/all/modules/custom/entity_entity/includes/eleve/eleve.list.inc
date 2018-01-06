@@ -217,7 +217,8 @@ function _look_up_eleve_in_eleve_taompianarana($eleve_id) {
             $niveauTerm = new NiveauTaxonomyTermWrapper($record['NIVEAU_TID']);
             $find_info['NIVEAU_TID']    = $niveauTerm->getTid();
             $find_info['NIVEAU_NAME']   = $niveauTerm->getName();
-            $find_info['ID']   = $record['ID'];
+            $find_info['ID']            = $record['ID'];
+            $find_info['NUM_CLASS']     = $record['NUM_CLASS'];
             
             // mety mbola tsy nahazo class ilay ankizy
             if($record['CLASS_TID'] != NULL){

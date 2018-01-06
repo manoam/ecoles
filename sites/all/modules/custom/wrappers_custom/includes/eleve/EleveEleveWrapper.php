@@ -377,7 +377,7 @@ class EleveEleveWrapper extends WdEleveWrapper {
                         $return = $eleve->getId();
                     } else {
                         $link = l('élève', 'eleve/eleve/' . $lookUpEleve);
-                        $error_message[] = t('Cet élève resemble à cet ' . $link);
+                        $error_message[] = t('L\'élève avec le numero mat '.$num_mat.' resemble à cet ' . $link);
                     }
                 } else {
                     $error_message[] = t('Le numero matricule ' . $num_mat . ' existe déjà');
@@ -547,14 +547,15 @@ class EleveEleveWrapper extends WdEleveWrapper {
         $query .= " WHERE ";
         $query .= " sex.field_sex_tid = :sex";
         if (trim($date_naiss) != '' && $date_naiss != NULL) {
-            $query .= " AND date_naiss.field_date_naiss_value = :date_naiss ";
+            $query .= " AND date_naiss.field_date_naiss_value BETWEEN :date_naiss1 AND :date_naiss2 ";
         }
 
         $query .= " HAVING FULLNAME LIKE :fullname1 OR FULLNAME LIKE :fullname2 ";
 
         $result = db_query($query, array(
             ':sex' => $sex,
-            ':date_naiss' => $date_naiss,
+            ':date_naiss1' => date('Y-m-d', strtotime($date_naiss)).' 00:00:00',
+            ':date_naiss2' => date('Y-m-d', strtotime($date_naiss)).' 23:59:59',
             ':fullname1' => $fullname1,
             ':fullname2' => $fullname2,
         ));

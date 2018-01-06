@@ -111,7 +111,7 @@ function _updateClassMatieres($fieldAndValue, $conditions) {
 
 
 
-function _selectFromClassMatieres($conditions = array()) {
+function _selectFromClassMatieres($conditions = array(),$orderBy = 'matiere_tid') {
     
     try{
 
@@ -129,6 +129,8 @@ function _selectFromClassMatieres($conditions = array()) {
         foreach($conditions as $predicate){
             $query->condition('t.'.$predicate['field_name'], $predicate['value'],$predicate['operator']);
         }
+        
+        $query->orderBy('t.'.$orderBy, 'ASC');
 
         $result = $query->execute();
 

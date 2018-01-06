@@ -154,6 +154,18 @@ function configuration_form($form,&$form_state){
         '#default_value'=> variable_get('DREN'),
     ) ;
     
+    $form['cisco_dren']['ECOLE'] = array(
+        '#title'        => t('Ecole : '),
+        '#type'         => 'textfield',
+        '#default_value'=> variable_get('ECOLE'),
+    ) ;
+    
+    $form['cisco_dren']['CODE_ETAB'] = array(
+        '#title'        => t('Code : '),
+        '#type'         => 'textfield',
+        '#default_value'=> variable_get('CODE_ETAB'),
+    ) ;
+    
     $form['faneva_mascar'] = array(
         '#title'    => t('Faneva'),
         '#type'     => 'fieldset',
