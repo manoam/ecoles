@@ -443,3 +443,17 @@ function _entity_entity_calcule_moyenne_form_submit($form , &$form_state) {
     batch_set($batch);
     
 }
+
+
+function _entity_entity_date_format_in_en($date){
+    
+  if(trim($date) != ''){
+      
+    $array  = explode('/',$date);
+    $day    = $array[0];
+    $month  = $array[1];
+    $year   = $array[2];
+    
+    return $month . '/' . $day . '/' .$year;
+  }
+}

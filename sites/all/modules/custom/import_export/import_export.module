@@ -237,6 +237,8 @@ function import_from_xlsx_import_line($line, &$context) {
     $redoublement   = trim($line[20]);
     $photo          = trim($line[21]);
 
+    // mila avadika ho en ny date miditra eo amin'ny birthdate
+    $date_naiss   = _entity_entity_date_format_in_en($date_naiss);
     $niveau_tid   = NiveauTaxonomyTermWrapper::getNiveauByCode($niveau);
     $classe_tid   = ClasseTaxonomyTermWrapper::getClasseByCode($classe);
     $redouble_tid = RedoublementTaxonomyTermWrapper::getByCode($redoublement);
