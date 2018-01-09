@@ -11,7 +11,7 @@ module_load_include('php', 'wrappers_custom', 'includes/taxonomy_term/NiveauTaxo
  * @param type $class_tid
  * @return type
  */
-function _eleve_list_get_list($niveau_tid = NULL,$class_tid = NULL,$taompianarana_tid = NULL,$nom_prenom = NULL,$num_mat = NULL,$sex = NULL) {
+function _eleve_list_get_list($niveau_tid = NULL,$class_tid = NULL,$taompianarana_tid = NULL,$nom_prenom = NULL,$num_mat = NULL,$sex = NULL,$order_by = array()) {
     
     $list = array();
     
@@ -21,7 +21,7 @@ function _eleve_list_get_list($niveau_tid = NULL,$class_tid = NULL,$taompianaran
     }
     
     // ity no maka ny list ny eleve
-    $sql = _eleve_sql_list_eleve($niveau_tid, $class_tid,$taompianarana_tid,$nom_prenom ,$num_mat ,$sex );
+    $sql = _eleve_sql_list_eleve($niveau_tid, $class_tid,$taompianarana_tid,$nom_prenom ,$num_mat ,$sex ,$order_by);
     
     $result = db_query($sql);
     

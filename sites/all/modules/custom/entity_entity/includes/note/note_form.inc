@@ -263,7 +263,7 @@ function fiche_note_form($form, &$form_state, $eleve_id) {
 
             $form['footer']['footer'] = array(
                 '#type' => 'markup',
-                '#markup' => t("Decision du conseil de classe : " . _appreciation($note)),
+                '#markup' => t("Decision du conseil de classe : " . _appreciation($moyenne)),
                 '#prefix' => '<div class="decision appreciation">',
                 '#suffix' => '</div>',
             );
