@@ -1126,10 +1126,12 @@ function _export_fiche_note_form_submit($form, &$form_state) {
 
         while ($record_matiere = $result_matiere->fetchAssoc()) {
 
-            $matiere = new MatieresTaxonomyTermWrapper($record_matiere['matiere_tid']);
+            $matiere    = new MatieresTaxonomyTermWrapper($record_matiere['matiere_tid']);
             $header[]   = $matiere->getName();
         }
-
+        
+        $header[]           = t('Moyenne');
+        $header[]           = t('Rang');
         $classe             = new ClasseTaxonomyTermWrapper($eleve_class);
         $excel_name         = t('Liste_eleves_'.$classe->getName().'_'.date('d_M_Y'));
         $key_not_to_excel   = array('ID','TAOMPIANARANA_TID','SEXE_TID','NIVEAU_TID','TAOMPIANARANA_NAME','CLASS_TID','NIVEAU_NAME','CLASS_NAME','TABLE_ID');
@@ -1147,6 +1149,11 @@ function _export_fiche_note_form_submit($form, &$form_state) {
                 $row[$record_matiere['matiere_tid']] = note_form_get_note_in_matiere($eleve_class, $record_matiere['matiere_tid'], variable_get('NOTE_SUR_20'), $eleve['ID']);
             }
 
+            $moyenne        = note_calcul_generate_bulletin($eleve);
+            $row['Moyenne'] = number_format($moyenne, 2, "," ," ");
+            $name           = variable_get('TAOMPIANARANA').'_'.variable_get('PERIODE').'_'.$eleve['CLASS_TID'];
+            $rang           = variable_get($name);
+            $row['rang']    = $rang[$eleve['ID'].'_'];
             
             $rows[] = $row;
         }
